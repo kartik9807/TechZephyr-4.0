@@ -3,22 +3,9 @@
 import React, { useState } from "react";
 import './globals.css';
 import CountUp from "react-countup";
-import { Menu, X } from "lucide-react";
 import Silk from "@/components/animated_bg/Silk.jsx";
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const navLinks = [
-    { href: "/home", label: "Home" },
-    { href: "/Examination", label: "Examination" },
-    { href: "/Tracks", label: "Tracks" },
-    { href: "/Login", label: "Login" },
-    { href: "/AboutUs", label: "About Us" },
-    { href: "/Sponsors", label: "Sponsors" },
-    { href: "/LastEdition", label: "Last Edition" },
-  ];
-
   return (
     <>
       <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}>
@@ -78,49 +65,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <nav className="fixed z-20 bottom-0 w-full bg-black/60 backdrop-blur-md border-t border-white/10">
-          <div className="flex md:hidden items-center gap-3 px-4 py-3">
-            <a href="/Register" className="flex-1 text-center uppercase text-black bg-white py-2.5 rounded-full font-semibold text-xs tracking-wide transition-all duration-300 active:scale-95">Register</a>
-            <button
-              onClick={() => setMenuOpen((prev) => !prev)}
-              aria-label="Toggle menu"
-              aria-expanded={menuOpen}
-              className="flex items-center justify-center w-11 h-11 shrink-0 rounded-full border border-white/30 text-white transition-colors duration-300 hover:border-white/60"
-            >
-              {menuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
-
-          {menuOpen && (
-            <div className="md:hidden border-t border-white/10 bg-black/90 backdrop-blur-md px-4 py-4 max-h-[60vh] overflow-y-auto">
-              <ul className="flex flex-col divide-y divide-white/10">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="block py-3 text-center text-white uppercase text-sm tracking-wide hover:text-white/50 transition-colors duration-300"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          <ul className="hidden md:flex justify-center items-center space-x-6 font-medium text-sm md:text-md lg:text-lg py-2.5">
-            <li><a href="/home" className="text-white uppercase hover:text-white/50">Home</a></li>
-            <li><a href="/Examination" className="text-white uppercase hover:text-white/50">Examination</a></li>
-            <li><a href="/Tracks" className="text-white uppercase hover:text-white/50">Tracks</a></li>
-            <li><a href="/Register" className="text-black uppercase bg-white py-2.5 border border-white px-6 hover:bg-transparent hover:text-white transition-all duration-300">Register</a></li>
-            <li><a href="/Login" className="text-black uppercase border bg-white border-white py-2.5 px-6 hover:bg-transparent hover:text-white transition-all duration-300">Login</a></li>
-            <li><a href="/AboutUs" className="text-white uppercase hover:text-white/50">About Us</a></li>
-            <li><a href="/Sponsors" className="text-white uppercase hover:text-white/50">Sponsors</a></li>
-            <li><a href="/LastEdition" className="text-white uppercase hover:text-white/50">Last Edition</a></li>
-          </ul>
-        </nav>
       </section>
     </>
   );
