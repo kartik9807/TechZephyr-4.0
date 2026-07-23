@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Sparkles, Calendar, Target, Award, Terminal, ChevronRight, Users, Handshake, Zap, ExternalLink } from "lucide-react";
 import Silk from "@/components/animated_bg/Silk.jsx";
-import Navbar from "@/components/navbar.js";
+import Navbar from "@/components/Navbar.jsx";
 
 const editions = [
   {
