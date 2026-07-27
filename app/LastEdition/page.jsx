@@ -103,7 +103,7 @@ export default function LastEditionPage() {
           <p className="uppercase tracking-[0.3em] text-xs md:text-sm text-white/50 font-mono font-semibold mb-2">
             IIT Bhubaneswar &middot; Legacy & Archives
           </p>
-          <h1 className="landing-heading text-center text-5xl sm:text-6xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 via-zinc-400 to-zinc-800 drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
+          <h1 className="landing-heading text-center text-5xl sm:text-6xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-linear-to-b from-zinc-100 via-zinc-400 to-zinc-800 drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
             LAST EDITIONS
           </h1>
           <p className="mt-3 text-xs sm:text-sm md:text-base text-white/70 max-w-xl mx-auto leading-relaxed">
