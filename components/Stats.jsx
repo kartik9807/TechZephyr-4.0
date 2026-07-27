@@ -39,7 +39,7 @@ export default function Stats() {
                     {stats.map((item, index) => (
                         <motion.div key={index} whileHover={{ y: -10, scale: 1.03 }}
                             className="group rounded-3xl border border-white/10 bg-white/3 backdrop-blur-xl p-8 transition-all duration-500">
-                            <div className="text-5xl md:text-6xl font-black text-white">
+                            <div className="text-5xl md:text-[45px] font-black text-white leading-none">
                                 <CountUp end={item.value} duration={2.5} separator={item?.separator} suffix={item?.suffix}
                                     enableScrollSpy
                                     scrollSpyOnce
