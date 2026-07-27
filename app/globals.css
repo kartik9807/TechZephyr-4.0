@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-lexend);
+  --font-mono: var(--font-geist-lexend);
+  --font-heading: var(--font-lexend);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -65,10 +65,8 @@
     text-transform: uppercase;
 }
 :root {
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  --font-mono: 'Fira Code', 'Courier New', monospace;
+  --font-sans: var(--font-lexend);
+--font-mono: var(--font-lexend);
 
   --font-parabolica: "BM Parabolica", "Switzer Variable", sans-serif;  --background: oklch(0.1451 0 0);
   --foreground: oklch(0.145 0 0);
@@ -136,4 +134,66 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#000;
+  color:white;
+  font-family:var(--font-lexend);
+}
+
+::selection{
+  background:#F59E0B;
+  color:black;
+}
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#080808;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#444;
+  border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#F59E0B;
+}
+
+.glass{
+  background:rgba(255,255,255,.035);
+  backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.orange-glow{
+  box-shadow:
+      0 0 20px rgba(245,158,11,.18),
+      0 0 60px rgba(245,158,11,.08);
+}
+
+.text-gradient{
+  background:linear-gradient(
+      to bottom,
+      #ffffff,
+      #cfcfcf,
+      #5b5b5b
+  );
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.orange-gradient{
+  background:linear-gradient(
+      135deg,
+      #FBBF24,
+      #F59E0B
+  );
 }
