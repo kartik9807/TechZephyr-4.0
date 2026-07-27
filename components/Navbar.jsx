@@ -1,72 +1,98 @@
 "use client";
 
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Home, Trophy, Users, Handshake, History, LogIn, UserPlus, Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const navLinks = [
-        { href: "/", label: "Home" },
-        { href: "/Competitions", label: "Competitions" },
-        { href: "/Login", label: "Login" },
-        { href: "/AboutUs", label: "About Us" },
-        { href: "/Sponsors", label: "Sponsors" },
-        { href: "/LastEdition", label: "Last Edition" },
+    const pathname = usePathname();
+    const [open, setOpen] = useState(false);
+    const links = [
+        {
+            href: "/",
+            label: "Home",
+            icon: Home
+        },
+        {
+            href: "/Competitions",
+            label: "Competitions",
+            icon: Trophy
+        },
+        {
+            href: "/AboutUs",
+            label: "About",
+            icon: Users
+        },
+        {
+            href: "/Sponsors",
+            label: "Sponsors",
+            icon: Handshake
+        },
+        {
+            href: "/LastEdition",
+            label: "Archive",
+            icon: History
+        }
     ];
+
     return (
-        <nav className="fixed z-20 bottom-0 w-full bg-black/60 backdrop-blur-md border-t border-white/10">
-            <div className="flex md:hidden items-center gap-3 px-4 py-3">
-                <Link href="/Register"
-                    className="flex-1 text-center uppercase text-black bg-white py-2.5 rounded-full font-semibold text-xs tracking-wide transition-all duration-300 active:scale-95">
-                    Register
-                </Link>
-                <button onClick={() => setMenuOpen(prev => !prev)} aria-label="Toggle menu" aria-expanded={menuOpen}
-                    className="flex items-center justify-center w-11 h-11 shrink-0 rounded-full border border-white/30 text-white transition-colors duration-300 hover:border-white/60">
-                    {menuOpen ? <X size={18} /> : <Menu size={18} />}
-                </button>
-            </div>
-            {menuOpen && (
-                <div className="md:hidden border-t border-white/10 bg-black/90 backdrop-blur-md px-4 py-4 max-h-[60vh] overflow-y-auto">
-                    <ul className="flex flex-col divide-y divide-white/10">
-                        {navLinks.map((link) => (
-                            <li key={link.href}>
-                                <Link href={link.href} onClick={() => setMenuOpen(false)}
-                                    className="block py-3 text-center text-white uppercase text-sm tracking-wide hover:text-white/50 transition-colors duration-300">
-                                    {link.label}
+        <>
+            <div className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 md:hidden">
+                <AnimatePresence>
+                    {open && (
+                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="mb-4 w-72 rounded-3xl border border-white/10 bg-black/75 backdrop-blur-2xl p-3 shadow-[0_0_40px_rgba(251,191,36,.12)]">
+                            {links.map((item) => {
+                                const Icon = item.icon;
+                                return (
+                                    <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="flex items-center gap-4 rounded-2xl px-4 py-3 hover:bg-white/5 transition ">
+                                        <Icon size={18} className="text-amber-300" />
+                                        <span>{item.label}</span>
+                                    </Link>
+                                )
+                            })}
+                            <div className="mt-2 flex gap-2">
+                                <Link href="/Register" className="flex-1 rounded-full bg-amber-400 py-3 text-center font-semibold text-black ">
+                                    Register
                                 </Link>
-                            </li>
-                        ))
-                        }
-                    </ul>
+                                <Link href="/Login" className="flex-1 rounded-full border border-white/10 bg-white/5 py-3 text-center">
+                                    Login
+                                </Link>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+                <div className="flex items-center justify-between rounded-full border border-white/10 bg-black/75 backdrop-blur-2xl px-5 py-3 shadow-[0_0_40px_rgba(251,191,36,.12)]">
+                    <span className="font-semibold tracking-wider">TechZephyr</span>
+                    <button onClick={() => setOpen(!open)} className="ml-6 flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 text-black">
+                        {open ? <X size={18} /> : <Menu size={18} />}
+                    </button>
                 </div>
-            )
-            }
-            <ul className="hidden md:flex justify-center items-center space-x-6 font-medium text-sm md:text-md lg:text-lg py-2.5">
-                <li>
-                    <Link href="/" className="text-white uppercase hover:text-white/50">Home</Link>
-                </li>
-                <li>
-                    <Link href="/Competitions" className="text-white uppercase hover:text-white/50">Competitions</Link>
-                </li>
-                <li>
-                    <Link href="/Register" className="text-black uppercase bg-white py-2.5 border border-white px-6 hover:bg-transparent hover:text-white transition-all duration-300">
+            </div>
+            <div className=" fixed bottom-6 left-1/2 z-50 hidden -translate-x-1/2 md:block">
+                <div className=" flex items-center gap-2 rounded-full border border-white/10 bg-black/70 px-3 py-3 backdrop-blur-2xl shadow-[0_0_40px_rgba(251,191,36,.12)]">
+                    {links.map((item) => {
+                        const Icon = item.icon;
+                        const active = pathname === item.href;
+                        return (
+                            <Link key={item.href} href={item.href} className={`relative flex items-center gap-2 rounded-full px-5 py-3 transition-all duration-300
+                                ${active ? "bg-amber-400 text-black" : "text-white hover:bg-white/5"}`}>
+                                <Icon size={18} />
+                                <span className="text-sm">{item.label}</span>
+                            </Link>
+                        )
+                    })}
+                    <div className="mx-1 h-8 w-px bg-white/10" />
+                    <Link href="/Login" className=" rounded-full border border-white/10 bg-white/5 px-6 py-3 transition hover:border-amber-400/40">
+                        Login
+
+                    </Link>
+                    <Link href="/Register" className=" rounded-full bg-amber-400 px-7 py-3 font-semibold text-black transition hover:bg-amber-300 hover:shadow-[0_0_25px_rgba(251,191,36,.35)]">
                         Register
                     </Link>
-                </li>
-                <li>
-                    <Link href="/Login" className="text-black uppercase border bg-white border-white py-2.5 px-6 hover:bg-transparent hover:text-white transition-all duration-300">Login</Link>
-                </li>
-                <li>
-                    <Link href="/AboutUs" className="text-white uppercase hover:text-white/50">About Us</Link>
-                </li>
-                <li>
-                    <Link href="/Sponsors" className="text-white uppercase hover:text-white/50">Sponsors</Link>
-                </li>
-                <li>
-                    <Link href="/LastEdition" className="text-white uppercase hover:text-white/50">Last Edition</Link>
-                </li>
-            </ul>
-        </nav>
-    )
+                </div>
+            </div>
+        </>
+    );
 }

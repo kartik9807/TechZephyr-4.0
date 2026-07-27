@@ -1,14 +1,38 @@
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
+// import "./globals.css";
+// import Navbar from "@/components/Navbar";
+
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
+
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+
+// export const metadata = {
+//   title: "TechZephyr",
+//   description: "TechZephyr website",
+// };
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+//       <body className="min-h-full flex flex-col bg-black">
+//         {children}
+//         <Navbar />
+//       </body>
+//     </html>
+//   );
+// }
+import { Lexend } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const lexend = Lexend({
+  variable: "--font-lexend",
   subsets: ["latin"],
 });
 
@@ -19,7 +43,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="en" className={`${lexend.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-black">
         {children}
         <Navbar />
