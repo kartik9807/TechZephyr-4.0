@@ -63,10 +63,10 @@ export default function Navbar() {
                         </motion.div>
                     )}
                 </AnimatePresence>
-                <div className="flex items-center justify-between rounded-full border border-white/10 bg-black/75 backdrop-blur-2xl px-5 py-3 shadow-[0_0_40px_rgba(251,191,36,.12)]">
+                <div className="flex items-center justify-between rounded-full border border-white/10 bg-black/75 backdrop-blur-2xl px-6 py-3 w-80 shadow-[0_0_40px_rgba(251,191,36,.12)]">
                     <span className="font-semibold tracking-wider">TechZephyr</span>
-                    <button onClick={() => setOpen(!open)} className="ml-6 flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 text-black">
-                        {open ? <X size={18} /> : <Menu size={18} />}
+                    <button onClick={() => setOpen(!open)} className="ml-6 flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-400 text-black">
+                        {open ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </div>
             </div>

@@ -20,7 +20,7 @@ export default function Home() {
         </div>
 
         <div style={{ position: "relative", zIndex: 1 }} className="flex flex-col items-center pt-16 sm:pt-20 px-4 pb-32">
-          <h1 className="landing-heading text-center text-6xl sm:text-7xl md:text-8xl lg:text-[8.5rem] bg-clip-text text-transparent bg-linear-to-b from-zinc-400 via-zinc-600 to-black drop-shadow-[0_0_30px_rgba(139,123,255,0.35)]">
+          <h1 className="landing-heading text-center text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] bg-clip-text text-transparent bg-linear-to-b from-zinc-400 via-zinc-600 to-black drop-shadow-[0_0_30px_rgba(139,123,255,0.35)]">
             TECHZEPHYR
           </h1>
           <p className="uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-xs md:text-sm text-white/50 mt-4 sm:mt-6 text-center">

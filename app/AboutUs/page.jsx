@@ -108,7 +108,7 @@ export default function AboutUs() {
                   <h3 className="mt-12 text-3xl font-bold">Innovation Meets Impact</h3>
                   <p className="mt-6 text-white/60 leading-8">
                     Every competition, workshop and hackathon is curated to encourage practical problem solving, creativity and
-                    collaboration while preparing students for tomorrow's technology ecosystem.
+                    collaboration while preparing students for tomorrow&apos;s technology ecosystem.
                   </p>
                   <div className="mt-10 h-px w-full bg-linear-to-r from-amber-400/50 via-white/10 to-transparent" />
                   <p className="mt-6 text-xs uppercase tracking-[0.35em] text-white/40">Science • Technology • Innovation</p>
