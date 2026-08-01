@@ -35,8 +35,8 @@ export default function Home() {
             click, and track results as they happen.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto items-center px-6 sm:px-0">
-            <a href="/Register" className="w-full sm:w-auto text-center uppercase text-black bg-white py-3 px-8 rounded-full font-semibold text-xs sm:text-sm tracking-wide transition-all duration-300 hover:bg-[#262626] hover:text-white hover:shadow-[0_0_20px_rgba(38,38,38,0.6)] hover:-translate-y-0.5">Explore Events</a>
-            <a href="/AboutUs" className="w-full sm:w-auto text-center uppercase text-white border border-white/40 py-3 px-8 rounded-full text-xs sm:text-sm tracking-wide transition-all duration-300 hover:border-[#737373] hover:text-[#737373] hover:-translate-y-0.5">Learn More</a>
+            <a href="/Register" className="w-full sm:w-auto text-center uppercase text-black bg-white py-3 px-8 rounded-xl font-semibold text-xs sm:text-sm tracking-wide transition-all duration-300 hover:bg-[#262626] hover:text-white hover:shadow-[0_0_20px_rgba(38,38,38,0.6)] hover:-translate-y-0.5">Explore Events</a>
+            <a href="/AboutUs" className="w-full sm:w-auto text-center uppercase text-white border border-white/40 py-3 px-8 rounded-xl text-xs sm:text-sm tracking-wide transition-all duration-300 hover:border-[#737373] hover:text-[#737373] hover:-translate-y-0.5">Learn More</a>
           </div>
           <div className="grid justify-center grid-cols-2 sm:flex gap-x-8 gap-y-6 sm:gap-10 md:gap-16 mt-10 sm:mt-14 text-center w-full max-w-xs sm:max-w-none">
             <div>
