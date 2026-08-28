@@ -44,7 +44,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${lexend.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-black">
+      <body className="min-h-full flex flex-col bg-black ">
         {children}
         <Navbar />
       </body>
