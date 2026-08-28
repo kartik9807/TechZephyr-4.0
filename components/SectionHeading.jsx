@@ -18,25 +18,25 @@ export default function SectionHeading({
             }`}
         >
             <div
-                className={`flex items-center gap-3 mb-4 ${
+                className={`mb-4 flex items-center gap-3 ${
                     center ? "justify-center" : "justify-start"
                 }`}
             >
-                <span className="h-px w-8 bg-amber-400" />
+                <span className="h-px w-8 bg-[#C84B2F]" />
 
-                <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-amber-300">
+                <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[#C84B2F] dark:text-[#E06A4F]">
                     {subtitle}
                 </p>
 
-                <span className="h-px w-8 bg-amber-400" />
+                <span className="h-px w-8 bg-[#C84B2F]" />
             </div>
 
-            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-[#2B211C] dark:text-[#F5F0E8] sm:text-4xl md:text-5xl">
                 {title}
             </h2>
 
             <p
-                className={`mt-4 max-w-xl text-sm leading-7 text-white/40 ${
+                className={`mt-4 max-w-xl text-sm leading-7 text-[#6F6962] dark:text-[#B4ADA5] ${
                     center ? "mx-auto" : ""
                 }`}
             >
