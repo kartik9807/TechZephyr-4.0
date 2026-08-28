@@ -9,6 +9,25 @@ import CTA from "@/components/CTA";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 
+
+function EcosystemNode({ title, subtitle }) {
+  return (
+    <div className="group flex w-28 flex-col items-center">
+      <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-black/70 backdrop-blur-xl transition-all duration-300 group-hover:border-amber-400/50 group-hover:shadow-[0_0_30px_rgba(251,191,36,.15)]">
+        <div className="h-2 w-2 rounded-full bg-amber-300 shadow-[0_0_12px_rgba(251,191,36,.8)]" />
+      </div>
+
+      <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-white/80">
+        {title}
+      </p>
+
+      <p className="mt-1 text-[9px] uppercase tracking-[0.25em] text-white/30">
+        {subtitle}
+      </p>
+    </div>
+  );
+}
+
 export default function AboutUs() {
   const cardVariants = {
     hidden: {},
@@ -44,42 +63,249 @@ export default function AboutUs() {
   return (
     <main className="bg-black text-white overflow-x-hidden">
       <section className="relative min-h-screen overflow-hidden">
+        {/* Background */}
         <div className="absolute inset-0">
-          <Silk speed={5} scale={1} color="#262626" noiseIntensity={1.2} rotation={0} />
+          <Silk
+            speed={5}
+            scale={1}
+            color="#262626"
+            noiseIntensity={1.2}
+            rotation={0}
+          />
         </div>
-        <div className=" absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-black" />
+
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-black" />
+
         <div className="absolute left-1/3 top-32 h-96 w-96 rounded-full bg-amber-400/10 blur-[140px]" />
+
         <div className="relative z-10 flex min-h-screen items-center">
-          <div className=" mx-auto max-w-7xl px-6 w-full">
-            <motion.div initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9, ease: "easeOut" }} className="max-w-4xl">
-              <motion.p initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: .2, duration: .7 }} className="uppercase tracking-[0.45em] text-xs text-amber-300 mb-6">
+          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[1.05fr_.95fr]">
+
+            {/* =========================================================
+          LEFT — HERO CONTENT
+          ========================================================= */}
+
+            <motion.div
+              initial={{ opacity: 0, y: 35 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+              className="max-w-4xl"
+            >
+              <motion.p
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.05, duration: 0.35 }}
+                className="mb-6 text-xs uppercase tracking-[0.45em] text-amber-300"
+              >
                 Science & Technology Council
               </motion.p>
-              <motion.h1 initial={{ opacity: 0, scale: .95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .3, duration: .8 }}
-                className=" landing-heading text-5xl md:text-7xl lg:text-[7.5rem] bg-clip-text text-transparent bg-linear-to-b from-white via-zinc-300 to-zinc-700 drop-shadow-[0_0_40px_rgba(251,191,36,.15)]">
+
+              <motion.h1
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1, duration: 0.45 }}
+                className="landing-heading bg-linear-to-b from-white via-zinc-300 to-zinc-700 bg-clip-text text-5xl text-transparent drop-shadow-[0_0_40px_rgba(251,191,36,.15)] md:text-7xl lg:text-[7.5rem]"
+              >
                 ABOUT US
               </motion.h1>
-              <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .5 }} className="mt-5 text-3xl md:text-5xl font-semibold">
+
+              <motion.h2
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.18, duration: 0.4 }}
+                className="mt-5 text-3xl font-semibold md:text-5xl"
+              >
                 TechZephyr
-                <span className="text-amber-300">{" "}2026</span>
+                <span className="text-amber-300"> 2026</span>
               </motion.h2>
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .7 }} className="mt-8 max-w-3xl text-lg leading text-white/60">
-                The flagship technology festival of the Science & Technology Council, IIT Bhubaneswar—bringing together
-                innovation, engineering, entrepreneurship and creativity through hackathons, competitions, workshops and exhibitions.
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.25, duration: 0.4 }}
+                className="mt-8 max-w-3xl text-lg leading-8 text-white/60"
+              >
+                The flagship technology festival of the Science & Technology
+                Council, IIT Bhubaneswar—bringing together innovation, engineering,
+                entrepreneurship and creativity through hackathons, competitions,
+                workshops and exhibitions.
               </motion.p>
-              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .9 }} className="mt-12 flex flex-wrap gap-5">
-                <Link href="/Competitions" className="rounded-full bg-amber-400 px-8 py-4 text-black uppercase text-sm font-semibold tracking-[0.25em] transition-all duration-300 hover:bg-amber-300 hover:scale-105">
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.32, duration: 0.4 }}
+                className="mt-12 flex flex-wrap gap-5"
+              >
+                <Link
+                  href="/Competitions"
+                  className="rounded-full bg-amber-400 px-8 py-4 text-sm font-semibold uppercase tracking-[0.25em] text-black transition-all duration-300 hover:scale-105 hover:bg-amber-300"
+                >
                   Explore Events
                 </Link>
-                <Link href="/Sponsors" className="rounded-full border border-white/20 px-8 py-4 uppercase text-sm tracking-[0.25em] hover:border-amber-400 hover:text-amber-300 transition-all duration-300">
+
+                <Link
+                  href="/Sponsors"
+                  className="rounded-full border border-white/20 px-8 py-4 text-sm uppercase tracking-[0.25em] transition-all duration-300 hover:border-amber-400 hover:text-amber-300"
+                >
                   Sponsors
                 </Link>
               </motion.div>
             </motion.div>
+
+
+            {/* =========================================================
+          RIGHT — TECHZEPHYR ECOSYSTEM
+          ========================================================= */}
+
+            <div className="relative hidden h-[520px] items-center justify-center lg:flex">
+
+              {/* Ambient glow */}
+              <div className="absolute h-72 w-72 rounded-full bg-amber-400/10 blur-[100px]" />
+
+              {/* Outer ring */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+                className="absolute h-[430px] w-[430px] rounded-full border border-white/5"
+              />
+
+              {/* Inner ring */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.25 }}
+                className="absolute h-[310px] w-[310px] rounded-full border border-amber-400/10"
+              />
+
+              {/* =====================================================
+            CONNECTION LINES
+            ===================================================== */}
+
+              <div className="absolute h-px w-[330px] rotate-0 bg-linear-to-r from-transparent via-amber-400/30 to-transparent" />
+
+              <div className="absolute h-px w-[330px] rotate-45 bg-linear-to-r from-transparent via-amber-400/20 to-transparent" />
+
+              <div className="absolute h-px w-[330px] -rotate-45 bg-linear-to-r from-transparent via-amber-400/20 to-transparent" />
+
+              <div className="absolute h-[330px] w-px bg-linear-to-b from-transparent via-amber-400/20 to-transparent" />
+
+
+              {/* =====================================================
+            CENTER
+            ===================================================== */}
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="relative z-20 flex h-36 w-36 flex-col items-center justify-center rounded-full border border-amber-400/30 bg-black/70 shadow-[0_0_70px_rgba(251,191,36,.18)] backdrop-blur-xl"
+              >
+                <span className="text-xs uppercase tracking-[0.35em] text-white/40">
+                  Tech
+                </span>
+
+                <span className="mt-1 text-2xl font-bold tracking-tight">
+                  Zephyr
+                </span>
+
+                <span className="mt-1 text-[10px] uppercase tracking-[0.3em] text-amber-300">
+                  4.0
+                </span>
+              </motion.div>
+
+
+              {/* =====================================================
+            NODE — INNOVATION
+            ===================================================== */}
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.45, duration: 0.35 }}
+                className="absolute left-1/2 top-2 -translate-x-1/2"
+              >
+                <EcosystemNode
+                  title="Innovation"
+                  subtitle="Ideas"
+                />
+              </motion.div>
+
+
+              {/* =====================================================
+            NODE — ENGINEERING
+            ===================================================== */}
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.52, duration: 0.35 }}
+                className="absolute right-0 top-1/2 -translate-y-1/2"
+              >
+                <EcosystemNode
+                  title="Engineering"
+                  subtitle="Build"
+                />
+              </motion.div>
+
+
+              {/* =====================================================
+            NODE — COMMUNITY
+            ===================================================== */}
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.59, duration: 0.35 }}
+                className="absolute bottom-4 left-1/2 -translate-x-1/2"
+              >
+                <EcosystemNode
+                  title="Community"
+                  subtitle="Connect"
+                />
+              </motion.div>
+
+
+              {/* =====================================================
+            NODE — CREATIVITY
+            ===================================================== */}
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.66, duration: 0.35 }}
+                className="absolute left-0 top-1/2 -translate-y-1/2"
+              >
+                <EcosystemNode
+                  title="Creativity"
+                  subtitle="Imagine"
+                />
+              </motion.div>
+
+
+              {/* =====================================================
+            SMALL TOP LABEL
+            ===================================================== */}
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.75, duration: 0.4 }}
+                className="absolute bottom-[-15px] left-1/2 -translate-x-1/2 text-center"
+              >
+                <p className="text-[10px] uppercase tracking-[0.45em] text-white/30">
+                  IIT Bhubaneswar
+                </p>
+
+                <div className="mx-auto mt-3 h-px w-20 bg-linear-to-r from-transparent via-amber-400/40 to-transparent" />
+              </motion.div>
+
+            </div>
           </div>
         </div>
       </section>
-      <section className="py-32">
+      <section className="py-10">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeading subtitle="Flagship Festival" title="About TechZephyr" />
           <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -94,17 +320,17 @@ export default function AboutUs() {
                 collaboration, practical learning and innovation that solves real-world challenges. It offers participants an opportunity to compete, collaborate and showcase ideas with meaningful impact.
               </p>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: .8 }} className="relative">
+            <motion.div initial={{ opacity: 0, x: 60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: .4 }} className="relative">
               <div className="absolute -inset-1 rounded-[40px] bg-amber-400/10 blur-3xl" />
               <div className="relative overflow-hidden rounded-[35px] border border-white/10 bg-white/[0.035] backdrop-blur-xl p-10">
-                <motion.div initial={{ scale: 1.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, type: "spring" }}
+                <motion.div initial={{ scale: 1.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, type: "spring" }}
                   className="relative mx-auto flex h-56 w-56 items-center justify-center">
                   <div className="absolute inset-4 rounded-full bg-amber-400/10 blur-2xl" />
                   <div className="relative z-10 flex h-44 w-44 items-center justify-center rounded-full border border-white/10 bg-black/40 shadow-[0_0_60px_rgba(245,158,11,.35)]">
                     <Image src="/logo.jpeg" width={130} height={130} alt="TechZephyr Logo" className="rounded-full object-contain" />
                   </div>
                 </motion.div>
-                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .4, duration: .7 }} className="relative z-10">
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .2, duration: .4 }} className="relative z-10">
                   <h3 className="mt-12 text-3xl font-bold">Innovation Meets Impact</h3>
                   <p className="mt-6 text-white/60 leading-8">
                     Every competition, workshop and hackathon is curated to encourage practical problem solving, creativity and
@@ -118,7 +344,7 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-      <section className="py-32 border-t border-white/10">
+      <section className="py-12.5 border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeading subtitle="Science & Technology Council" title="Who We Are" />
           <div className="grid lg:grid-cols-2 gap-20">
@@ -157,7 +383,7 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-      <section className="py-32 border-t border-white/10">
+      <section className="py-12.5 border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeading subtitle="Our Ecosystem" title="Societies Under STC" />
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -204,17 +430,13 @@ export default function AboutUs() {
               }
             ].map((society) => (
               <motion.div key={society.name} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }} variants={cardVariants}
-                whileHover={{ y: -10, rotateX: 5, rotateY: -5, scale: 1.02, }} transition={{ duration: 0.45 }} style={{ transformStyle: "preserve-3d", }}
+                whileHover={{ y: -10, rotateX: 5, rotateY: -5, scale: 1.02, }} transition={{ duration: 0.1 }} style={{ transformStyle: "preserve-3d", }}
                 className="group relative h-125 overflow-hidden rounded-[32px] border border-white/10 bg-white/4 backdrop-blur-xl p-8">
                 <div className="absolute inset-0 bg-linear-to-br from-amber-400/5 via-transparent to-transparent" />
                 <motion.div initial={{ scale: 3.8, x: 95, y: 120, opacity: 0.9, filter: "blur(8px)", }} whileInView={{ scale: 1, x: 0, y: 0, opacity: 1, filter: "blur(0px)", }}
-                  viewport={{ once: true }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], }} className="relative z-20 h-24 w-24">
+                  viewport={{ once: true }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], }} className="relative z-20 h-24 w-24">
                   <img src={society.logo} alt={society.name} className="h-full w-full object-contain" />
                 </motion.div>
-                {sparkles.map((s, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, scale: 0, }} whileInView={{ opacity: [0, 1, 0], scale: [0, 1.8, 0], }} transition={{ duration: 1.2, delay: 0.8 + i * 0.08, }}
-                    viewport={{ once: true }} className="absolute z-10 h-2 w-2 rounded-full bg-amber-300" style={{ left: s.left, top: s.top, }} />
-                ))}
                 <motion.div variants={itemVariants} className="mt-10">
                   <h3 className="text-3xl font-bold">{society.name}</h3>
                   <p className="mt-2 text-xs uppercase tracking-[0.35em] text-amber-300">{society.domain}</p>
@@ -243,29 +465,127 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-      <section className="py-32">
+      <section className="py-10">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-2 gap-10">
-            <motion.div initial={{ opacity: 0, x: -60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="rounded-[40px] border border-white/10 bg-white/3 backdrop-blur-xl p-10">
-              <p className="uppercase tracking-[0.4em] text-xs text-white/40">Vision</p>
-              <h3 className="mt-5 text-4xl font-bold">Building Future Innovators</h3>
-              <p className="mt-6 text-white/60 leading-9">
-                To create an environment where students can explore, experiment and transform ideas into meaningful technological solutions that impact society.
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="relative overflow-hidden rounded-[40px] border border-white/10 bg-white/[0.03] backdrop-blur-xl"
+          >
+
+            {/* Ambient background glow */}
+            <div className="pointer-events-none absolute -left-32 -top-32 h-72 w-72 rounded-full bg-amber-400/10 blur-[120px]" />
+            <div className="pointer-events-none absolute -bottom-32 -right-32 h-72 w-72 rounded-full bg-amber-400/5 blur-[120px]" />
+
+            <div className="relative grid lg:grid-cols-2">
+
+              {/* =====================================================
+            VISION
+            ===================================================== */}
+
+              <motion.div
+                initial={{ opacity: 0, x: -25 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="group relative p-10 md:p-14 lg:p-16"
+              >
+
+                {/* Number */}
+                <div className="mb-10 flex items-center gap-5">
+                  <span className="text-sm font-medium tracking-[0.35em] text-amber-300">
+                    01
+                  </span>
+
+                  <div className="h-px w-16 bg-linear-to-r from-amber-400/60 to-transparent" />
+
+                  <p className="text-xs uppercase tracking-[0.4em] text-white/40">
+                    Vision
+                  </p>
+                </div>
+
+                <h3 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+                  Building Future Innovators
+                </h3>
+
+                <p className="mt-7 max-w-xl text-base leading-8 text-white/60 md:text-lg">
+                  To create an environment where students can explore, experiment
+                  and transform ideas into meaningful technological solutions that
+                  impact society.
+                </p>
+
+                {/* Bottom accent */}
+                <div className="mt-10 h-px w-20 bg-amber-400/40 transition-all duration-300 group-hover:w-36" />
+
+              </motion.div>
+
+
+              {/* =====================================================
+            DIVIDER
+            ===================================================== */}
+
+              <div className="hidden lg:block absolute left-1/2 top-14 bottom-14 w-px bg-linear-to-b from-transparent via-white/10 to-transparent" />
+
+              <div className="mx-10 h-px bg-linear-to-r from-transparent via-white/10 to-transparent lg:hidden" />
+
+
+              {/* =====================================================
+            MISSION
+            ===================================================== */}
+
+              <motion.div
+                initial={{ opacity: 0, x: 25 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="group relative p-10 md:p-14 lg:p-16"
+              >
+
+                {/* Number */}
+                <div className="mb-10 flex items-center gap-5">
+                  <span className="text-sm font-medium tracking-[0.35em] text-amber-300">
+                    02
+                  </span>
+
+                  <div className="h-px w-16 bg-linear-to-r from-amber-400/60 to-transparent" />
+
+                  <p className="text-xs uppercase tracking-[0.4em] text-white/40">
+                    Mission
+                  </p>
+                </div>
+
+                <h3 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+                  Innovation Through Collaboration
+                </h3>
+
+                <p className="mt-7 max-w-xl text-base leading-8 text-white/60 md:text-lg">
+                  To empower students with technical skills, problem-solving
+                  abilities and opportunities to collaborate across domains through
+                  competitions, workshops and projects.
+                </p>
+
+                {/* Bottom accent */}
+                <div className="mt-10 h-px w-20 bg-amber-400/40 transition-all duration-300 group-hover:w-36" />
+
+              </motion.div>
+
+            </div>
+
+            {/* Bottom label */}
+            <div className="relative border-t border-white/5 px-10 py-5 md:px-14 lg:px-16">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/25">
+                Science • Technology • Innovation • Collaboration
               </p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="rounded-[40px] border border-white/10 bg-white/3 backdrop-blur-xl p-10">
-              <p className="uppercase tracking-[0.4em] text-xs text-white/40">Mission</p>
-              <h3 className="mt-5 text-4xl font-bold">Innovation Through Collaboration</h3>
-              <p className="mt-6 text-white/60 leading-9">
-                To empower students with technical skills, problem-solving abilities and opportunities to collaborate across domains through competitions, workshops and projects.
-              </p>
-            </motion.div>
-          </div>
+            </div>
+
+          </motion.div>
+
         </div>
       </section>
-      <section className="py-32 border-t border-white/10">
+      <section className="py-14 border-t border-white/10">
         <div className="mx-auto max-w-6xl px-6">
           <SectionHeading subtitle="Milestones" title="Our Achievements" />
           <div className="relative mt-20">
@@ -340,19 +660,6 @@ export default function AboutUs() {
         </div>
       </section>
       <section className="border-t border-white/10"><Stats /></section>
-      <section className="py-32">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <motion.div initial={{ opacity: 0, scale: .95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: .8 }}
-            className="rounded-[40px] border border-white/10 bg-white/3 backdrop-blur-xl p-12 md:p-20">
-            <p className="uppercase tracking-[0.4em] text-xs text-white/40">TechZephyr 2026</p>
-            <h2 className="mt-8 text-4xl md:text-6xl font-bold leading-tight">Where Ideas Meet Real Impact</h2>
-            <p className="mt-8 text-lg text-white/60 leading-9">
-              TechZephyr is not just a competition platform. It is a place where innovators collaborate,
-              engineers experiment, and technology transforms ideas into solutions for tomorrow.
-            </p>
-          </motion.div>
-        </div>
-      </section>
       <section className="border-t border-white/10"><CTA /></section>
     </main>
   );
