@@ -1,53 +1,37 @@
-// import { Geist, Geist_Mono } from "next/font/google";
-// import "./globals.css";
-// import Navbar from "@/components/Navbar";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-// export const metadata = {
-//   title: "TechZephyr",
-//   description: "TechZephyr website",
-// };
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-//       <body className="min-h-full flex flex-col bg-black">
-//         {children}
-//         <Navbar />
-//       </body>
-//     </html>
-//   );
-// }
 import { Lexend } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const lexend = Lexend({
-  variable: "--font-lexend",
-  subsets: ["latin"],
+    variable: "--font-lexend",
+    subsets: ["latin"],
+    display: "swap",
 });
 
 export const metadata = {
-  title: "TechZephyr",
-  description: "TechZephyr website",
+    title: "TechZephyr",
+    description: "TechZephyr website",
 };
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en" className={`${lexend.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-black ">
-        {children}
-        <Navbar />
-      </body>
-    </html>
-  );
+    return (
+        <html
+            lang="en"
+            className={`${lexend.variable} h-full antialiased`}
+            suppressHydrationWarning
+        >
+            <body className="min-h-full flex flex-col">
+                <ThemeProvider>
+                    {children}
+
+                    <Navbar />
+
+                    <ThemeToggle />
+                </ThemeProvider>
+            </body>
+        </html>
+    );
 }
