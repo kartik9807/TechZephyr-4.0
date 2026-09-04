@@ -102,7 +102,6 @@ export default function Competitions() {
             number: "08",
         },
     ];
-
     const [activeDashboardEvent, setActiveDashboardEvent] = useState(0);
 
     useEffect(() => {
@@ -110,10 +109,10 @@ export default function Competitions() {
             setActiveDashboardEvent(
                 (prev) => (prev + 1) % dashboardEvents.length
             );
-        }, 2000);
+        }, 3500); // 6 seconds per event
 
         return () => clearInterval(interval);
-    }, []);
+    }, [dashboardEvents.length]);
 
     const currentEvent = dashboardEvents[activeDashboardEvent];
 
@@ -195,8 +194,10 @@ export default function Competitions() {
 
 
                         {/* =========================================================
-                RIGHT SIDE — UPCOMING EVENTS DASHBOARD
-            ========================================================= */}
+                RIGHT SI```jsx
+{/* =========================================================
+    DE — UPCOMING EVENTS DASHBOARD
+========================================================= */}
                         <motion.div
                             initial={{
                                 opacity: 0,
@@ -224,7 +225,9 @@ export default function Competitions() {
                                 {/* Decorative glow */}
                                 <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-amber-400/10 blur-[90px]" />
 
-                                {/* HEADER */}
+                                {/* =================================================
+            HEADER
+        ================================================= */}
                                 <div className="relative flex items-center justify-between border-b border-white/10 px-5 py-4">
 
                                     <div>
@@ -262,7 +265,9 @@ export default function Competitions() {
                                 </div>
 
 
-                                {/* CONTENT */}
+                                {/* =================================================
+            CONTENT
+        ================================================= */}
                                 <div className="relative px-5 py-5">
 
                                     {/* UPCOMING LABEL */}
@@ -287,8 +292,8 @@ export default function Competitions() {
                                             key={currentEvent.number}
                                             initial={{
                                                 opacity: 0,
-                                                y: 15,
-                                                filter: "blur(8px)"
+                                                y: 12,
+                                                filter: "blur(6px)"
                                             }}
                                             animate={{
                                                 opacity: 1,
@@ -297,12 +302,12 @@ export default function Competitions() {
                                             }}
                                             exit={{
                                                 opacity: 0,
-                                                y: -15,
-                                                filter: "blur(8px)"
+                                                y: -12,
+                                                filter: "blur(6px)"
                                             }}
                                             transition={{
-                                                duration: 0.28,
-                                                ease: "easeOut"
+                                                duration: 0.9,
+                                                ease: "easeInOut"
                                             }}
                                             className="mt-4"
                                         >
@@ -341,7 +346,9 @@ export default function Competitions() {
                                             </div>
 
 
-                                            {/* EVENT DETAILS */}
+                                            {/* =================================================
+                        EVENT DETAILS
+                    ================================================= */}
 
                                             <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-white/10 py-4">
 
@@ -398,7 +405,9 @@ export default function Competitions() {
                                             </div>
 
 
-                                            {/* PRIZE + DIFFICULTY */}
+                                            {/* =================================================
+                        PRIZE + DIFFICULTY
+                    ================================================= */}
 
                                             <div className="mt-4 flex items-center justify-between">
 
@@ -459,7 +468,7 @@ export default function Competitions() {
                                                 key={`next-${nextEvent.number}`}
                                                 initial={{
                                                     opacity: 0,
-                                                    x: 10
+                                                    x: 8
                                                 }}
                                                 animate={{
                                                     opacity: 1,
@@ -467,10 +476,11 @@ export default function Competitions() {
                                                 }}
                                                 exit={{
                                                     opacity: 0,
-                                                    x: -10
+                                                    x: -8
                                                 }}
                                                 transition={{
-                                                    duration: 0.22
+                                                    duration: 0.8,
+                                                    ease: "easeInOut"
                                                 }}
                                                 className="mt-3 flex items-center gap-3"
                                             >
@@ -564,7 +574,9 @@ export default function Competitions() {
                                 </div>
 
 
-                                {/* BOTTOM ACCENT */}
+                                {/* =================================================
+            BOTTOM ACCENT
+        ================================================= */}
 
                                 <div className="h-px w-full bg-linear-to-r from-transparent via-amber-400/40 to-transparent" />
 

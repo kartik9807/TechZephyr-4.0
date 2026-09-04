@@ -4,12 +4,15 @@ export const competitions = [
         number: "01",
         tag: "Machine Learning",
         title: "ML Hackathon",
+        society: 'FEBS',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSTMSEkGgorngP2gPYNeJsPNHOJH_RAoYw38WUHWfTQ&s=10',
+
 
         shortDescription:
-            "Test your machine learning fundamentals in an online screening round and build a real ML solution during the offline finale.",
+            "Take on the ML challenge. Clear the online screening round, reach the offline finale, and turn your ideas into a real-world machine learning solution.",
 
         description:
-            "The Tech Zephyr ML Hackathon is a two-round challenge designed to test both theoretical understanding and practical machine learning ability. Participants first compete in an online assessment covering Machine Learning, Python, Data Science and basic AI concepts. Shortlisted teams then move to an offline hackathon where they solve a common problem statement and build a machine learning solution from scratch.",
+            " The Tech Zephyr ML Hackathon is a two-round challenge that puts participants’ machine learning knowledge, creativity, and problem-solving skills to the test. The first round is an online assessment covering **Machine Learning, Python, Data Science, and basic AI concepts**, with the top-performing teams advancing to the offline hackathon. In the final round, teams tackle a common problem statement and build a machine learning solution from scratch, turning their knowledge into a practical solution under the pressure of competition.",
 
         domain: "Machine Learning & Data Science",
         teamSize: "1–4 Members",
@@ -110,12 +113,15 @@ export const competitions = [
         number: "02",
         tag: "Engineering Design",
         title: "CADathon",
+        society: 'RISC',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9DB0dfde0pvVnGTQT_uWctgvIV5zYB8UeO5-F2ZSBL0wxE2lFWIDI0IU&s=10',
+
 
         shortDescription:
-            "A precision-driven CAD battle where speed, modelling accuracy and engineering judgement determine who survives.",
+            "Enter the CAD arena where speed, precision, modelling accuracy, and engineering judgement decide who comes out on top.",
 
         description:
-            "CADathon is a competitive Computer-Aided Design challenge focused on modelling accuracy, speed, precision and problem solving. Participants first recreate a reference 3D model under a strict time constraint. The top eight then progress to a live 1v1 knockout battle where competitors model the same reference object simultaneously.",
+            "Design fast. Model precisely. Outlast the competition. CADathon is a high-pressure 3D modelling battle where speed, accuracy, precision, and problem-solving are put to the test. Recreate a reference model against the clock, then watch the top eight go head-to-head in a live 1v1 knockout, modelling the same object simultaneously.",
 
         domain: "Computer-Aided Design",
         teamSize: "Individual",
@@ -211,9 +217,12 @@ export const competitions = [
         number: "03",
         tag: "Entrepreneurship",
         title: "B-Plan Competition",
+        society: 'FEBS',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSTMSEkGgorngP2gPYNeJsPNHOJH_RAoYw38WUHWfTQ&s=10',
+
 
         shortDescription:
-            "Turn an idea into a convincing business proposition through strategy, market understanding and a high-impact pitch.",
+            "Turn bold ideas into winning business plans by mastering strategy, understanding the market, and delivering a pitch that stands out.",
 
         description:
             "The Tech Zephyr B-Plan Competition challenges participants to transform innovative ideas into practical business plans. Teams progress from a concise online executive summary to an offline final presentation, where shortlisted participants pitch their business concepts to judges and defend their ideas through a detailed Q&A.",
@@ -319,9 +328,11 @@ export const competitions = [
         number: "04",
         tag: "Web Development",
         title: "Web Hackathon",
+        society: 'WebnD',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR84AnGJxBOuQTsTX3M-Oh1TNyJ83PRIhDDMJ7zotDSQQ&s=10',
 
         shortDescription:
-            "Design, build and ship a complete web experience under pressure, from a constrained first round to an offline finale.",
+            "Build fast. Build smart. Ship it. Push your web development skills to the limit as you race from a constrained first round to the offline finale.",
 
         description:
             "The Tech Zephyr Web Hackathon challenges developers to build functional websites combining frontend design, backend functionality and thoughtful user experience. The first round gives teams a predefined asset package and feature requirements, while top-performing teams advance to an offline finale.",
@@ -433,9 +444,12 @@ export const competitions = [
         number: "05",
         tag: "Robotics & Autonomous Systems",
         title: "TurtleBot Pursuit & Evasion Challenge",
+        society: 'RISC',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9DB0dfde0pvVnGTQT_uWctgvIV5zYB8UeO5-F2ZSBL0wxE2lFWIDI0IU&s=10',
+
 
         shortDescription:
-            "Build autonomous Catcher and Runner algorithms and compete in a simulated pursuit-evasion battle.",
+            "Catch or escape. Your algorithm decides. Build smarter autonomous strategies and battle it out in a high-stakes pursuit and evasion challenge.",
 
         description:
             "The TurtleBot Pursuit & Evasion Challenge is an autonomous robotics competition focused on navigation, path planning, decision-making and pursuit-evasion algorithms. Teams develop both a Catcher capable of pursuing a target and a Runner capable of evading capture inside a simulated robotics environment.",
@@ -534,9 +548,12 @@ export const competitions = [
         number: "06",
         tag: "Design & Creativity",
         title: "Design Marathon",
+        society: 'WebnD',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR84AnGJxBOuQTsTX3M-Oh1TNyJ83PRIhDDMJ7zotDSQQ&s=10',
+
 
         shortDescription:
-            "A fast-paced design challenge where creativity, visual communication and problem-solving meet.",
+            "Create without limits. Race against time, turn ideas into striking designs, and prove your creativity when the pressure is on.",
 
         description:
             "Tech Zephyr's Design Marathon challenges participants to develop an original design solution around a theme revealed at the beginning of the event. Participants first submit their design online, while shortlisted teams move to an offline final where they present their creative approach to a judging panel.",
@@ -641,9 +658,12 @@ export const competitions = [
         number: "07",
         tag: "Artificial Intelligence",
         title: "Agentic AI Hackathon",
+        society: 'Neuromancers',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWMbjm-4TrkjlOX3icE7eAmVhez756S2faRmXTvJGekQ&s=10',
+
 
         shortDescription:
-            "Build AI systems that do more than answer — systems that observe, decide, act, adapt and execute.",
+            "Don't just build AI. Set it in motion. Create intelligent agents that observe, reason, decide, adapt, and take action to get the job done.",
 
         description:
             "The Agentic AI Hackathon challenges participants to build intelligent systems capable of autonomous multi-step execution. Instead of simply generating answers, teams must demonstrate systems that can pursue goals, select actions dynamically, use tools, adapt to changing conditions and handle failures.",
@@ -751,9 +771,12 @@ export const competitions = [
         number: "08",
         tag: "Competitive Programming",
         title: "CP Contest",
+        society: 'Neuromancers',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWMbjm-4TrkjlOX3icE7eAmVhez756S2faRmXTvJGekQ&s=10',
+
 
         shortDescription:
-            "A 135-minute individual programming battle covering problems from fundamental data structures to advanced algorithms.",
+            "135 minutes. Zero room for hesitation. Take on a fierce programming battle where speed, logic, and algorithmic thinking separate the best from the rest.",
 
         description:
             "The Tech Zephyr CP Contest is an individual competitive programming challenge designed to test algorithmic thinking, problem-solving speed and coding proficiency. Participants face four to six coding problems ranging from easy to hard and compete on a live programming platform.",
@@ -853,9 +876,12 @@ export const competitions = [
         number: "09",
         tag: "Mathematics",
         title: "Math-O-Stellar",
+        society: 'Nakshatra',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv4wTehWaf_p7hMbvcCVAGDtvXfQmhTk_tcMconRCfsOLCqwqSivBsPTA&s=10',
+
 
         shortDescription:
-            "A non-routine mathematics challenge designed to test creativity, logical reasoning, pattern recognition and mathematical maturity.",
+            "Forget the usual math. Think beyond the obvious. Take on unconventional problems that challenge your logic, creativity, patterns, and mathematical instincts.",
 
         description:
             "Math-O-Stellar is an online non-routine mathematics competition that goes beyond conventional formula-based questions. Participants face problems designed to reward insight, persistence, flexible thinking and mathematical problem solving rather than memorisation.",
@@ -954,9 +980,12 @@ export const competitions = [
         number: "10",
         tag: "Case Study & Strategy",
         title: "Case Study Competition",
+        society: 'FEBS',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSTMSEkGgorngP2gPYNeJsPNHOJH_RAoYw38WUHWfTQ&s=10',
+
 
         shortDescription:
-            "A strategy-driven competition where participants analyse a real-world business problem and develop a practical, well-reasoned solution.",
+            "The problem is real. The solution is yours. Decode a real-world business challenge, build a winning strategy, and defend your solution under pressure.",
 
         description:
             "The Case Study Competition challenges participants to approach a real-world business problem from multiple perspectives. Teams must analyse the case, identify key challenges, develop a structured solution and communicate their recommendations effectively. The competition focuses on analytical thinking, problem solving, business understanding and the ability to turn insights into actionable strategies.",
