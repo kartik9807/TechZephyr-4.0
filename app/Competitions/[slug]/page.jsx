@@ -850,10 +850,6 @@ export default function CompetitionDetails() {
                         What To Expect
                     </h2>
 
-                    <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-white/45">
-                        More than a competition — an experience designed to
-                        challenge, inspire and connect brilliant minds.
-                    </p>
 
                 </div>
 
@@ -1102,103 +1098,99 @@ export default function CompetitionDetails() {
                 TIMELINE
             ========================================================= */}
 
-            <section className="mx-auto mt-32 max-w-7xl px-6 pb-8">
+            <section className="mx-auto mt-24 max-w-7xl px-5 pb-6 sm:px-6 md:mt-32 md:pb-8">
 
+                {/* Heading */}
                 <div className="text-center">
 
-                    <p className="uppercase tracking-[0.45em] text-xs text-amber-300">
+                    <p className="text-xs uppercase tracking-[0.35em] text-amber-300 sm:tracking-[0.45em]">
                         Schedule
                     </p>
 
-                    <h2 className="mt-4 text-4xl font-black md:text-5xl">
+                    <h2 className="mt-3 text-3xl font-black sm:text-4xl md:mt-4 md:text-5xl">
                         Competition Timeline
                     </h2>
 
                 </div>
 
-                <div className="relative mt-24">
+                {/* Timeline */}
+                <div className="relative mt-12 sm:mt-16 md:mt-24">
 
-                    <div className="absolute left-0 right-0 top-7 hidden h-px bg-linear-to-r from-transparent via-white/20 to-transparent md:block" />
+                    {/* Desktop horizontal line */}
+                    <div className="absolute left-0 right-0 top-2.5 hidden h-px bg-linear-to-r from-transparent via-white/20 to-transparent md:block" />
 
-                    <div className="grid gap-14 md:grid-cols-4">
+                    {/* Mobile vertical line */}
+                    <div className="absolute bottom-0 left-[9px] top-0 w-px bg-linear-to-b from-amber-400/40 via-white/15 to-transparent md:hidden" />
 
-                        {competition.timeline.map(
-                            (item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{
-                                        opacity: 0,
-                                        y: 40,
-                                    }}
-                                    whileInView={{
-                                        opacity: 1,
-                                        y: 0,
-                                    }}
-                                    viewport={{
-                                        once: true,
-                                    }}
-                                    transition={{
-                                        duration: 0.5,
-                                        delay: index * 0.1,
-                                    }}
-                                    className="relative"
-                                >
+                    <div className="grid gap-6 md:grid-cols-4 md:gap-14">
 
-                                    <div className="flex justify-center">
+                        {competition.timeline.map((item, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{
+                                    opacity: 0,
+                                    y: 20,
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    y: 0,
+                                }}
+                                viewport={{
+                                    once: true,
+                                    amount: 0.2,
+                                }}
+                                transition={{
+                                    duration: 0.4,
+                                    delay: index * 0.08,
+                                }}
+                                className="relative flex items-center md:block"
+                            >
 
-                                        <div className="relative">
+                                {/* Timeline dot */}
+                                <div className="relative z-10 flex shrink-0 justify-center">
 
-                                            <div className="h-5 w-5 rounded-full bg-amber-400 shadow-[0_0_25px_rgba(251,191,36,.8)]" />
+                                    <div className="h-5 w-5 rounded-full bg-amber-400 shadow-[0_0_18px_rgba(251,191,36,.7)] md:h-5 md:w-5" />
 
-                                            <motion.div
-                                                animate={{
-                                                    scale: [
-                                                        1,
-                                                        1.8,
-                                                        1,
-                                                    ],
-                                                    opacity: [
-                                                        0.7,
-                                                        0,
-                                                        0.7,
-                                                    ],
-                                                }}
-                                                transition={{
-                                                    duration: 2,
-                                                    repeat: Infinity,
-                                                    delay:
-                                                        index * 0.25,
-                                                }}
-                                                className="absolute inset-0 rounded-full border border-amber-300"
-                                            />
+                                    <motion.div
+                                        animate={{
+                                            scale: [1, 1.7, 1],
+                                            opacity: [0.6, 0, 0.6],
+                                        }}
+                                        transition={{
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            delay: index * 0.2,
+                                        }}
+                                        className="absolute inset-0 rounded-full border border-amber-300"
+                                    />
 
-                                        </div>
+                                </div>
 
-                                    </div>
+                                {/* Content */}
+                                <div className="ml-5 flex min-w-0 flex-1 items-center justify-between gap-4 md:ml-0 md:mt-7 md:block md:text-center">
 
-                                    <div className="mt-10 text-center">
+                                    <div className="min-w-0">
 
-                                        <span className="inline-block rounded-full border border-amber-400/30 bg-amber-400/10 px-5 py-2 text-xs uppercase tracking-[0.3em] text-amber-300">
-                                            {item.date}
-                                        </span>
-
-                                        <h3 className="mt-6 text-xl font-bold">
+                                        <h3 className="text-base font-bold leading-tight sm:text-lg md:text-xl">
                                             {item.title}
                                         </h3>
 
                                     </div>
 
-                                </motion.div>
-                            )
-                        )}
+                                    <span className="shrink-0 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-amber-300 sm:px-4 sm:text-xs md:mt-4 md:inline-block md:px-5 md:py-2 md:tracking-[0.3em]">
+                                        {item.date}
+                                    </span>
+
+                                </div>
+
+                            </motion.div>
+                        ))}
 
                     </div>
 
                 </div>
 
             </section>
-
-
             {/* =========================================================
                 PRIZES
             ========================================================= */}
@@ -1221,10 +1213,6 @@ export default function CompetitionDetails() {
                                     What&apos;s At Stake
                                 </h2>
 
-                                <p className="mt-3 max-w-md text-sm leading-6 text-white/40">
-                                    Compete, build your reputation and take home
-                                    rewards along with recognition from Tech Zephyr.
-                                </p>
 
                             </div>
 
