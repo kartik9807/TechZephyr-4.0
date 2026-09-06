@@ -658,8 +658,8 @@ export const competitions = [
         number: "07",
         tag: "Artificial Intelligence",
         title: "Agentic AI Hackathon",
-        society: 'Neuromancers',
-        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWMbjm-4TrkjlOX3icE7eAmVhez756S2faRmXTvJGekQ&s=10',
+        society: 'FEBS',
+        society_logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSTMSEkGgorngP2gPYNeJsPNHOJH_RAoYw38WUHWfTQ&s=10',
 
 
         shortDescription:

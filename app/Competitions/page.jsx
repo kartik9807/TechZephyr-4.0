@@ -14,92 +14,133 @@ import { Trophy, BriefcaseBusiness, Gift, Users, GraduationCap, Award, Rocket, B
 export default function Competitions() {
     const dashboardEvents = [
         {
-            society: "WebnD",
-            title: "Web Development Hackathon",
-            description: "24-hour full-stack development challenge",
-            date: "27 AUG",
-            duration: "24 Hours",
-            venue: "Computer Centre",
-            prize: "₹50,000",
-            difficulty: "Intermediate",
+            society: "FEBS",
+            title: "ML Hackathon",
+            description:
+                "Take on the ML challenge. Clear the online screening round, reach the offline finale, and turn your ideas into a real-world machine learning solution.",
+            date: "10 SEP",
+            duration: "2 Rounds",
+            venue: "IIT Bhubaneswar",
+            prize: "₹35,000",
+            difficulty: "Advanced",
             number: "01",
         },
+
         {
-            society: "Neuromancers",
-            title: "Competitive Programming",
-            description: "Algorithmic problem solving challenge",
-            date: "27 AUG",
-            duration: "3 Hours",
-            venue: "Computer Centre",
-            prize: "₹30,000",
+            society: "RISC",
+            title: "CADathon",
+            description:
+                "Enter the CAD arena where speed, precision, modelling accuracy, and engineering judgement decide who comes out on top.",
+            date: "10 SEP",
+            duration: "2 Rounds",
+            venue: "IIT Bhubaneswar",
+            prize: "₹25,000",
             difficulty: "Advanced",
             number: "02",
         },
-        {
-            society: "RISC",
-            title: "RC Planes Competition",
-            description: "Aircraft design and flight challenge",
-            date: "26 AUG",
-            duration: "2 Days",
-            venue: "Sports Ground",
-            prize: "₹60,000",
-            difficulty: "Advanced",
-            number: "03",
-        },
+
         {
             society: "FEBS",
             title: "B-Plan Competition",
-            description: "Pitch innovative startup ideas to experts",
-            date: "27 AUG",
-            duration: "1 Day",
-            venue: "Seminar Hall",
-            prize: "₹40,000",
-            difficulty: "Beginner",
+            description:
+                "Turn bold ideas into winning business plans by mastering strategy, understanding the market, and delivering a pitch that stands out.",
+            date: "10 SEP",
+            duration: "2 Rounds",
+            venue: "IIT Bhubaneswar",
+            prize: "₹30,000",
+            difficulty: "Intermediate",
+            number: "03",
+        },
+
+        {
+            society: "WebnD",
+            title: "Web Hackathon",
+            description:
+                "Build fast. Build smart. Ship it. Push your web development skills to the limit as you race from a constrained first round to the offline finale.",
+            date: "10 SEP",
+            duration: "2 Rounds",
+            venue: "IIT Bhubaneswar",
+            prize: "₹35,000",
+            difficulty: "Intermediate",
             number: "04",
         },
+
         {
-            society: "Nakshatra",
-            title: "Astronomy Challenge",
-            description: "Explore astronomy through an interactive challenge",
-            date: "28 AUG",
-            duration: "4 Hours",
-            venue: "Lecture Hall",
+            society: "RISC",
+            title: "TurtleBot Pursuit & Evasion Challenge",
+            description:
+                "Catch or escape. Your algorithm decides. Build smarter autonomous strategies and battle it out in a high-stakes pursuit and evasion challenge.",
+            date: "10 SEP",
+            duration: "2 Rounds",
+            venue: "Simulation Environment",
             prize: "₹25,000",
-            difficulty: "Intermediate",
+            difficulty: "Advanced",
             number: "05",
         },
+
         {
-            society: "STC",
-            title: "Agentic AI Hackathon",
-            description: "Build intelligent autonomous AI agents",
-            date: "27 AUG",
-            duration: "24 Hours",
-            venue: "Innovation Hub",
-            prize: "₹50,000",
+            society: "WebnD",
+            title: "Design Marathon",
+            description:
+                "Create without limits. Race against time, turn ideas into striking designs, and prove your creativity when the pressure is on.",
+            date: "10 SEP",
+            duration: "2 Rounds",
+            venue: "IIT Bhubaneswar",
+            prize: "₹25,000",
             difficulty: "Intermediate",
             number: "06",
         },
+
         {
-            society: "RISC",
-            title: "Tech Innovation Challenge",
-            description: "Build impactful multidisciplinary solutions",
-            date: "28 AUG",
-            duration: "36 Hours",
-            venue: "Innovation Hub",
-            prize: "₹70,000",
-            difficulty: "Intermediate",
+            society: "FEBS",
+            title: "Agentic AI Hackathon",
+            description:
+                "Don't just build AI. Set it in motion. Create intelligent agents that observe, reason, decide, adapt, and take action to get the job done.",
+            date: "10 SEP",
+            duration: "2 Rounds",
+            venue: "IIT Bhubaneswar",
+            prize: "₹35,000",
+            difficulty: "Advanced",
             number: "07",
         },
+
         {
-            society: "WebnD",
-            title: "Code Relay",
-            description: "Fast-paced collaborative coding challenge",
-            date: "30 AUG",
-            duration: "6 Hours",
-            venue: "LT-101",
-            prize: "₹35,000",
-            difficulty: "Intermediate",
+            society: "Neuromancers",
+            title: "CP Contest",
+            description:
+                "135 minutes. Zero room for hesitation. Take on a fierce programming battle where speed, logic, and algorithmic thinking separate the best from the rest.",
+            date: "30 OCT",
+            duration: "135 Minutes",
+            venue: "Online",
+            prize: "₹15,000",
+            difficulty: "Advanced",
             number: "08",
+        },
+
+        {
+            society: "Nakshatra",
+            title: "Math-O-Stellar",
+            description:
+                "Forget the usual math. Think beyond the obvious. Take on unconventional problems that challenge your logic, creativity, patterns, and mathematical instincts.",
+            date: "29 OCT",
+            duration: "120 Minutes",
+            venue: "Online",
+            prize: "₹15,000",
+            difficulty: "Advanced",
+            number: "09",
+        },
+
+        {
+            society: "FEBS",
+            title: "Case Study Competition",
+            description:
+                "The problem is real. The solution is yours. Decode a real-world business challenge, build a winning strategy, and defend your solution under pressure.",
+            date: "TBD",
+            duration: "As per Competition Schedule",
+            venue: "Online",
+            prize: "₹15,000",
+            difficulty: "Intermediate",
+            number: "10",
         },
     ];
     const [activeDashboardEvent, setActiveDashboardEvent] = useState(0);
@@ -596,187 +637,9 @@ export default function Competitions() {
                     </div>
                 </div>
             </section>
-            <section className="py-10 border-t border-white/10">
-                <div className="mx-auto max-w-7xl px-6">
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.45 }}
-                        className="relative overflow-hidden rounded-[45px] border border-white/10 bg-white/[0.035] backdrop-blur-xl p-10 md:p-20"
-                    >
-
-                        {/* Background glows */}
-                        <div className="absolute -top-28 -right-24 h-80 w-80 rounded-full bg-amber-400/10 blur-[120px]" />
-
-                        <div className="absolute -bottom-32 -left-24 h-72 w-72 rounded-full bg-white/5 blur-[120px]" />
-
-                        <div className="absolute right-14 top-1/2 -translate-y-1/2 hidden lg:block h-85 w-85 rounded-full bg-amber-400/20 blur-[90px] pointer-events-none" />
-
-
-                        {/* Logo */}
-                        <motion.div
-                            initial={{
-                                scale: 2.3,
-                                opacity: 0,
-                                filter: "blur(16px)"
-                            }}
-                            whileInView={{
-                                scale: 1,
-                                opacity: 0.16,
-                                filter: "blur(0px)"
-                            }}
-                            transition={{
-                                duration: 0.35,
-                                ease: [0.22, 1, 0.36, 1]
-                            }}
-                            viewport={{ once: true }}
-                            className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none"
-                        >
-                            <img
-                                src="/logo.jpeg"
-                                alt="TechZephyr"
-                                className="w-82.5 h-82.5 rounded-full object-cover select-none"
-                            />
-                        </motion.div>
-
-
-                        {/* Main Content */}
-                        <div className="relative z-10 max-w-3xl">
-
-                            {/* Label */}
-                            <motion.p
-                                initial={{
-                                    opacity: 0,
-                                    x: -30
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    x: 0
-                                }}
-                                transition={{
-                                    delay: 0.08,
-                                    duration: 0.2
-                                }}
-                                viewport={{ once: true }}
-                                className="uppercase tracking-[0.4em] text-xs text-white/40"
-                            >
-                                Flagship Challenge
-                            </motion.p>
-
-
-                            {/* Heading */}
-                            <motion.h2
-                                initial={{
-                                    opacity: 0,
-                                    x: -40
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    x: 0
-                                }}
-                                transition={{
-                                    delay: 0.15,
-                                    duration: 0.22
-                                }}
-                                viewport={{ once: true }}
-                                className="mt-6 text-4xl md:text-6xl font-bold"
-                            >
-                                Innovation Without Limits
-                            </motion.h2>
-
-
-                            {/* Description */}
-                            <motion.p
-                                initial={{
-                                    opacity: 0,
-                                    x: -35
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    x: 0
-                                }}
-                                transition={{
-                                    delay: 0.22,
-                                    duration: 0.35
-                                }}
-                                viewport={{ once: true }}
-                                className="mt-8 text-lg leading-9 text-white/60"
-                            >
-                                TechZephyr competitions are designed to provide participants
-                                with opportunities to transform ideas into impactful
-                                solutions while competing with some of the brightest minds
-                                across institutes.
-                            </motion.p>
-
-
-                            {/* =====================================================
-                    STATISTICS — SINGLE UNIFIED ROW
-                    ===================================================== */}
-
-                            <div className="mt-12 flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-
-                                {[
-                                    {
-                                        number: "8",
-                                        label: "Competitions"
-                                    },
-                                    {
-                                        number: "1000+",
-                                        label: "Participants"
-                                    },
-                                    {
-                                        number: "1500+",
-                                        label: "Ideas"
-                                    }
-                                ].map((item, index) => (
-
-                                    <motion.div
-                                        key={item.label}
-                                        initial={{
-                                            opacity: 0,
-                                            y: 25
-                                        }}
-                                        whileInView={{
-                                            opacity: 1,
-                                            y: 0
-                                        }}
-                                        transition={{
-                                            delay: 0.2 + index * 0.08,
-                                            duration: 0.2
-                                        }}
-                                        viewport={{ once: true }}
-                                        whileHover={{
-                                            y: -4
-                                        }}
-                                        className="flex-1 px-6 py-5 first:pl-0 last:pr-0 transition-all duration-300"
-                                    >
-
-                                        <h3 className="text-4xl font-black">
-                                            {item.number}
-                                        </h3>
-
-                                        <div className="mt-4 h-px w-12 bg-amber-400/60" />
-
-                                        <p className="mt-4 text-sm uppercase tracking-[0.25em] text-white/45">
-                                            {item.label}
-                                        </p>
-
-                                    </motion.div>
-
-                                ))}
-
-                            </div>
-
-                        </div>
-
-                    </motion.div>
-
-                </div>
-            </section>
-            <section className="py-10 border-t border-white/10 overflow-hidden">
-                <div className="mx-auto max-w-7xl px-6">
+            {/*  */}
+            <section className="border-t border-white/10 py-8 overflow-hidden sm:py-10">
+                <div className="mx-auto max-w-7xl px-5 sm:px-6">
 
                     <SectionHeading
                         subtitle="Experience"
@@ -784,16 +647,16 @@ export default function Competitions() {
                     />
 
                     <motion.div
-                        initial={{ opacity: 0, y: 35 }}
+                        initial={{ opacity: 0, y: 25 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="relative mt-16 overflow-hidden rounded-[40px] border border-white/10 bg-white/[0.035] backdrop-blur-xl"
+                        className="relative mt-10 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] backdrop-blur-xl sm:mt-14 sm:rounded-[40px]"
                     >
 
                         {/* Ambient glow */}
-                        <div className="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-amber-400/10 blur-[120px]" />
-                        <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-amber-400/5 blur-[120px]" />
+                        <div className="absolute -right-32 -top-32 h-64 w-64 rounded-full bg-amber-400/10 blur-[100px]" />
+                        <div className="absolute -bottom-32 -left-32 h-64 w-64 rounded-full bg-amber-400/5 blur-[100px]" />
 
                         <div className="relative z-10 grid md:grid-cols-2 xl:grid-cols-4">
 
@@ -855,7 +718,7 @@ export default function Competitions() {
                                         key={item.title}
                                         initial={{
                                             opacity: 0,
-                                            y: 25
+                                            y: 20
                                         }}
                                         whileInView={{
                                             opacity: 1,
@@ -866,14 +729,15 @@ export default function Competitions() {
                                         }}
                                         transition={{
                                             duration: 0.4,
-                                            delay: index * 0.05
+                                            delay: index * 0.04
                                         }}
                                         whileHover={{
                                             backgroundColor:
                                                 "rgba(255,255,255,0.025)"
                                         }}
                                         className={`
-                                group relative p-8 md:p-9
+                                group relative
+                                p-5 sm:p-7 xl:p-8
                                 transition-all duration-300
                                 border-white/10
 
@@ -903,85 +767,126 @@ export default function Competitions() {
                                         <div
                                             className="
                                     absolute -right-16 -top-16
-                                    h-40 w-40
+                                    h-32 w-32
                                     rounded-full
                                     bg-amber-400/10
-                                    blur-[80px]
+                                    blur-[70px]
                                     opacity-0
                                     transition-opacity duration-300
                                     group-hover:opacity-100
                                 "
                                         />
 
-                                        {/* Icon */}
-                                        <motion.div
-                                            whileHover={{
-                                                scale: 1.08,
-                                                rotate: 4
-                                            }}
-                                            transition={{
-                                                duration: 0.2
-                                            }}
-                                            className="
-                                    relative mb-7
-                                    flex h-14 w-14
-                                    items-center justify-center
-                                    rounded-2xl
-                                    border border-amber-400/20
-                                    bg-linear-to-br
-                                    from-amber-400/15
-                                    to-transparent
-                                "
-                                        >
-                                            <div className="absolute inset-2 rounded-xl bg-amber-400/10 blur-lg" />
+                                        {/* MOBILE LAYOUT */}
+                                        <div className="flex items-center gap-4 md:block">
 
-                                            <Icon
-                                                size={27}
-                                                strokeWidth={1.8}
-                                                className="relative text-amber-300"
-                                            />
-                                        </motion.div>
+                                            {/* Icon */}
+                                            <motion.div
+                                                whileHover={{
+                                                    scale: 1.08,
+                                                    rotate: 4
+                                                }}
+                                                transition={{
+                                                    duration: 0.2
+                                                }}
+                                                className="
+                                        relative
+                                        flex h-11 w-11 shrink-0
+                                        items-center justify-center
+                                        rounded-xl
+                                        border border-amber-400/20
+                                        bg-linear-to-br
+                                        from-amber-400/15
+                                        to-transparent
 
-                                        {/* Number */}
-                                        <span className="
-                                absolute right-8 top-8
-                                text-xs
-                                font-medium
-                                tracking-[0.2em]
-                                text-white/15
-                                transition-colors duration-300
-                                group-hover:text-amber-300/30
-                            ">
-                                            0{index + 1}
-                                        </span>
+                                        md:mb-6
+                                        md:h-14 md:w-14
+                                        md:rounded-2xl
+                                    "
+                                            >
+                                                <div className="absolute inset-2 rounded-lg bg-amber-400/10 blur-md" />
 
-                                        {/* Content */}
-                                        <h3 className="
-                                text-xl
-                                font-bold
-                                leading-tight
-                            ">
-                                            {item.title}
-                                        </h3>
+                                                <Icon
+                                                    size={22}
+                                                    strokeWidth={1.8}
+                                                    className="
+                                            relative text-amber-300
+                                            md:hidden
+                                        "
+                                                />
 
-                                        <p className="
-                                mt-4
-                                text-sm
-                                leading-7
-                                text-white/60
-                            ">
-                                            {item.description}
-                                        </p>
+                                                <Icon
+                                                    size={27}
+                                                    strokeWidth={1.8}
+                                                    className="
+                                            relative hidden text-amber-300
+                                            md:block
+                                        "
+                                                />
+                                            </motion.div>
+
+                                            {/* Content */}
+                                            <div className="min-w-0">
+
+                                                <h3 className="
+                                        text-base
+                                        font-bold
+                                        leading-tight
+                                        sm:text-lg
+                                        md:text-xl
+                                    ">
+                                                    {item.title}
+                                                </h3>
+
+                                                {/* Description hidden on mobile */}
+                                                <p className="
+                                        mt-3
+                                        hidden
+                                        text-sm
+                                        leading-7
+                                        text-white/60
+                                        md:block
+                                    ">
+                                                    {item.description}
+                                                </p>
+
+                                            </div>
+
+                                            {/* Number */}
+                                            <span className="
+                                    ml-auto
+                                    shrink-0
+                                    text-[10px]
+                                    font-medium
+                                    tracking-[0.15em]
+                                    text-white/15
+                                    transition-colors
+                                    duration-300
+                                    group-hover:text-amber-300/30
+
+                                    md:absolute
+                                    md:right-8
+                                    md:top-8
+                                    md:text-xs
+                                    md:tracking-[0.2em]
+                                ">
+                                                0{index + 1}
+                                            </span>
+
+                                        </div>
 
                                         {/* Bottom accent */}
                                         <div className="
-                                mt-7
+                                mt-4
                                 h-px
-                                w-8
-                                bg-amber-400/50
+                                w-6
+                                bg-amber-400/40
                                 transition-all
                                 duration-300
-                                group-hover:w-16
+                                group-hover:w-12
+
+                                md:mt-6
+                                md:w-8
                             " />
 
                                     </motion.div>
@@ -992,8 +897,7 @@ export default function Competitions() {
                     </motion.div>
 
                 </div>
-            </section>
-            <section className="py-10">
+            </section>            <section className="py-10">
                 <div className="mx-auto max-w-7xl px-6">
 
                     <SectionHeading
