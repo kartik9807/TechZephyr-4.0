@@ -4,18 +4,18 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
 export default function ThemeToggle() {
-    const { resolvedTheme, toggleTheme } = useTheme();
+    const { resolvedTheme, toggleTheme, mounted } = useTheme();
 
     return (
         <button
             onClick={toggleTheme}
             aria-label={
-                resolvedTheme === "dark"
+                mounted && resolvedTheme === "dark"
                     ? "Switch to light mode"
                     : "Switch to dark mode"
             }
             title={
-                resolvedTheme === "dark"
+                mounted && resolvedTheme === "dark"
                     ? "Light mode"
                     : "Dark mode"
             }
@@ -50,10 +50,14 @@ export default function ThemeToggle() {
                 light:hover:bg-white
             "
         >
-            {resolvedTheme === "dark" ? (
-                <Sun size={19} strokeWidth={2} />
+            {mounted ? (
+                resolvedTheme === "dark" ? (
+                    <Sun size={19} strokeWidth={2} />
+                ) : (
+                    <Moon size={19} strokeWidth={2} />
+                )
             ) : (
-                <Moon size={19} strokeWidth={2} />
+                <Sun size={19} strokeWidth={2} />
             )}
         </button>
     );

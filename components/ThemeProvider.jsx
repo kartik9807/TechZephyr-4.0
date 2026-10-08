@@ -1,93 +1,133 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useSyncExternalStore, useCallback } from "react";
 
 const ThemeContext = createContext(null);
 
-export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState("system");
-    const [resolvedTheme, setResolvedTheme] = useState("light");
+let listeners = [];
+function emitChange() {
+    for (const listener of listeners) {
+        listener();
+    }
+}
+
+const themeStore = {
+    getSnapshot() {
+        if (typeof window === "undefined") return "system";
+        try {
+            const saved = localStorage.getItem("techzephyr-theme");
+            if (saved === "light" || saved === "dark" || saved === "system") {
+                return saved;
+            }
+        } catch (e) {
+            console.error(e);
+        }
+        return "system";
+    },
+    getServerSnapshot() {
+        return "system";
+    },
+    subscribe(listener) {
+        listeners = [...listeners, listener];
+        if (typeof window !== "undefined") {
+            window.addEventListener("storage", listener);
+        }
+        return () => {
+            listeners = listeners.filter((l) => l !== listener);
+            if (typeof window !== "undefined") {
+                window.removeEventListener("storage", listener);
+            }
+        };
+    },
+    setTheme(newTheme) {
+        if (typeof window !== "undefined") {
+            try {
+                localStorage.setItem("techzephyr-theme", newTheme);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        emitChange();
+    },
+};
+
+function emptySubscribe() {
+    return () => {};
+}
+
+function getClientMountedSnapshot() {
+    return true;
+}
+
+function getServerMountedSnapshot() {
+    return false;
+}
+
+function subscribeMedia(callback) {
+    if (typeof window === "undefined") return () => {};
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", callback);
+    return () => mediaQuery.removeEventListener("change", callback);
+}
+
+function getSystemThemeSnapshot() {
+    if (typeof window === "undefined") return true;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function getServerSystemThemeSnapshot() {
+    return true;
+}
+
+export function ThemeProvider({ children, defaultTheme = "dark" }) {
+    const mounted = useSyncExternalStore(
+        emptySubscribe,
+        getClientMountedSnapshot,
+        getServerMountedSnapshot
+    );
+
+    const theme = useSyncExternalStore(
+        themeStore.subscribe,
+        themeStore.getSnapshot,
+        themeStore.getServerSnapshot
+    );
+
+    const isSystemDark = useSyncExternalStore(
+        subscribeMedia,
+        getSystemThemeSnapshot,
+        getServerSystemThemeSnapshot
+    );
+
+    const resolvedTheme = !mounted
+        ? defaultTheme
+        : theme === "system"
+        ? (isSystemDark ? "dark" : "light")
+        : theme;
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem("techzephyr-theme");
+        if (!mounted) return;
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(resolvedTheme);
+        document.documentElement.setAttribute("data-theme", resolvedTheme);
+    }, [resolvedTheme, mounted]);
 
-        if (savedTheme === "light" || savedTheme === "dark") {
-            setTheme(savedTheme);
-        } else {
-            setTheme("system");
-        }
+    const setTheme = useCallback((newTheme) => {
+        themeStore.setTheme(newTheme);
     }, []);
 
-    useEffect(() => {
-        const mediaQuery = window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        );
-
-        const updateSystemTheme = () => {
-            if (theme === "system") {
-                setResolvedTheme(mediaQuery.matches ? "dark" : "light");
-            }
-        };
-
-        updateSystemTheme();
-
-        mediaQuery.addEventListener("change", updateSystemTheme);
-
-        return () => {
-            mediaQuery.removeEventListener(
-                "change",
-                updateSystemTheme
-            );
-        };
-    }, [theme]);
-
-    useEffect(() => {
-        const finalTheme =
-            theme === "system"
-                ? window.matchMedia("(prefers-color-scheme: dark)").matches
-                    ? "dark"
-                    : "light"
-                : theme;
-
-        setResolvedTheme(finalTheme);
-
-        document.documentElement.classList.remove(
-            "light",
-            "dark"
-        );
-
-        document.documentElement.classList.add(finalTheme);
-
-        document.documentElement.setAttribute(
-            "data-theme",
-            finalTheme
-        );
-
-        localStorage.setItem(
-            "techzephyr-theme",
-            theme
-        );
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme((current) => {
-            if (current === "system") {
-                return resolvedTheme === "dark"
-                    ? "light"
-                    : "dark";
-            }
-
-            return current === "dark"
-                ? "light"
-                : "dark";
-        });
-    };
+    const toggleTheme = useCallback(() => {
+        const current = themeStore.getSnapshot();
+        const active = current === "system" ? (isSystemDark ? "dark" : "light") : current;
+        const next = active === "dark" ? "light" : "dark";
+        themeStore.setTheme(next);
+    }, [isSystemDark]);
 
     return (
         <ThemeContext.Provider
             value={{
                 theme,
                 resolvedTheme,
+                mounted,
                 setTheme,
                 toggleTheme,
             }}
@@ -101,9 +141,7 @@ export function useTheme() {
     const context = useContext(ThemeContext);
 
     if (!context) {
-        throw new Error(
-            "useTheme must be used inside ThemeProvider"
-        );
+        throw new Error("useTheme must be used inside ThemeProvider");
     }
 
     return context;

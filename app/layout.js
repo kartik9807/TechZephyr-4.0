@@ -23,7 +23,31 @@ export default function RootLayout({ children }) {
             className={`${lexend.variable} h-full antialiased`}
             suppressHydrationWarning
         >
-            <body className="min-h-full flex flex-col">
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            (function() {
+                                try {
+                                    var saved = localStorage.getItem('techzephyr-theme');
+                                    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                                    var isDark = saved === 'dark' || (saved !== 'light' && prefersDark);
+                                    if (isDark) {
+                                        document.documentElement.classList.add('dark');
+                                        document.documentElement.classList.remove('light');
+                                        document.documentElement.setAttribute('data-theme', 'dark');
+                                    } else {
+                                        document.documentElement.classList.add('light');
+                                        document.documentElement.classList.remove('dark');
+                                        document.documentElement.setAttribute('data-theme', 'light');
+                                    }
+                                } catch (e) {}
+                            })();
+                        `,
+                    }}
+                />
+            </head>
+            <body className="min-h-full flex flex-col" suppressHydrationWarning>
                 <ThemeProvider>
                     {children}
 

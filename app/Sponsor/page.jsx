@@ -1,7 +1,6 @@
-
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
     ExternalLink,
@@ -11,13 +10,30 @@ import {
     ArrowUpRight,
     ShieldCheck,
     Globe,
+    Mail,
+    Phone,
+    MessageSquare,
+    Copy,
+    Check,
 } from "lucide-react";
 
 import Silk from "@/components/animated_bg/Silk.jsx";
 import Navbar from "@/components/Navbar.jsx";
 import SectionHeading from "@/components/SectionHeading";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function SponsorsPage() {
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
+    const [copiedField, setCopiedField] = useState("");
+
+    const handleCopy = (text, fieldName) => {
+        if (typeof navigator !== "undefined" && navigator.clipboard) {
+            navigator.clipboard.writeText(text);
+            setCopiedField(fieldName);
+            setTimeout(() => setCopiedField(""), 2200);
+        }
+    };
     /*
     ============================================================
     CURRENT SPONSORS
@@ -28,63 +44,61 @@ export default function SponsorsPage() {
 
     const sponsors = [
         {
+            id: "world-technocon",
+            name: "World Technocon",
+            tier: "Associate Sponsor",
+            tag: "ASSOCIATE PARTNER",
+            domain: "Tech & Innovation Hub",
+            description:
+                "Empowering youth innovation through hands-on technical ecosystems, workshops, and industry collaboration.",
+            highlights: ["Tech Ecosystem", "Innovation Hub", "Industry Connect"],
+            logo: "/World Technocon.webp",
+            website: "https://technocon.org/",
+            theme: {
+                border: "group-hover:border-rose-500/40",
+                glow: "bg-rose-500/10 group-hover:bg-rose-500/25",
+                tagBg: "bg-rose-500/10 border-rose-500/30 text-rose-300",
+                dot: "bg-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.8)]",
+                btnHover: "hover:bg-rose-400 hover:shadow-[0_0_30px_rgba(244,63,94,0.35)]",
+            },
+        },
+        {
             id: "goibibo",
             name: "Goibibo",
             tier: "1st Event Sponsor",
             tag: "TRAVEL PARTNER",
-            category: "Travel & Technology",
+            domain: "Travel & Mobility Platform",
             description:
-                "Goibibo is one of India's leading digital travel platforms, offering travellers convenient access to flights, hotels, trains, buses and travel experiences through a technology-driven ecosystem.",
-            contribution:
-                "As the 1st Event Sponsor of TechZephyr 2026, Goibibo joins us in creating a stronger platform for students, innovators and technology enthusiasts. Their association reflects the growing connection between technology, mobility and the modern digital economy.",
-            highlights: [
-                "Digital travel platform",
-                "Technology-driven services",
-                "Travel & mobility ecosystem",
-            ],
+                "India's leading digital travel ecosystem, connecting students and tech innovators seamlessly across the nation.",
+            highlights: ["Digital Travel", "Mobility Network", "Youth Journeys"],
             logo: "/Goibibo.png",
             website: "https://www.goibibo.com/",
-            accent: "amber",
+            theme: {
+                border: "group-hover:border-amber-400/40",
+                glow: "bg-amber-400/10 group-hover:bg-amber-400/25",
+                tagBg: "bg-amber-400/10 border-amber-400/30 text-amber-300",
+                dot: "bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.8)]",
+                btnHover: "hover:bg-amber-300 hover:shadow-[0_0_30px_rgba(251,191,36,0.35)]",
+            },
         },
-
         {
             id: "fin-maverick",
             name: "Fin Maverick",
             tier: "2nd Event Sponsor",
             tag: "FINANCE PARTNER",
-            category: "Finance & Markets",
+            domain: "Financial Markets & Insights",
             description:
-                "Fin Maverick is a finance-focused platform dedicated to building financial awareness and developing a practical understanding of markets, investing and modern financial decision-making.",
-            contribution:
-                "As the 2nd Event Sponsor of TechZephyr 2026, Fin Maverick strengthens the festival's focus on finance, entrepreneurship and analytical thinking. Their partnership brings an industry-oriented perspective to students exploring the intersection of technology and financial innovation.",
-            highlights: [
-                "Finance & investment ecosystem",
-                "Financial awareness",
-                "Markets & analytical thinking",
-            ],
+                "Fostering financial awareness, market intelligence, and practical investment strategies for future innovators.",
+            highlights: ["FinTech Literacy", "Market Insights", "Wealth Strategy"],
             logo: "/Fin Maverick.jpeg",
             website: "https://www.finmaverick.com/",
-            accent: "orange",
-        },
-
-        {
-            id: "world-technocon",
-            name: "World Technocon",
-            tier: "Associate Sponsor",
-            tag: "ASSOCIATE PARTNER",
-            category: "Technology & Innovation",
-            description:
-                "World Technocon is a technology-oriented organisation focused on creating opportunities around technical knowledge, innovation and industry engagement.",
-            contribution:
-                "As an Associate Sponsor of TechZephyr 2026, World Technocon supports our vision of building meaningful connections between students, technology and industry. Their association contributes to an ecosystem where young innovators can learn, collaborate and explore emerging opportunities.",
-            highlights: [
-                "Technology & innovation",
-                "Technical engagement",
-                "Industry collaboration",
-            ],
-            logo: "/World Technocon.webp",
-            website: "https://technocon.org/",
-            accent: "amber",
+            theme: {
+                border: "group-hover:border-emerald-400/40",
+                glow: "bg-emerald-400/10 group-hover:bg-emerald-400/25",
+                tagBg: "bg-emerald-400/10 border-emerald-400/30 text-emerald-300",
+                dot: "bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]",
+                btnHover: "hover:bg-emerald-300 hover:shadow-[0_0_30px_rgba(52,211,153,0.35)]",
+            },
         },
     ];
 
@@ -160,21 +174,21 @@ export default function SponsorsPage() {
             label: "Current Partners",
         },
         {
+            value: "01",
+            label: "Associate Partner",
+        },
+        {
             value: "02",
             label: "Event Sponsors",
         },
         {
-            value: "01",
-            label: "Associate Sponsor",
-        },
-        {
             value: "10k+",
-            label: 'Our Ecosystem'
-        }
+            label: "Our Ecosystem",
+        },
     ];
 
     return (
-        <main className="relative min-h-screen overflow-x-hidden bg-black text-white">
+        <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground transition-colors duration-300">
             {/* =========================================================
           BACKGROUND
       ========================================================= */}
@@ -183,13 +197,13 @@ export default function SponsorsPage() {
                 <Silk
                     speed={5}
                     scale={1.5}
-                    color="#262626"
-                    noiseIntensity={1.2}
+                    color={isDark ? "#262626" : "#D6A84F"}
+                    noiseIntensity={isDark ? 1.2 : 0.7}
                     rotation={0}
                 />
             </div>
 
-            <div className="fixed inset-0 z-0 pointer-events-none bg-linear-to-b from-transparent via-black/20 to-black" />
+            <div className="fixed inset-0 z-0 pointer-events-none bg-linear-to-b from-transparent via-background/20 to-background" />
 
             <div className="fixed left-1/4 top-20 z-0 h-96 w-96 rounded-full bg-amber-400/5 blur-[140px]" />
 
@@ -213,7 +227,7 @@ export default function SponsorsPage() {
                     >
                         <span className="h-px w-10 bg-linear-to-r from-transparent to-amber-400" />
 
-                        <p className="text-[11px] font-medium uppercase tracking-[0.4em] text-amber-300">
+                        <p className="text-[11px] font-medium uppercase tracking-[0.4em] text-amber-500 dark:text-amber-300">
                             TechZephyr 2026 · Partnerships
                         </p>
 
@@ -224,10 +238,10 @@ export default function SponsorsPage() {
                         initial={{ opacity: 0, scale: 0.96 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, delay: 0.08 }}
-                        className="max-w-5xl text-5xl font-black tracking-tight sm:text-6xl md:text-8xl"
+                        className="max-w-5xl text-5xl font-black tracking-tight sm:text-6xl md:text-8xl landing-heading bg-gradient-to-b from-amber-400 via-amber-600 to-black bg-clip-text text-transparent dark:from-white dark:via-zinc-300 dark:to-zinc-700"
                     >
                         OUR
-                        <span className="bg-linear-to-b from-white via-zinc-300 to-zinc-700 bg-clip-text text-transparent">
+                        <span>
                             {" "}
                             SPONSORS
                         </span>
@@ -237,7 +251,7 @@ export default function SponsorsPage() {
                         initial={{ opacity: 0, y: 18 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.18 }}
-                        className="mt-7 max-w-2xl text-sm leading-8 text-white/50 sm:text-base"
+                        className="mt-7 max-w-2xl text-sm leading-8 text-muted-foreground sm:text-base"
                     >
                         TechZephyr is powered by organisations that believe in innovation,
                         technology, entrepreneurship and the potential of the next
@@ -250,11 +264,17 @@ export default function SponsorsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.28 }}
-                        className="mt-12 flex items-center gap-3 rounded-full border border-amber-400/20 bg-amber-400/5 px-5 py-2.5 backdrop-blur-xl"
+                        className={`mt-12 flex items-center gap-3 rounded-full border px-5 py-2.5 backdrop-blur-xl ${
+                            isDark 
+                                ? "border-amber-400/20 bg-amber-400/5 text-white" 
+                                : "border-[#7A2E24]/20 bg-[#7A2E24]/5 text-[#7A2E24]"
+                        }`}
                     >
-                        <Handshake size={15} className="text-amber-300" />
+                        <Handshake size={15} className={isDark ? "text-amber-300" : "text-[#7A2E24]"} />
 
-                        <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-white/60">
+                        <span className={`text-[10px] font-semibold uppercase tracking-[0.35em] ${
+                            isDark ? "text-white/60" : "text-[#7A2E24]"
+                        }`}>
                             Building Partnerships · Creating Impact
                         </span>
                     </motion.div>
@@ -265,21 +285,27 @@ export default function SponsorsPage() {
                         initial={{ opacity: 0, y: 25 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.38 }}
-                        className="mt-20 grid w-full max-w-3xl grid-cols-2 border border-white/10 bg-white/[0.025] backdrop-blur-xl md:grid-cols-4"
+                        className={`mt-20 grid w-full max-w-3xl grid-cols-2 border backdrop-blur-xl md:grid-cols-4 rounded-2xl overflow-hidden transition-colors duration-300 ${
+                            isDark 
+                                ? "border-white/10 bg-white/[0.025]" 
+                                : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                        }`}
                     >
                         {sponsorStats.map((stat, index) => (
                             <div
                                 key={stat.label}
                                 className={`p-6 ${index !== sponsorStats.length - 1
-                                    ? "border-b border-white/10 md:border-b-0 md:border-r"
+                                    ? isDark ? "border-b border-white/10 md:border-b-0 md:border-r" : "border-b border-[#7A2E24]/10 md:border-b-0 md:border-r"
                                     : ""
                                     }`}
                             >
-                                <p className="text-3xl font-black text-amber-300">
+                                <p className={`text-3xl font-black ${isDark ? "text-amber-300" : "text-[#8B3A2E]"}`}>
                                     {stat.value}
                                 </p>
 
-                                <p className="mt-2 text-[9px] uppercase tracking-[0.25em] text-white/35">
+                                <p className={`mt-2 text-[9px] uppercase tracking-[0.25em] font-semibold ${
+                                    isDark ? "text-white/35" : "text-[#4A3328]/70"
+                                }`}>
                                     {stat.label}
                                 </p>
                             </div>
@@ -291,21 +317,21 @@ export default function SponsorsPage() {
             CURRENT SPONSORS
         ======================================================= */}
 
-                <section className="border-t border-white/10 pt-20">
+                <section className={`border-t pt-20 ${isDark ? "border-white/10" : "border-[#7A2E24]/10"}`}>
 
                     <SectionHeading
                         subtitle="TechZephyr 2026"
                         title="Our Partners"
                     />
 
-                    <div className="mt-4 space-y-8">
+                    <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-8 items-stretch">
 
                         {sponsors.map((sponsor, index) => (
                             <motion.div
                                 key={sponsor.id}
                                 initial={{
                                     opacity: 0,
-                                    y: 45,
+                                    y: 30,
                                 }}
                                 whileInView={{
                                     opacity: 1,
@@ -316,219 +342,106 @@ export default function SponsorsPage() {
                                     amount: 0.2,
                                 }}
                                 transition={{
-                                    duration: 0.65,
-                                    delay: index * 0.08,
+                                    duration: 0.5,
+                                    delay: index * 0.1,
                                 }}
-                                className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.035] backdrop-blur-xl"
+                                className={`group relative flex flex-col justify-between overflow-hidden rounded-[28px] border p-7 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2.5 hover:shadow-2xl ${
+                                    isDark 
+                                        ? `border-white/10 bg-linear-to-b from-white/[0.05] via-white/[0.02] to-transparent ${sponsor.theme.border}` 
+                                        : `border-[#7A2E24]/15 bg-white/80 shadow-xl shadow-amber-950/5 hover:border-[#7A2E24]/30`
+                                }`}
                             >
 
-                                {/* Ambient background */}
+                                {/* Ambient dynamic background glow */}
+                                <div className={`pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full blur-[90px] transition-all duration-700 ${sponsor.theme.glow}`} />
+                                <div className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-white/[0.02] blur-[80px]" />
 
-                                <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-amber-400/5 blur-[110px] transition-all duration-700 group-hover:bg-amber-400/10" />
-
-                                <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-orange-400/5 blur-[110px]" />
-
-                                {/* Terminal header */}
-
-                                <div className="flex items-center justify-between border-b border-white/10 bg-zinc-950/60 px-5 py-3 font-mono">
-
-                                    <div className="flex items-center gap-2">
-
-                                        <div className="flex gap-1.5">
-                                            <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
-                                            <div className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
-                                            <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
-                                        </div>
-
-                                        <span className="ml-3 text-[9px] uppercase tracking-[0.25em] text-white/30">
-                                            sponsor_{String(index + 1).padStart(2, "0")}.partner
-                                        </span>
-
-                                    </div>
-
-                                    <span className="text-[9px] uppercase tracking-widest text-amber-400/60">
-                                        {sponsor.tier}
+                                {/* Top Bar: Tag Badge + Index */}
+                                <div className="relative z-10 flex items-center justify-between">
+                                    <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] backdrop-blur-md ${sponsor.theme.tagBg}`}>
+                                        <span className={`h-1.5 w-1.5 rounded-full ${sponsor.theme.dot}`} />
+                                        {sponsor.tag}
                                     </span>
 
+                                    <span className={`font-mono text-xs font-semibold tracking-widest transition-colors ${
+                                        isDark 
+                                            ? "text-white/30 group-hover:text-white/60" 
+                                            : "text-[#7A2E24]/40 group-hover:text-[#7A2E24]"
+                                    }`}>
+                                        0{index + 1}
+                                    </span>
                                 </div>
 
+                                {/* Logo Showcase Podium */}
+                                <div className={`relative z-10 my-6 flex h-36 w-full items-center justify-center rounded-2xl border p-4 backdrop-blur-md transition-all duration-500 ${
+                                    isDark 
+                                        ? "border-white/10 bg-black/40 group-hover:border-white/20 group-hover:bg-black/60 group-hover:shadow-[0_0_30px_rgba(0,0,0,0.6)]" 
+                                        : "border-[#7A2E24]/15 bg-white group-hover:border-[#7A2E24]/30 group-hover:shadow-md"
+                                }`}>
+                                    <div className="absolute inset-0 bg-linear-to-tr from-white/[0.02] to-transparent pointer-events-none" />
+                                    <img
+                                        src={sponsor.logo}
+                                        alt={`${sponsor.name} logo`}
+                                        className="relative z-10 max-h-20 max-w-[170px] object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+                                    />
+                                </div>
 
-                                {/* Main sponsor content */}
+                                {/* Details / Identity Area */}
+                                <div className="relative z-10 flex flex-1 flex-col justify-between">
+                                    <div>
+                                        <h3 className={`text-2xl sm:text-3xl font-black tracking-tight transition-colors ${
+                                            isDark 
+                                                ? "text-white group-hover:text-amber-200" 
+                                                : "text-[#2A1D17] group-hover:text-[#8B3A2E]"
+                                        }`}>
+                                            {sponsor.name}
+                                        </h3>
 
-                                <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
+                                        <p className={`mt-1 text-[11px] font-mono uppercase tracking-[0.2em] font-bold ${
+                                            isDark ? "text-amber-400/80" : "text-[#8B3A2E]"
+                                        }`}>
+                                            {sponsor.domain}
+                                        </p>
 
+                                        {/* Concise Value Description */}
+                                        <p className={`mt-3.5 text-xs sm:text-[13px] leading-relaxed ${
+                                            isDark ? "text-white/65" : "text-[#4A3328]/85 font-medium"
+                                        }`}>
+                                            {sponsor.description}
+                                        </p>
 
-                                    {/* =================================================
-              LOGO SIDE
-          ================================================= */}
-
-                                    <div className="relative flex min-h-72 items-center justify-center border-b border-white/10 p-10 lg:border-b-0 lg:border-r">
-
-                                        <div className="absolute inset-0 bg-linear-to-br from-amber-400/[0.04] via-transparent to-transparent" />
-
-                                        <motion.div
-                                            whileHover={{
-                                                scale: 1.05,
-                                            }}
-                                            transition={{
-                                                duration: 0.3,
-                                            }}
-                                            className="relative flex h-56 w-56 items-center justify-center rounded-full border border-white/10 bg-black/50 shadow-[0_0_70px_rgba(245,158,11,.08)]"
-                                        >
-
-                                            <div className="absolute inset-5 rounded-full bg-amber-400/5 blur-2xl" />
-
-                                            <img
-                                                src={sponsor.logo}
-                                                alt={`${sponsor.name} logo`}
-                                                className="relative z-10 max-h-32 max-w-40 object-contain"
-                                            />
-
-                                        </motion.div>
-
-
-                                        {/* Partner number */}
-
-                                        <div className="absolute bottom-6 left-7 flex items-center gap-3">
-
-                                            <span className="text-[10px] font-mono tracking-[0.3em] text-amber-300">
-                                                {String(index + 1).padStart(2, "0")}
-                                            </span>
-
-                                            <span className="h-px w-12 bg-amber-400/30" />
-
-                                            <span className="text-[9px] uppercase tracking-[0.25em] text-white/25">
-                                                Official Partner
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    {/* =================================================
-              DETAILS SIDE
-          ================================================= */}
-
-                                    <div className="relative p-8 sm:p-10 lg:p-12">
-
-                                        {/* Header */}
-
-                                        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-
-                                            <div>
-
-                                                <p className="mb-3 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.3em] text-amber-300">
-
-                                                    <span className="h-1.5 w-1.5 rounded-full bg-amber-300 shadow-[0_0_10px_rgba(251,191,36,.8)]" />
-
-                                                    {sponsor.tag}
-
-                                                </p>
-
-                                                <h3 className="text-4xl font-black tracking-tight sm:text-5xl">
-                                                    {sponsor.name}
-                                                </h3>
-
-                                                <p className="mt-2 text-[10px] uppercase tracking-[0.25em] text-white/30">
-                                                    {sponsor.category}
-                                                </p>
-
-                                            </div>
-
-
-                                            <div className="w-fit rounded-md border border-amber-400/20 bg-amber-400/5 px-3 py-1.5">
-
-                                                <span className="text-[9px] font-mono uppercase tracking-wider text-amber-300">
-                                                    {sponsor.tier}
+                                        {/* Minimalist Highlight Chips */}
+                                        <div className="mt-5 flex flex-wrap gap-1.5">
+                                            {sponsor.highlights.map((highlight) => (
+                                                <span
+                                                    key={highlight}
+                                                    className={`rounded-lg border px-2.5 py-1 text-[10px] font-medium tracking-wide transition-colors ${
+                                                        isDark 
+                                                            ? "border-white/10 bg-white/[0.03] text-white/60 group-hover:border-white/20 group-hover:text-white/85" 
+                                                            : "border-[#7A2E24]/15 bg-[#7A2E24]/5 text-[#4A3328] group-hover:border-[#7A2E24]/30 group-hover:text-[#2A1D17]"
+                                                    }`}
+                                                >
+                                                    {highlight}
                                                 </span>
-
-                                            </div>
-
+                                            ))}
                                         </div>
-
-
-                                        {/* Divider */}
-
-                                        <div className="my-8 h-px bg-linear-to-r from-amber-400/50 via-white/10 to-transparent" />
-
-
-                                        {/* About */}
-
-                                        <div>
-
-                                            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">
-                                                About the Partner
-                                            </p>
-
-                                            <p className="max-w-2xl text-sm leading-8 text-white/60">
-                                                {sponsor.description}
-                                            </p>
-
-                                        </div>
-
-
-                                        {/* Partnership Impact */}
-
-                                        <div className="mt-8 rounded-xl border border-white/5 bg-white/[0.025] p-5">
-
-                                            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-300">
-                                                Partnership Impact
-                                            </p>
-
-                                            <p className="mt-3 text-sm leading-7 text-white/50">
-                                                {sponsor.contribution}
-                                            </p>
-
-                                        </div>
-
-
-                                        {/* Highlights */}
-
-                                        <div className="mt-8">
-
-                                            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">
-                                                Partner Focus
-                                            </p>
-
-                                            <div className="flex flex-wrap gap-2">
-
-                                                {sponsor.highlights.map((highlight) => (
-                                                    <span
-                                                        key={highlight}
-                                                        className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-white/50 transition-colors duration-300 group-hover:border-amber-400/10 group-hover:text-white/60"
-                                                    >
-                                                        {highlight}
-                                                    </span>
-                                                ))}
-
-                                            </div>
-
-                                        </div>
-
-
-                                        {/* Bottom CTA */}
-
-                                        <div className="mt-8 flex flex-wrap items-center gap-4">
-
-                                            <a
-                                                href={sponsor.website}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 rounded-lg bg-amber-400 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-amber-300 hover:shadow-[0_0_25px_rgba(251,191,36,.2)]"
-                                            >
-                                                Visit Website
-                                                <span className="text-sm">↗</span>
-                                            </a>
-
-                                            <span className="text-[9px] uppercase tracking-[0.25em] text-white/25">
-                                                TechZephyr 2026 Partner
-                                            </span>
-
-                                        </div>
-
                                     </div>
 
+                                    {/* Footer Action */}
+                                    <div className={`mt-7 pt-5 border-t ${isDark ? "border-white/10" : "border-[#7A2E24]/10"}`}>
+                                        <a
+                                            href={sponsor.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`group/btn inline-flex w-full items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-3.5 text-xs font-black uppercase tracking-[0.2em] text-black transition-all duration-300 ${sponsor.theme.btnHover}`}
+                                        >
+                                            <span>Visit Website</span>
+                                            <ArrowUpRight
+                                                size={15}
+                                                className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1"
+                                            />
+                                        </a>
+                                    </div>
                                 </div>
 
                             </motion.div>
@@ -542,7 +455,7 @@ export default function SponsorsPage() {
             WHY PARTNERS MATTER
         ======================================================= */}
 
-                <section className="mt-28 border-t border-white/10 pt-20">
+                <section className={`mt-28 border-t pt-20 ${isDark ? "border-white/10" : "border-[#7A2E24]/10"}`}>
 
                     <SectionHeading
                         subtitle="Beyond Sponsorship"
@@ -554,7 +467,11 @@ export default function SponsorsPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.025] backdrop-blur-xl"
+                        className={`group relative overflow-hidden rounded-[32px] border backdrop-blur-xl transition-colors duration-300 ${
+                            isDark 
+                                ? "border-white/10 bg-white/[0.025]" 
+                                : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                        }`}
                     >
 
                         {/* Ambient glow */}
@@ -564,23 +481,31 @@ export default function SponsorsPage() {
                         <div className="relative">
 
                             {/* Card Header */}
-                            <div className="border-b border-white/10 bg-zinc-950/30 px-8 py-7 sm:px-10">
+                            <div className={`border-b px-8 py-7 sm:px-10 ${
+                                isDark ? "border-white/10 bg-zinc-950/30" : "border-[#7A2E24]/10 bg-amber-500/5"
+                            }`}>
 
                                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
                                     <div>
-                                        <p className="text-[10px] font-medium uppercase tracking-[0.35em] text-amber-300">
+                                        <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-amber-600 dark:text-amber-300">
                                             Our Partnership Philosophy
                                         </p>
 
-                                        <p className="mt-2 max-w-2xl text-sm leading-7 text-white/40">
+                                        <p className={`mt-2 max-w-2xl text-sm leading-7 ${
+                                            isDark ? "text-white/40" : "text-[#4A3328]/85 font-medium"
+                                        }`}>
                                             Our sponsors and collaborators are more than supporters.
                                             They help us create opportunities, connect students with
                                             industry and inspire the next generation of innovators.
                                         </p>
                                     </div>
 
-                                    <span className="w-fit rounded-md border border-amber-400/20 bg-amber-400/5 px-3 py-1.5 text-[9px] font-mono uppercase tracking-widest text-amber-300">
+                                    <span className={`w-fit rounded-md border px-3 py-1.5 text-[9px] font-mono uppercase tracking-widest font-bold ${
+                                        isDark 
+                                            ? "border-amber-400/20 bg-amber-400/5 text-amber-300" 
+                                            : "border-[#7A2E24]/20 bg-[#7A2E24]/10 text-[#7A2E24]"
+                                    }`}>
                                         IMPACT / 03
                                     </span>
 
@@ -623,7 +548,7 @@ export default function SponsorsPage() {
                                             delay: index * 0.1,
                                         }}
                                         className={`group/item relative p-8 sm:p-10 ${index !== 2
-                                            ? "border-b border-white/10 md:border-b-0 md:border-r"
+                                            ? isDark ? "border-b border-white/10 md:border-b-0 md:border-r" : "border-b border-[#7A2E24]/10 md:border-b-0 md:border-r"
                                             : ""
                                             }`}
                                     >
@@ -631,29 +556,41 @@ export default function SponsorsPage() {
                                         {/* Number */}
                                         <div className="flex items-center gap-4">
 
-                                            <span className="text-xs font-mono tracking-[0.3em] text-amber-300">
+                                            <span className={`text-xs font-mono tracking-[0.3em] font-bold ${
+                                                isDark ? "text-amber-300" : "text-[#7A2E24]"
+                                            }`}>
                                                 {item.number}
                                             </span>
 
-                                            <span className="h-px w-12 bg-linear-to-r from-amber-400/50 to-transparent transition-all duration-300 group-hover/item:w-20" />
+                                            <span className={`h-px w-12 transition-all duration-300 group-hover/item:w-20 ${
+                                                isDark 
+                                                    ? "bg-linear-to-r from-amber-400/50 to-transparent" 
+                                                    : "bg-linear-to-r from-[#7A2E24]/50 to-transparent"
+                                            }`} />
 
                                         </div>
 
 
                                         {/* Title */}
-                                        <h3 className="mt-10 text-2xl font-bold tracking-tight text-white">
+                                        <h3 className={`mt-10 text-2xl font-bold tracking-tight ${
+                                            isDark ? "text-white" : "text-[#2A1D17]"
+                                        }`}>
                                             {item.title}
                                         </h3>
 
 
                                         {/* Description */}
-                                        <p className="mt-4 text-sm leading-7 text-white/45">
+                                        <p className={`mt-4 text-sm leading-7 ${
+                                            isDark ? "text-white/45" : "text-[#4A3328]/85 font-medium"
+                                        }`}>
                                             {item.text}
                                         </p>
 
 
                                         {/* Bottom Accent */}
-                                        <div className="mt-8 h-px w-10 bg-amber-400/40 transition-all duration-300 group-hover/item:w-24" />
+                                        <div className={`mt-8 h-px w-10 transition-all duration-300 group-hover/item:w-24 ${
+                                            isDark ? "bg-amber-400/40" : "bg-[#7A2E24]/40"
+                                        }`} />
 
                                     </motion.div>
 
@@ -663,9 +600,13 @@ export default function SponsorsPage() {
 
 
                             {/* Bottom Label */}
-                            <div className="border-t border-white/5 bg-black/20 px-8 py-5 sm:px-10">
+                            <div className={`border-t px-8 py-5 sm:px-10 ${
+                                isDark ? "border-white/5 bg-black/20" : "border-[#7A2E24]/10 bg-[#7A2E24]/5"
+                            }`}>
 
-                                <p className="text-[9px] uppercase tracking-[0.4em] text-white/25">
+                                <p className={`text-[9px] uppercase tracking-[0.4em] font-semibold ${
+                                    isDark ? "text-white/25" : "text-[#7A2E24]/70"
+                                }`}>
                                     Science • Technology • Innovation • Collaboration
                                 </p>
 
@@ -681,7 +622,7 @@ export default function SponsorsPage() {
             PAST SPONSORS
         ======================================================= */}
 
-                <section className="mt-28 border-t border-white/10 pt-20">
+                <section className={`mt-28 border-t pt-20 ${isDark ? "border-white/10" : "border-[#7A2E24]/10"}`}>
 
                     <SectionHeading
                         subtitle="Legacy & Archives"
@@ -704,7 +645,11 @@ export default function SponsorsPage() {
                         transition={{
                             duration: 0.6,
                         }}
-                        className="relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.025] p-7 backdrop-blur-xl sm:p-10"
+                        className={`relative overflow-hidden rounded-[30px] border p-7 backdrop-blur-xl sm:p-10 transition-colors duration-300 ${
+                            isDark 
+                                ? "border-white/10 bg-white/[0.025]" 
+                                : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                        }`}
                     >
 
                         {/* Ambient background */}
@@ -721,15 +666,19 @@ export default function SponsorsPage() {
 
                                 <div>
 
-                                    <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-amber-300">
+                                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-amber-600 dark:text-amber-300">
                                         Our Legacy
                                     </p>
 
-                                    <h3 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+                                    <h3 className={`mt-3 text-2xl font-bold tracking-tight sm:text-3xl ${
+                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                    }`}>
                                         Previous Partners
                                     </h3>
 
-                                    <p className="mt-3 max-w-2xl text-sm leading-7 text-white/40">
+                                    <p className={`mt-3 max-w-2xl text-sm leading-7 ${
+                                        isDark ? "text-white/40" : "text-[#4A3328]/85 font-medium"
+                                    }`}>
                                         Organisations and communities that have supported TechZephyr
                                         throughout its journey and contributed to the growth of our
                                         technical ecosystem.
@@ -737,8 +686,12 @@ export default function SponsorsPage() {
 
                                 </div>
 
-                                <div className="w-fit shrink-0 rounded-md border border-white/10 bg-white/5 px-3 py-1.5">
-                                    <span className="font-mono text-[9px] uppercase tracking-widest text-white/35">
+                                <div className={`w-fit shrink-0 rounded-md border px-3 py-1.5 ${
+                                    isDark ? "border-white/10 bg-white/5" : "border-[#7A2E24]/15 bg-amber-500/10"
+                                }`}>
+                                    <span className={`font-mono text-[9px] uppercase tracking-widest font-bold ${
+                                        isDark ? "text-white/35" : "text-[#7A2E24]/80"
+                                    }`}>
                                         ARCHIVE / PARTNERS
                                     </span>
                                 </div>
@@ -748,7 +701,11 @@ export default function SponsorsPage() {
 
                             {/* Divider */}
 
-                            <div className="my-8 h-px bg-linear-to-r from-amber-400/30 via-white/10 to-transparent" />
+                            <div className={`my-8 h-px ${
+                                isDark 
+                                    ? "bg-linear-to-r from-amber-400/30 via-white/10 to-transparent" 
+                                    : "bg-linear-to-r from-[#7A2E24]/30 via-[#7A2E24]/10 to-transparent"
+                            }`} />
 
 
                             {/* Sponsor Grid */}
@@ -773,7 +730,11 @@ export default function SponsorsPage() {
                                             duration: 0.35,
                                             delay: index * 0.04,
                                         }}
-                                        className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-4 transition-all duration-300 hover:border-amber-400/20 hover:bg-amber-400/[0.035]"
+                                        className={`group relative overflow-hidden rounded-2xl border p-4 transition-all duration-300 ${
+                                            isDark 
+                                                ? "border-white/10 bg-white/[0.025] hover:border-amber-400/20 hover:bg-amber-400/[0.035]" 
+                                                : "border-[#7A2E24]/15 bg-white hover:border-[#7A2E24]/35 shadow-xs"
+                                        }`}
                                     >
 
                                         {/* Card glow */}
@@ -782,7 +743,9 @@ export default function SponsorsPage() {
 
                                         {/* Logo */}
 
-                                        <div className="relative flex h-24 items-center justify-center rounded-xl border border-white/5 bg-black/30 p-4">
+                                        <div className={`relative flex h-24 items-center justify-center rounded-xl border p-4 ${
+                                            isDark ? "border-white/5 bg-black/30" : "border-[#7A2E24]/10 bg-[#FAF7F2]"
+                                        }`}>
 
                                             <img
                                                 src={sponsor.logo}
@@ -796,7 +759,9 @@ export default function SponsorsPage() {
 
                                         <div className="mt-4 text-center">
 
-                                            <p className="text-[11px] font-medium tracking-wide text-white/70">
+                                            <p className={`text-[11px] font-semibold tracking-wide ${
+                                                isDark ? "text-white/70" : "text-[#2A1D17]"
+                                            }`}>
                                                 {sponsor.name}
                                             </p>
 
@@ -812,13 +777,15 @@ export default function SponsorsPage() {
 
                             <div className="mt-8 flex items-center gap-4">
 
-                                <div className="h-px flex-1 bg-linear-to-r from-amber-400/20 to-transparent" />
+                                <div className={`h-px flex-1 ${isDark ? "bg-linear-to-r from-amber-400/20 to-transparent" : "bg-linear-to-r from-[#7A2E24]/20 to-transparent"}`} />
 
-                                <p className="shrink-0 text-[9px] uppercase tracking-[0.3em] text-white/20">
+                                <p className={`shrink-0 text-[9px] uppercase tracking-[0.3em] font-semibold ${
+                                    isDark ? "text-white/20" : "text-[#7A2E24]/60"
+                                }`}>
                                     TechZephyr · Previous Editions
                                 </p>
 
-                                <div className="h-px flex-1 bg-linear-to-l from-amber-400/20 to-transparent" />
+                                <div className={`h-px flex-1 ${isDark ? "bg-linear-to-l from-amber-400/20 to-transparent" : "bg-linear-to-l from-[#7A2E24]/20 to-transparent"}`} />
 
                             </div>
 
@@ -829,7 +796,7 @@ export default function SponsorsPage() {
                 </section>
 
                 {/* =======================================================
-            BECOME A PARTNER
+            BECOME A PARTNER & SPONSORSHIP INQUIRIES
         ======================================================= */}
 
                 <section className="mt-28">
@@ -849,68 +816,244 @@ export default function SponsorsPage() {
                         transition={{
                             duration: 0.6,
                         }}
-                        className="relative overflow-hidden rounded-[35px] border border-amber-400/20 bg-linear-to-br from-amber-400/[0.08] via-white/[0.025] to-transparent p-8 sm:p-12 lg:p-16"
+                        className={`relative overflow-hidden rounded-[35px] border p-8 sm:p-12 lg:p-16 transition-all duration-300 ${
+                            isDark 
+                                ? "border-amber-400/20 bg-linear-to-br from-amber-400/[0.08] via-white/[0.025] to-transparent text-white shadow-[0_0_50px_rgba(245,158,11,0.05)]" 
+                                : "border-[#7A2E24]/20 bg-linear-to-br from-amber-500/10 via-white/90 to-white/70 text-[#2A1D17] shadow-2xl shadow-amber-950/5"
+                        }`}
                     >
 
                         <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-amber-400/10 blur-[120px]" />
+                        <div className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-orange-400/10 blur-[120px]" />
 
-                        <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+                        <div className="relative">
 
-                            <div>
+                            {/* Header Row */}
+                            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 pb-8 border-b border-border/60">
 
-                                <p className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.35em] text-amber-300">
+                                <div className="max-w-3xl">
 
-                                    <Handshake size={14} />
+                                    <p className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.35em] text-amber-600 dark:text-amber-300">
+                                        <Handshake size={14} />
+                                        Partner With TechZephyr 2026
+                                    </p>
 
-                                    Partner With TechZephyr
-                                </p>
+                                    <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
+                                        Build the next generation of innovators with us.
+                                    </h2>
 
-                                <h2 className="mt-5 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
-                                    Build the next generation of innovators with us.
-                                </h2>
+                                    <p className={`mt-4 text-sm leading-8 ${
+                                        isDark ? "text-white/60" : "text-[#4A3328]/85 font-medium"
+                                    }`}>
+                                        Partner with TechZephyr to connect your organisation with
+                                        talented students, emerging technologies, technical
+                                        communities and a growing innovation ecosystem at IIT
+                                        Bhubaneswar.
+                                    </p>
 
-                                <p className="mt-6 max-w-2xl text-sm leading-8 text-white/50">
-                                    Partner with TechZephyr to connect your organisation with
-                                    talented students, emerging technologies, technical
-                                    communities and a growing innovation ecosystem at IIT
-                                    Bhubaneswar.
-                                </p>
+                                </div>
+
+                                <a
+                                    href="mailto:gsecsnt.sg@iitbbs.ac.in?subject=TechZephyr%202026%20Sponsorship%20Inquiry"
+                                    className="group inline-flex shrink-0 w-fit items-center justify-center gap-3 rounded-xl bg-amber-400 px-7 py-4 text-xs font-bold uppercase tracking-[0.22em] text-black transition-all duration-300 hover:bg-amber-300 hover:shadow-[0_0_35px_rgba(251,191,36,.3)] active:scale-[0.98]"
+                                >
+                                    <span>Become a Partner</span>
+
+                                    <ArrowUpRight
+                                        size={16}
+                                        className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                                    />
+                                </a>
 
                             </div>
 
-                            <a
-                                href="/Contact"
-                                className="group inline-flex w-fit items-center justify-center gap-3 rounded-xl bg-amber-400 px-7 py-4 text-xs font-bold uppercase tracking-[0.22em] text-black transition-all duration-300 hover:bg-amber-300 hover:shadow-[0_0_35px_rgba(251,191,36,.2)]"
-                            >
-                                Become a Partner
+                            {/* DIRECT CONTACT & SPONSORSHIP DESK CARDS */}
+                            <div className="mt-10">
+                                <p className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-amber-600 dark:text-amber-400 mb-5 flex items-center gap-2">
+                                    <Sparkles size={13} />
+                                    Direct Sponsorship Contacts & Inquiries
+                                </p>
 
-                                <ArrowUpRight
-                                    size={16}
-                                    className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                                />
-                            </a>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+                                    {/* EMAIL CARD */}
+                                    <div className={`relative overflow-hidden rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 ${
+                                        isDark
+                                            ? "border-white/10 bg-white/[0.03] hover:border-amber-400/40 hover:bg-white/[0.05]"
+                                            : "border-[#7A2E24]/15 bg-white/85 shadow-lg shadow-amber-950/5 hover:border-[#7A2E24]/35 hover:bg-white"
+                                    }`}>
+                                        <div className="flex items-start justify-between gap-4">
+                                            <div className="flex items-center gap-3.5">
+                                                <div className={`flex h-11 w-11 items-center justify-center rounded-xl border ${
+                                                    isDark
+                                                        ? "border-amber-400/30 bg-amber-400/10 text-amber-300"
+                                                        : "border-[#7A2E24]/20 bg-[#7A2E24]/5 text-[#7A2E24]"
+                                                }`}>
+                                                    <Mail size={20} />
+                                                </div>
+                                                <div>
+                                                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground font-semibold">
+                                                        Official Email
+                                                    </p>
+                                                    <p className={`text-sm sm:text-base font-bold font-mono tracking-tight select-all ${
+                                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                                    }`}>
+                                                        gsecsnt.sg@iitbbs.ac.in
+                                                    </p>
+                                                </div>
+                                            </div>
 
-                        </div>
+                                            <button
+                                                onClick={() => handleCopy("gsecsnt.sg@iitbbs.ac.in", "email")}
+                                                title="Copy email address"
+                                                className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-mono font-medium transition-all ${
+                                                    copiedField === "email"
+                                                        ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-400"
+                                                        : isDark
+                                                        ? "border-white/10 bg-white/5 text-white/70 hover:border-white/20 hover:text-white"
+                                                        : "border-[#7A2E24]/15 bg-[#7A2E24]/5 text-[#4A3328] hover:border-[#7A2E24]/30 hover:text-[#2A1D17]"
+                                                }`}
+                                            >
+                                                {copiedField === "email" ? (
+                                                    <>
+                                                        <Check size={13} className="text-emerald-400" />
+                                                        <span>Copied!</span>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Copy size={13} />
+                                                        <span>Copy</span>
+                                                    </>
+                                                )}
+                                            </button>
+                                        </div>
 
-                        <div className="relative mt-10 h-px bg-linear-to-r from-amber-400/40 via-white/10 to-transparent" />
+                                        <p className={`mt-4 text-xs leading-relaxed ${isDark ? "text-white/50" : "text-[#4A3328]/75 font-medium"}`}>
+                                            Direct channel to the General Secretary, Science & Technology Council, IIT Bhubaneswar for formal sponsorship proposals, deliverable decks, and partnerships.
+                                        </p>
 
-                        <div className="relative mt-5 flex flex-wrap items-center gap-x-8 gap-y-3">
+                                        <div className="mt-5 pt-4 border-t border-border/50 flex items-center justify-between gap-3">
+                                            <span className="text-[10px] font-mono text-muted-foreground">General Secretary &middot; STC</span>
+                                            <a
+                                                href="mailto:gsecsnt.sg@iitbbs.ac.in?subject=TechZephyr%202026%20Sponsorship%20Inquiry"
+                                                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-amber-600 dark:text-amber-400 hover:underline"
+                                            >
+                                                <span>Send Email</span>
+                                                <ExternalLink size={12} />
+                                            </a>
+                                        </div>
+                                    </div>
 
-                            <p className="text-[9px] uppercase tracking-[0.35em] text-white/25">
-                                IIT Bhubaneswar
-                            </p>
+                                    {/* PHONE / WHATSAPP CARD */}
+                                    <div className={`relative overflow-hidden rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 ${
+                                        isDark
+                                            ? "border-white/10 bg-white/[0.03] hover:border-amber-400/40 hover:bg-white/[0.05]"
+                                            : "border-[#7A2E24]/15 bg-white/85 shadow-lg shadow-amber-950/5 hover:border-[#7A2E24]/35 hover:bg-white"
+                                    }`}>
+                                        <div className="flex items-start justify-between gap-4">
+                                            <div className="flex items-center gap-3.5">
+                                                <div className={`flex h-11 w-11 items-center justify-center rounded-xl border ${
+                                                    isDark
+                                                        ? "border-amber-400/30 bg-amber-400/10 text-amber-300"
+                                                        : "border-[#7A2E24]/20 bg-[#7A2E24]/5 text-[#7A2E24]"
+                                                }`}>
+                                                    <Phone size={20} />
+                                                </div>
+                                                <div>
+                                                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground font-semibold">
+                                                        Sponsorship Hotline
+                                                    </p>
+                                                    <p className={`text-sm sm:text-base font-bold font-mono tracking-tight select-all ${
+                                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                                    }`}>
+                                                        +91 98018 88417
+                                                    </p>
+                                                </div>
+                                            </div>
 
-                            <span className="h-1 w-1 rounded-full bg-amber-400/40" />
+                                            <button
+                                                onClick={() => handleCopy("9801888417", "phone")}
+                                                title="Copy phone number"
+                                                className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-mono font-medium transition-all ${
+                                                    copiedField === "phone"
+                                                        ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-400"
+                                                        : isDark
+                                                        ? "border-white/10 bg-white/5 text-white/70 hover:border-white/20 hover:text-white"
+                                                        : "border-[#7A2E24]/15 bg-[#7A2E24]/5 text-[#4A3328] hover:border-[#7A2E24]/30 hover:text-[#2A1D17]"
+                                                }`}
+                                            >
+                                                {copiedField === "phone" ? (
+                                                    <>
+                                                        <Check size={13} className="text-emerald-400" />
+                                                        <span>Copied!</span>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Copy size={13} />
+                                                        <span>Copy</span>
+                                                    </>
+                                                )}
+                                            </button>
+                                        </div>
 
-                            <p className="text-[9px] uppercase tracking-[0.35em] text-white/25">
-                                Science & Technology Council
-                            </p>
+                                        <p className={`mt-4 text-xs leading-relaxed ${isDark ? "text-white/50" : "text-[#4A3328]/75 font-medium"}`}>
+                                            For immediate discussions, customized deliverable packages, stall spaces, and quick queries regarding TechZephyr 2026 sponsorship.
+                                        </p>
 
-                            <span className="h-1 w-1 rounded-full bg-amber-400/40" />
+                                        <div className="mt-5 pt-4 border-t border-border/50 flex items-center justify-between gap-3">
+                                            <a
+                                                href="https://wa.me/919801888417?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20sponsoring%20TechZephyr%202026%20at%20IIT%20Bhubaneswar."
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-emerald-500 dark:text-emerald-400 hover:underline"
+                                            >
+                                                <MessageSquare size={12} />
+                                                <span>WhatsApp Us</span>
+                                            </a>
+                                            <a
+                                                href="tel:+919801888417"
+                                                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-amber-600 dark:text-amber-400 hover:underline"
+                                            >
+                                                <span>Call Desk</span>
+                                                <ExternalLink size={12} />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <p className="text-[9px] uppercase tracking-[0.35em] text-white/25">
-                                TechZephyr 2026
-                            </p>
+                            {/* Divider */}
+                            <div className={`relative mt-10 h-px ${
+                                isDark 
+                                    ? "bg-linear-to-r from-amber-400/40 via-white/10 to-transparent" 
+                                    : "bg-linear-to-r from-[#7A2E24]/30 via-[#7A2E24]/10 to-transparent"
+                            }`} />
+
+                            {/* Footer metadata */}
+                            <div className="relative mt-5 flex flex-wrap items-center gap-x-8 gap-y-3">
+
+                                <p className={`text-[9px] uppercase tracking-[0.35em] font-semibold ${
+                                    isDark ? "text-white/35" : "text-[#7A2E24]/70"
+                                }`}>
+                                    IIT Bhubaneswar
+                                </p>
+
+                                <span className={`h-1 w-1 rounded-full ${isDark ? "bg-amber-400/40" : "bg-[#7A2E24]/40"}`} />
+
+                                <p className={`text-[9px] uppercase tracking-[0.35em] font-semibold ${
+                                    isDark ? "text-white/35" : "text-[#7A2E24]/70"
+                                }`}>
+                                    Science & Technology Council
+                                </p>
+
+                                <span className={`h-1 w-1 rounded-full ${isDark ? "bg-amber-400/40" : "bg-[#7A2E24]/40"}`} />
+
+                                <p className={`text-[9px] uppercase tracking-[0.35em] font-semibold ${
+                                    isDark ? "text-white/35" : "text-[#7A2E24]/70"
+                                }`}>
+                                    TechZephyr 2026
+                                </p>
+
+                            </div>
 
                         </div>
 

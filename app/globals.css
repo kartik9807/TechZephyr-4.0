@@ -219,7 +219,10 @@ body {
   font-weight: 1000;
   letter-spacing: 0.05rem;
   text-transform: uppercase;
+}
 
+.dark .landing-heading,
+[data-theme="dark"] .landing-heading {
   -webkit-text-stroke: 1px
     color-mix(in srgb, var(--foreground) 15%, transparent);
 }

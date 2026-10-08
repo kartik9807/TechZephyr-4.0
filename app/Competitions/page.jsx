@@ -10,8 +10,12 @@ import { competitions } from "@/data/competitions";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Trophy, BriefcaseBusiness, Gift, Users, GraduationCap, Award, Rocket, Brain, UserPlus, Lightbulb, Presentation, } from "lucide-react";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function Competitions() {
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
+
     const dashboardEvents = [
         {
             society: "FEBS",
@@ -162,15 +166,15 @@ export default function Competitions() {
         (activeDashboardEvent + 1) % dashboardEvents.length
         ];
     return (
-        <main className="bg-black text-white overflow-hidden">
+        <main className="bg-background text-foreground overflow-hidden transition-colors duration-300">
             <section className="relative min-h-[78vh] overflow-hidden flex items-center ">
                 {/* Background */}
                 <div className="absolute inset-0">
                     <Silk
                         speed={5}
                         scale={1}
-                        color="#262626"
-                        noiseIntensity={1.2}
+                        color={isDark ? "#262626" : "#D6A84F"}
+                        noiseIntensity={isDark ? 1.2 : 0.7}
                         rotation={0}
                     />
                 </div>
@@ -179,7 +183,7 @@ export default function Competitions() {
                 <div className="absolute right-0 top-24 h-80 w-80 rounded-full bg-amber-400/10 blur-[150px]" />
 
                 {/* Bottom gradient */}
-                <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/10 to-black" />
+                <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/10 to-background" />
 
                 {/* Content */}
                 <div className="relative z-10 mx-auto max-w-7xl px-6 w-full">
@@ -196,11 +200,11 @@ export default function Competitions() {
                                 ease: "easeOut"
                             }}
                         >
-                            <p className="uppercase tracking-[0.45em] text-xs text-amber-300 mb-5 pt-5">
+                            <p className="uppercase tracking-[0.45em] text-xs text-amber-500 dark:text-amber-300 mb-5 pt-5">
                                 TECHZEPHYR 2026
                             </p>
 
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight bg-linear-to-b from-white via-zinc-300 to-zinc-700 bg-clip-text text-transparent">
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight landing-heading bg-gradient-to-b from-amber-400 via-amber-600 to-black bg-clip-text text-transparent dark:from-white dark:via-zinc-300 dark:to-zinc-700">
                                 COMPETE.
                             </h1>
 
@@ -210,7 +214,7 @@ export default function Competitions() {
                                 Build Solutions.
                             </h2>
 
-                            <p className="mt-8 max-w-2xl text-lg text-white/60 leading-9">
+                            <p className="mt-8 max-w-2xl text-lg text-muted-foreground leading-9">
                                 Explore hackathons, programming contests, robotics
                                 competitions, finance challenges, astronomy events and
                                 much more.
@@ -219,14 +223,14 @@ export default function Competitions() {
                             <div className="mt-12 flex gap-5 flex-wrap">
                                 <Link
                                     href="/Register"
-                                    className="rounded-xl bg-amber-400 px-8 py-4 text-black font-semibold uppercase hover:bg-amber-300 transition duration-300"
+                                    className="rounded-xl bg-amber-400 px-8 py-4 text-black font-semibold uppercase hover:bg-amber-300 transition duration-300 shadow-sm"
                                 >
                                     Register
                                 </Link>
 
                                 <Link
                                     href="/AboutUs"
-                                    className="rounded-xl border border-white/10 px-8 py-4 uppercase hover:border-amber-400 hover:text-amber-300 transition duration-300"
+                                    className="rounded-xl border border-border px-8 py-4 uppercase hover:border-amber-400 hover:text-amber-500 dark:hover:text-amber-300 transition duration-300 bg-card/50"
                                 >
                                     About
                                 </Link>
@@ -261,7 +265,11 @@ export default function Competitions() {
                             <div className="absolute h-72 w-72 rounded-full bg-amber-400/10 blur-[120px]" />
 
                             {/* DASHBOARD */}
-                            <div className="relative w-full max-w-[420px] overflow-hidden rounded-[28px] border border-white/10 bg-black/50 backdrop-blur-2xl shadow-[0_0_70px_rgba(251,191,36,.07)]">
+                            <div className={`relative w-full max-w-[420px] overflow-hidden rounded-[28px] border backdrop-blur-2xl transition-colors duration-300 ${
+                                isDark 
+                                    ? "border-white/10 bg-black/50 shadow-[0_0_70px_rgba(251,191,36,.07)]" 
+                                    : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5 text-[#2A1D17]"
+                            }`}>
 
                                 {/* Decorative glow */}
                                 <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-amber-400/10 blur-[90px]" />
@@ -269,14 +277,20 @@ export default function Competitions() {
                                 {/* =================================================
             HEADER
         ================================================= */}
-                                <div className="relative flex items-center justify-between border-b border-white/10 px-5 py-4">
+                                <div className={`relative flex items-center justify-between border-b px-5 py-4 ${
+                                    isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                                }`}>
 
                                     <div>
-                                        <p className="text-[8px] uppercase tracking-[0.35em] text-white/30">
+                                        <p className={`text-[8px] uppercase tracking-[0.35em] font-semibold ${
+                                            isDark ? "text-white/30" : "text-[#7A2E24]/70"
+                                        }`}>
                                             TechZephyr
                                         </p>
 
-                                        <h3 className="mt-1 text-lg font-bold tracking-tight">
+                                        <h3 className={`mt-1 text-lg font-bold tracking-tight ${
+                                            isDark ? "text-white" : "text-[#2A1D17]"
+                                        }`}>
                                             Event Dashboard
                                         </h3>
                                     </div>
@@ -314,11 +328,17 @@ export default function Competitions() {
                                     {/* UPCOMING LABEL */}
                                     <div className="flex items-center gap-3">
 
-                                        <span className="text-[8px] uppercase tracking-[0.35em] text-amber-300">
+                                        <span className={`text-[8px] uppercase tracking-[0.35em] font-semibold ${
+                                            isDark ? "text-amber-300" : "text-[#8B3A2E]"
+                                        }`}>
                                             Upcoming Event
                                         </span>
 
-                                        <div className="h-px flex-1 bg-linear-to-r from-amber-400/40 to-transparent" />
+                                        <div className={`h-px flex-1 ${
+                                            isDark 
+                                                ? "bg-linear-to-r from-amber-400/40 to-transparent" 
+                                                : "bg-linear-to-r from-[#7A2E24]/30 to-transparent"
+                                        }`} />
 
                                     </div>
 
@@ -359,15 +379,21 @@ export default function Competitions() {
 
                                                 <div className="min-w-0">
 
-                                                    <p className="text-[9px] uppercase tracking-[0.25em] text-white/30">
+                                                    <p className={`text-[9px] uppercase tracking-[0.25em] font-semibold ${
+                                                        isDark ? "text-white/30" : "text-[#7A2E24]/70"
+                                                    }`}>
                                                         {currentEvent.society}
                                                     </p>
 
-                                                    <h4 className="mt-1 text-2xl font-bold tracking-tight">
+                                                    <h4 className={`mt-1 text-2xl font-bold tracking-tight ${
+                                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                                    }`}>
                                                         {currentEvent.title}
                                                     </h4>
 
-                                                    <p className="mt-1 text-xs text-white/40">
+                                                    <p className={`mt-1 text-xs leading-relaxed ${
+                                                        isDark ? "text-white/40" : "text-[#4A3328]/80 font-medium"
+                                                    }`}>
                                                         {currentEvent.description}
                                                     </p>
 
@@ -376,9 +402,13 @@ export default function Competitions() {
 
                                                 {/* EVENT NUMBER */}
 
-                                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-amber-400/20 bg-amber-400/5">
+                                                <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${
+                                                    isDark 
+                                                        ? "border-amber-400/20 bg-amber-400/5 text-amber-300" 
+                                                        : "border-[#7A2E24]/20 bg-[#7A2E24]/10 text-[#7A2E24]"
+                                                }`}>
 
-                                                    <span className="font-mono text-sm font-bold text-amber-300">
+                                                    <span className="font-mono text-sm font-bold">
                                                         {currentEvent.number}
                                                     </span>
 
@@ -391,53 +421,67 @@ export default function Competitions() {
                         EVENT DETAILS
                     ================================================= */}
 
-                                            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-white/10 py-4">
+                                            <div className={`mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-y py-4 ${
+                                                isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                                            }`}>
 
                                                 {/* DATE */}
 
                                                 <div>
 
-                                                    <p className="text-[7px] uppercase tracking-[0.25em] text-white/25">
+                                                    <p className={`text-[7px] uppercase tracking-[0.25em] font-semibold ${
+                                                        isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                                                    }`}>
                                                         Date
                                                     </p>
 
-                                                    <p className="mt-1 text-xs font-semibold">
+                                                    <p className={`mt-1 text-xs font-semibold ${
+                                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                                    }`}>
                                                         {currentEvent.date}
                                                     </p>
 
                                                 </div>
 
 
-                                                <div className="h-6 w-px bg-white/10" />
+                                                <div className={`h-6 w-px ${isDark ? "bg-white/10" : "bg-[#7A2E24]/15"}`} />
 
 
                                                 {/* DURATION */}
 
                                                 <div>
 
-                                                    <p className="text-[7px] uppercase tracking-[0.25em] text-white/25">
+                                                    <p className={`text-[7px] uppercase tracking-[0.25em] font-semibold ${
+                                                        isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                                                    }`}>
                                                         Duration
                                                     </p>
 
-                                                    <p className="mt-1 text-xs font-semibold">
+                                                    <p className={`mt-1 text-xs font-semibold ${
+                                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                                    }`}>
                                                         {currentEvent.duration}
                                                     </p>
 
                                                 </div>
 
 
-                                                <div className="h-6 w-px bg-white/10" />
+                                                <div className={`h-6 w-px ${isDark ? "bg-white/10" : "bg-[#7A2E24]/15"}`} />
 
 
                                                 {/* VENUE */}
 
                                                 <div className="min-w-0 flex-1">
 
-                                                    <p className="text-[7px] uppercase tracking-[0.25em] text-white/25">
+                                                    <p className={`text-[7px] uppercase tracking-[0.25em] font-semibold ${
+                                                        isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                                                    }`}>
                                                         Venue
                                                     </p>
 
-                                                    <p className="mt-1 truncate text-xs font-semibold">
+                                                    <p className={`mt-1 truncate text-xs font-semibold ${
+                                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                                    }`}>
                                                         {currentEvent.venue}
                                                     </p>
 
@@ -454,11 +498,15 @@ export default function Competitions() {
 
                                                 <div>
 
-                                                    <p className="text-[7px] uppercase tracking-[0.25em] text-white/25">
+                                                    <p className={`text-[7px] uppercase tracking-[0.25em] font-semibold ${
+                                                        isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                                                    }`}>
                                                         Prize Pool
                                                     </p>
 
-                                                    <p className="mt-1 text-sm font-bold text-amber-300">
+                                                    <p className={`mt-1 text-sm font-bold ${
+                                                        isDark ? "text-amber-300" : "text-[#8B3A2E]"
+                                                    }`}>
                                                         {currentEvent.prize}
                                                     </p>
 
@@ -467,11 +515,15 @@ export default function Competitions() {
 
                                                 <div className="text-right">
 
-                                                    <p className="text-[7px] uppercase tracking-[0.25em] text-white/25">
+                                                    <p className={`text-[7px] uppercase tracking-[0.25em] font-semibold ${
+                                                        isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                                                    }`}>
                                                         Difficulty
                                                     </p>
 
-                                                    <p className="mt-1 text-xs font-semibold">
+                                                    <p className={`mt-1 text-xs font-semibold ${
+                                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                                    }`}>
                                                         {currentEvent.difficulty}
                                                     </p>
 
@@ -492,11 +544,15 @@ export default function Competitions() {
 
                                         <div className="flex items-center justify-between">
 
-                                            <p className="text-[8px] uppercase tracking-[0.35em] text-white/25">
+                                            <p className={`text-[8px] uppercase tracking-[0.35em] font-semibold ${
+                                                isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                                            }`}>
                                                 Next Up
                                             </p>
 
-                                            <span className="text-[8px] uppercase tracking-[0.2em] text-white/20">
+                                            <span className={`text-[8px] uppercase tracking-[0.2em] font-medium ${
+                                                isDark ? "text-white/20" : "text-[#7A2E24]/50"
+                                            }`}>
                                                 {nextEvent.date}
                                             </span>
 
@@ -528,9 +584,11 @@ export default function Competitions() {
 
                                                 {/* ICON */}
 
-                                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                                                <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${
+                                                    isDark ? "border-white/10 bg-white/5 text-amber-300" : "border-[#7A2E24]/15 bg-[#7A2E24]/5 text-[#7A2E24]"
+                                                }`}>
 
-                                                    <span className="font-mono text-sm text-amber-300">
+                                                    <span className="font-mono text-sm font-bold">
                                                         {nextEvent.number}
                                                     </span>
 
@@ -541,11 +599,15 @@ export default function Competitions() {
 
                                                 <div className="min-w-0 flex-1">
 
-                                                    <h4 className="truncate text-sm font-semibold">
+                                                    <h4 className={`truncate text-sm font-semibold ${
+                                                        isDark ? "text-white" : "text-[#2A1D17]"
+                                                    }`}>
                                                         {nextEvent.title}
                                                     </h4>
 
-                                                    <p className="mt-1 truncate text-[10px] text-white/35">
+                                                    <p className={`mt-1 truncate text-[10px] ${
+                                                        isDark ? "text-white/35" : "text-[#4A3328]/70"
+                                                    }`}>
                                                         {nextEvent.society}
                                                         {" · "}
                                                         {nextEvent.duration}
@@ -556,7 +618,9 @@ export default function Competitions() {
                                                 </div>
 
 
-                                                <span className="text-sm text-white/20">
+                                                <span className={`text-sm ${
+                                                    isDark ? "text-white/20" : "text-[#7A2E24]/40"
+                                                }`}>
                                                     →
                                                 </span>
 
@@ -571,19 +635,23 @@ export default function Competitions() {
                 STATS
             ================================================= */}
 
-                                    <div className="mt-5 flex items-center gap-8 border-t border-white/10 pt-4">
+                                    <div className={`mt-5 flex items-center gap-8 border-t pt-4 ${
+                                        isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                                    }`}>
 
                                         <div className="flex items-center gap-2">
 
-                                            <span className="h-1.5 w-1.5 rounded-full bg-amber-300" />
+                                            <span className={`h-1.5 w-1.5 rounded-full ${isDark ? "bg-amber-300" : "bg-[#8B3A2E]"}`} />
 
                                             <div>
 
-                                                <span className="text-base font-bold">
+                                                <span className={`text-base font-bold ${isDark ? "text-white" : "text-[#2A1D17]"}`}>
                                                     05
                                                 </span>
 
-                                                <span className="ml-2 text-[7px] uppercase tracking-[0.2em] text-white/25">
+                                                <span className={`ml-2 text-[7px] uppercase tracking-[0.2em] font-semibold ${
+                                                    isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                                                }`}>
                                                     Societies
                                                 </span>
 
@@ -594,15 +662,17 @@ export default function Competitions() {
 
                                         <div className="flex items-center gap-2">
 
-                                            <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
+                                            <span className={`h-1.5 w-1.5 rounded-full ${isDark ? "bg-white/30" : "bg-[#7A2E24]/30"}`} />
 
                                             <div>
 
-                                                <span className="text-base font-bold">
+                                                <span className={`text-base font-bold ${isDark ? "text-white" : "text-[#2A1D17]"}`}>
                                                     {dashboardEvents.length.toString().padStart(2, "0")}+
                                                 </span>
 
-                                                <span className="ml-2 text-[7px] uppercase tracking-[0.2em] text-white/25">
+                                                <span className={`ml-2 text-[7px] uppercase tracking-[0.2em] font-semibold ${
+                                                    isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                                                }`}>
                                                     Events
                                                 </span>
 
@@ -619,7 +689,11 @@ export default function Competitions() {
             BOTTOM ACCENT
         ================================================= */}
 
-                                <div className="h-px w-full bg-linear-to-r from-transparent via-amber-400/40 to-transparent" />
+                                <div className={`h-px w-full ${
+                                    isDark 
+                                        ? "bg-linear-to-r from-transparent via-amber-400/40 to-transparent" 
+                                        : "bg-linear-to-r from-transparent via-[#7A2E24]/30 to-transparent"
+                                }`} />
 
                             </div>
 
@@ -632,13 +706,23 @@ export default function Competitions() {
                     <SectionHeading subtitle="Events & Challenges" title="Explore Competitions" />
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                         {competitions.map((competition, index) => (
-                            <CompetitionCard key={index} number={competition.number} tag={competition.tag} title={competition.title} description={competition.shortDescription} slug={competition.slug} />
+                            <CompetitionCard
+                                key={index}
+                                number={competition.number}
+                                tag={competition.tag}
+                                title={competition.title}
+                                description={competition.shortDescription}
+                                slug={competition.slug}
+                                bgImage={competition.bgImage}
+                            />
                         ))}
                     </div>
                 </div>
             </section>
             {/*  */}
-            <section className="border-t border-white/10 py-8 overflow-hidden sm:py-10">
+            <section className={`border-t py-8 overflow-hidden sm:py-10 ${
+                isDark ? "border-white/10" : "border-[#7A2E24]/10"
+            }`}>
                 <div className="mx-auto max-w-7xl px-5 sm:px-6">
 
                     <SectionHeading
@@ -651,7 +735,11 @@ export default function Competitions() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="relative mt-10 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] backdrop-blur-xl sm:mt-14 sm:rounded-[40px]"
+                        className={`relative mt-10 overflow-hidden rounded-3xl border backdrop-blur-xl sm:mt-14 sm:rounded-[40px] transition-colors duration-300 ${
+                            isDark 
+                                ? "border-white/10 bg-white/[0.035]" 
+                                : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                        }`}
                     >
 
                         {/* Ambient glow */}
@@ -732,14 +820,15 @@ export default function Competitions() {
                                             delay: index * 0.04
                                         }}
                                         whileHover={{
-                                            backgroundColor:
-                                                "rgba(255,255,255,0.025)"
+                                            backgroundColor: isDark 
+                                                ? "rgba(255,255,255,0.025)" 
+                                                : "rgba(122,46,36,0.03)"
                                         }}
                                         className={`
                                 group relative
                                 p-5 sm:p-7 xl:p-8
                                 transition-all duration-300
-                                border-white/10
+                                ${isDark ? "border-white/10" : "border-[#7A2E24]/10"}
 
                                 ${index % 4 !== 3
                                                 ? "xl:border-r"
@@ -789,105 +878,110 @@ export default function Competitions() {
                                                 transition={{
                                                     duration: 0.2
                                                 }}
-                                                className="
+                                                className={`
                                         relative
                                         flex h-11 w-11 shrink-0
                                         items-center justify-center
                                         rounded-xl
-                                        border border-amber-400/20
-                                        bg-linear-to-br
-                                        from-amber-400/15
-                                        to-transparent
-
+                                        border
                                         md:mb-6
                                         md:h-14 md:w-14
                                         md:rounded-2xl
-                                    "
+                                        ${isDark 
+                                            ? "border-amber-400/20 bg-linear-to-br from-amber-400/15 to-transparent text-amber-300" 
+                                            : "border-[#7A2E24]/25 bg-[#7A2E24]/10 text-[#7A2E24]"
+                                        }
+                                    `}
                                             >
-                                                <div className="absolute inset-2 rounded-lg bg-amber-400/10 blur-md" />
+                                                <div className={`absolute inset-2 rounded-lg blur-md ${
+                                                    isDark ? "bg-amber-400/10" : "bg-[#7A2E24]/10"
+                                                }`} />
 
                                                 <Icon
                                                     size={22}
                                                     strokeWidth={1.8}
-                                                    className="
-                                            relative text-amber-300
+                                                    className={`
+                                            relative
                                             md:hidden
-                                        "
+                                            ${isDark ? "text-amber-300" : "text-[#7A2E24]"}
+                                        `}
                                                 />
 
                                                 <Icon
                                                     size={27}
                                                     strokeWidth={1.8}
-                                                    className="
-                                            relative hidden text-amber-300
+                                                    className={`
+                                            relative hidden
                                             md:block
-                                        "
+                                            ${isDark ? "text-amber-300" : "text-[#7A2E24]"}
+                                        `}
                                                 />
                                             </motion.div>
 
                                             {/* Content */}
                                             <div className="min-w-0">
 
-                                                <h3 className="
+                                                <h3 className={`
                                         text-base
                                         font-bold
                                         leading-tight
                                         sm:text-lg
                                         md:text-xl
-                                    ">
+                                        ${isDark ? "text-white" : "text-[#2A1D17]"}
+                                    `}>
                                                     {item.title}
                                                 </h3>
 
                                                 {/* Description hidden on mobile */}
-                                                <p className="
+                                                <p className={`
                                         mt-3
                                         hidden
                                         text-sm
                                         leading-7
-                                        text-white/60
                                         md:block
-                                    ">
+                                        ${isDark ? "text-white/60" : "text-[#4A3328]/85 font-medium"}
+                                    `}>
                                                     {item.description}
                                                 </p>
 
                                             </div>
 
                                             {/* Number */}
-                                            <span className="
+                                            <span className={`
                                     ml-auto
                                     shrink-0
                                     text-[10px]
-                                    font-medium
+                                    font-bold
                                     tracking-[0.15em]
-                                    text-white/15
                                     transition-colors
                                     duration-300
-                                    group-hover:text-amber-300/30
-
                                     md:absolute
                                     md:right-8
                                     md:top-8
                                     md:text-xs
                                     md:tracking-[0.2em]
-                                ">
+                                    ${isDark 
+                                        ? "text-white/15 group-hover:text-amber-300/30" 
+                                        : "text-[#7A2E24]/30 group-hover:text-[#7A2E24]"
+                                    }
+                                `}>
                                                 0{index + 1}
                                             </span>
 
                                         </div>
 
                                         {/* Bottom accent */}
-                                        <div className="
+                                        <div className={`
                                 mt-4
                                 h-px
                                 w-6
-                                bg-amber-400/40
                                 transition-all
                                 duration-300
                                 group-hover:w-12
-
                                 md:mt-6
                                 md:w-8
-                            " />
+                                ${isDark ? "bg-amber-400/40" : "bg-[#7A2E24]/40 group-hover:bg-[#7A2E24]"}
+                            `} />
 
                                     </motion.div>
                                 );
@@ -897,7 +991,9 @@ export default function Competitions() {
                     </motion.div>
 
                 </div>
-            </section>            <section className="py-10">
+            </section>
+            
+            <section className="py-10">
                 <div className="mx-auto max-w-7xl px-6">
 
                     <SectionHeading
@@ -908,7 +1004,11 @@ export default function Competitions() {
                     <div className="relative mt-20">
 
                         {/* Timeline */}
-                        <div className="absolute left-7 top-0 bottom-0 w-px bg-linear-to-b from-amber-400/70 via-amber-400/20 to-transparent md:left-1/2 md:-translate-x-1/2" />
+                        <div className={`absolute left-7 top-0 bottom-0 w-px ${
+                            isDark 
+                                ? "bg-linear-to-b from-amber-400/70 via-amber-400/20 to-transparent" 
+                                : "bg-linear-to-b from-[#7A2E24]/70 via-[#7A2E24]/20 to-transparent"
+                        } md:left-1/2 md:-translate-x-1/2`} />
 
                         {[
                             {
@@ -953,7 +1053,10 @@ export default function Competitions() {
                                     {/* Desktop connector */}
                                     <div
                                         className={
-                                            "absolute top-1/2 hidden h-px w-24 bg-linear-to-r from-amber-400/50 to-transparent md:block " +
+                                            "absolute top-1/2 hidden h-px w-24 md:block " +
+                                            (isDark 
+                                                ? "bg-linear-to-r from-amber-400/50 to-transparent " 
+                                                : "bg-linear-to-r from-[#7A2E24]/40 to-transparent ") +
                                             (isLeft ? "right-1/2" : "left-1/2 rotate-180")
                                         }
                                     />
@@ -962,14 +1065,20 @@ export default function Competitions() {
                                     <motion.div
                                         whileHover={{ scale: 1.08 }}
                                         transition={{ duration: 0.18 }}
-                                        className="absolute left-7 top-1/2 z-20 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-amber-400/30 bg-black shadow-[0_0_25px_rgba(251,191,36,.15)] md:left-1/2 md:h-16 md:w-16"
+                                        className={`absolute left-7 top-1/2 z-20 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border shadow-md md:left-1/2 md:h-16 md:w-16 ${
+                                            isDark 
+                                                ? "border-amber-400/30 bg-black text-amber-300 shadow-[0_0_25px_rgba(251,191,36,.15)]" 
+                                                : "border-[#7A2E24]/30 bg-[#FAF7F2] text-[#7A2E24]"
+                                        }`}
                                     >
-                                        <div className="absolute inset-2 rounded-full bg-amber-400/10 blur-md" />
+                                        <div className={`absolute inset-2 rounded-full blur-md ${
+                                            isDark ? "bg-amber-400/10" : "bg-[#7A2E24]/10"
+                                        }`} />
 
                                         <Icon
                                             size={24}
                                             strokeWidth={1.8}
-                                            className="relative text-amber-300"
+                                            className="relative"
                                         />
                                     </motion.div>
 
@@ -977,38 +1086,46 @@ export default function Competitions() {
                                     <motion.div
                                         whileHover={{ y: -4 }}
                                         transition={{ duration: 0.2 }}
-                                        className={
-                                            "group relative ml-16 w-[calc(100%-4rem)] overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] p-7 backdrop-blur-xl transition-all duration-300 hover:border-amber-400/25 hover:bg-white/[0.05] md:ml-0 md:w-[45%] " +
-                                            (isLeft
+                                        className={`group relative ml-16 w-[calc(100%-4rem)] overflow-hidden rounded-[28px] border p-7 backdrop-blur-xl transition-all duration-300 md:ml-0 md:w-[45%] ${
+                                            isDark 
+                                                ? "border-white/10 bg-white/[0.035] hover:border-amber-400/25 hover:bg-white/[0.05]" 
+                                                : "border-[#7A2E24]/15 bg-white/70 hover:border-[#7A2E24]/30 hover:bg-white/95 shadow-lg shadow-amber-950/5"
+                                        } ${
+                                            isLeft
                                                 ? "md:mr-auto md:pr-12 md:text-right"
-                                                : "md:ml-auto md:pl-12 md:text-left")
-                                        }
+                                                : "md:ml-auto md:pl-12 md:text-left"
+                                        }`}
                                     >
 
                                         {/* Hover glow */}
                                         <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-amber-400/10 blur-[70px] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                                         {/* Step */}
-                                        <span className="relative text-xs font-medium uppercase tracking-[0.3em] text-amber-300/50">
+                                        <span className={`relative text-xs font-semibold uppercase tracking-[0.3em] ${
+                                            isDark ? "text-amber-300/50" : "text-[#7A2E24]"
+                                        }`}>
                                             Step 0{index + 1}
                                         </span>
 
                                         {/* Title */}
-                                        <h3 className="relative mt-3 text-2xl font-bold text-white md:text-3xl">
+                                        <h3 className={`relative mt-3 text-2xl font-bold md:text-3xl ${
+                                            isDark ? "text-white" : "text-[#2A1D17]"
+                                        }`}>
                                             {item.title}
                                         </h3>
 
                                         {/* Description */}
-                                        <p className="relative mt-4 text-sm leading-7 text-white/55 md:text-[15px]">
+                                        <p className={`relative mt-4 text-sm leading-7 md:text-[15px] ${
+                                            isDark ? "text-white/55" : "text-[#4A3328]/85 font-medium"
+                                        }`}>
                                             {item.description}
                                         </p>
 
                                         {/* Accent */}
                                         <div
-                                            className={
-                                                "mt-6 h-px w-10 bg-amber-400/60 transition-all duration-300 group-hover:w-20 " +
-                                                (isLeft ? "md:ml-auto" : "")
-                                            }
+                                            className={`mt-6 h-px w-10 transition-all duration-300 group-hover:w-20 ${
+                                                isDark ? "bg-amber-400/60" : "bg-[#7A2E24]/60"
+                                            } ${isLeft ? "md:ml-auto" : ""}`}
                                         />
 
                                     </motion.div>
@@ -1019,6 +1136,6 @@ export default function Competitions() {
                     </div>
                 </div>
             </section>
-            <section className="border-t border-white/10"><CTA /></section>
+            <section className={`border-t ${isDark ? "border-white/10" : "border-[#7A2E24]/10"}`}><CTA /></section>
         </main>)
 }

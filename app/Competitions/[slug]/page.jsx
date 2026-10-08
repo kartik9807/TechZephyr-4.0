@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -14,35 +14,16 @@ import {
 
 import Silk from "@/components/animated_bg/Silk";
 import { competitions } from "@/data/competitions";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function CompetitionDetails() {
     const { slug } = useParams();
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
 
     const competition = competitions.find(
         (item) => item.slug === slug
     );
-
-    const [showCurtain, setShowCurtain] = useState(true);
-    const [isOpening, setIsOpening] = useState(false);
-
-    useEffect(() => {
-        if (!competition) return;
-
-        // Keep society branding visible before opening
-        const openTimer = setTimeout(() => {
-            setIsOpening(true);
-        }, 1650);
-
-        // Remove curtain after the opening animation finishes
-        const closeTimer = setTimeout(() => {
-            setShowCurtain(false);
-        }, 2850);
-
-        return () => {
-            clearTimeout(openTimer);
-            clearTimeout(closeTimer);
-        };
-    }, [competition]);
 
     const [order, setOrder] = useState([0, 1, 2, 3]);
     const [flashKey, setFlashKey] = useState(0);
@@ -88,228 +69,7 @@ export default function CompetitionDetails() {
     ];
 
     return (
-        <main className="min-h-screen overflow-hidden bg-black text-white">
-            {/* CINEMATIC SOCIETY CURTAIN */}
-            {showCurtain && (
-                <div className="fixed inset-0 z-[9999] pointer-events-auto">
-
-                    {/* Deep black background */}
-                    <div className="absolute inset-0 bg-black" />
-
-                    {/* Society branding */}
-                    <motion.div
-                        initial={{
-                            opacity: 0,
-                            scale: 0.88,
-                            y: 15,
-                        }}
-                        animate={{
-                            opacity: isOpening ? 0 : 1,
-                            scale: isOpening ? 1.04 : 1,
-                            y: isOpening ? -10 : 0,
-                        }}
-                        transition={{
-                            opacity: {
-                                duration: 0.45,
-                                ease: "easeOut",
-                            },
-                            scale: {
-                                duration: 0.7,
-                                ease: [0.22, 1, 0.36, 1],
-                            },
-                            y: {
-                                duration: 0.7,
-                                ease: [0.22, 1, 0.36, 1],
-                            },
-                        }}
-                        className="absolute inset-0 z-30 flex items-center justify-center"
-                    >
-                        <div className="flex flex-col items-center text-center">
-
-                            {/* Society Logo */}
-                            <motion.div
-                                initial={{
-                                    opacity: 0,
-                                    scale: 0.75,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    scale: 1,
-                                }}
-                                transition={{
-                                    duration: 0.7,
-                                    ease: [0.22, 1, 0.36, 1],
-                                }}
-                                className="relative flex h-32 w-32 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035] p-6 shadow-[0_0_120px_rgba(251,191,36,0.10)] backdrop-blur-xl md:h-36 md:w-36"
-                            >
-                                <div className="absolute inset-0 rounded-2xl bg-amber-400/10 blur-2xl" />
-
-                                <img
-                                    src={competition.society_logo}
-                                    alt={competition.society}
-                                    className="relative z-10 h-full w-full object-contain"
-                                />
-                            </motion.div>
-
-                            {/* Presented By */}
-                            <motion.p
-                                initial={{
-                                    opacity: 0,
-                                    y: 10,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    y: 0,
-                                }}
-                                transition={{
-                                    delay: 0.35,
-                                    duration: 0.45,
-                                }}
-                                className="mt-8 text-[10px] uppercase tracking-[0.55em] text-amber-300/70"
-                            >
-                                Presented By
-                            </motion.p>
-
-                            {/* Society Name */}
-                            <motion.h2
-                                initial={{
-                                    opacity: 0,
-                                    y: 12,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    y: 0,
-                                }}
-                                transition={{
-                                    delay: 0.5,
-                                    duration: 0.55,
-                                    ease: "easeOut",
-                                }}
-                                className="mt-3 max-w-3xl px-6 text-3xl font-black tracking-tight text-white md:text-5xl"
-                            >
-                                {competition.society}
-                            </motion.h2>
-
-                            {/* Divider */}
-                            <motion.div
-                                initial={{
-                                    opacity: 0,
-                                    scaleX: 0,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    scaleX: 1,
-                                }}
-                                transition={{
-                                    delay: 0.7,
-                                    duration: 0.55,
-                                    ease: "easeOut",
-                                }}
-                                className="mt-6 flex items-center gap-4"
-                            >
-                                <span className="h-px w-10 bg-amber-400/30" />
-
-                                <span className="text-[9px] uppercase tracking-[0.45em] text-white/25">
-                                    Presents
-                                </span>
-
-                                <span className="h-px w-10 bg-amber-400/30" />
-                            </motion.div>
-
-                            {/* Competition Name */}
-                            <motion.p
-                                initial={{
-                                    opacity: 0,
-                                    y: 8,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    y: 0,
-                                }}
-                                transition={{
-                                    delay: 0.85,
-                                    duration: 0.5,
-                                }}
-                                className="mt-5 text-base font-medium tracking-wide text-white/50 md:text-lg"
-                            >
-                                {competition.title}
-                            </motion.p>
-                        </div>
-                    </motion.div>
-
-                    {/* LEFT CURTAIN */}
-                    <motion.div
-                        initial={{
-                            x: "0%",
-                        }}
-                        animate={{
-                            x: isOpening ? "-100%" : "0%",
-                        }}
-                        transition={{
-                            duration: 1.1,
-                            ease: [0.76, 0, 0.24, 1],
-                        }}
-                        className="absolute inset-y-0 left-0 z-20 w-1/2 bg-black"
-                    >
-                        <div className="absolute inset-y-0 right-0 w-px bg-linear-to-b from-transparent via-amber-400/35 to-transparent" />
-
-                        <div className="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-amber-400/[0.025] to-transparent" />
-                    </motion.div>
-
-                    {/* RIGHT CURTAIN */}
-                    <motion.div
-                        initial={{
-                            x: "0%",
-                        }}
-                        animate={{
-                            x: isOpening ? "100%" : "0%",
-                        }}
-                        transition={{
-                            duration: 1.1,
-                            ease: [0.76, 0, 0.24, 1],
-                        }}
-                        className="absolute inset-y-0 right-0 z-20 w-1/2 bg-black"
-                    >
-                        <div className="absolute inset-y-0 left-0 w-px bg-linear-to-b from-transparent via-amber-400/35 to-transparent" />
-
-                        <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-amber-400/[0.025] to-transparent" />
-                    </motion.div>
-
-                    {/* Top cinematic line */}
-                    <motion.div
-                        initial={{
-                            scaleX: 0,
-                            opacity: 0,
-                        }}
-                        animate={{
-                            scaleX: 1,
-                            opacity: isOpening ? 0 : 1,
-                        }}
-                        transition={{
-                            delay: 0.55,
-                            duration: 0.7,
-                        }}
-                        className="absolute left-1/2 top-8 z-40 h-px w-28 -translate-x-1/2 bg-linear-to-r from-transparent via-amber-400/40 to-transparent"
-                    />
-
-                    {/* Bottom cinematic line */}
-                    <motion.div
-                        initial={{
-                            scaleX: 0,
-                            opacity: 0,
-                        }}
-                        animate={{
-                            scaleX: 1,
-                            opacity: isOpening ? 0 : 1,
-                        }}
-                        transition={{
-                            delay: 0.55,
-                            duration: 0.7,
-                        }}
-                        className="absolute bottom-8 left-1/2 z-40 h-px w-28 -translate-x-1/2 bg-linear-to-r from-transparent via-amber-400/40 to-transparent"
-                    />
-                </div>
-            )}
+        <main className="min-h-screen overflow-hidden bg-background text-foreground transition-colors duration-300">
             {/* =========================================================
                 HERO
             ========================================================= */}
@@ -320,15 +80,15 @@ export default function CompetitionDetails() {
                     <Silk
                         speed={5}
                         scale={1}
-                        color="#262626"
-                        noiseIntensity={1.2}
+                        color={isDark ? "#262626" : "#D6A84F"}
+                        noiseIntensity={isDark ? 1.2 : 0.7}
                         rotation={0}
                     />
                 </div>
 
                 <div className="absolute right-0 top-20 h-125 w-125 rounded-full bg-amber-400/10 blur-[160px]" />
 
-                <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-black" />
+                <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/20 to-background" />
 
                 <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-20">
 
@@ -348,29 +108,39 @@ export default function CompetitionDetails() {
 
                         <div className="flex flex-wrap items-center gap-3">
 
-                            <p className="uppercase tracking-[0.5em] text-xs text-amber-300">
+                            <p className="uppercase tracking-[0.5em] text-xs font-semibold text-amber-600 dark:text-amber-300">
                                 {competition.tag}
                             </p>
 
                             <span className="h-px w-12 bg-amber-400/40" />
 
-                            <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">
+                            <span className={`text-[10px] uppercase tracking-[0.3em] font-medium ${
+                                isDark ? "text-white/30" : "text-[#7A2E24]/60"
+                            }`}>
                                 Tech Zephyr 4.0
                             </span>
 
                         </div>
 
-                        <h1 className="mt-6 text-5xl font-black leading-none bg-linear-to-b from-white via-zinc-300 to-zinc-700 bg-clip-text text-transparent md:text-7xl lg:text-8xl">
+                        <h1 className={`mt-6 text-5xl font-black leading-none bg-clip-text text-transparent md:text-7xl lg:text-8xl ${
+                            isDark 
+                                ? "bg-linear-to-b from-white via-zinc-300 to-zinc-700" 
+                                : "bg-linear-to-b from-[#2A1D17] via-[#5C2B1D] to-[#8B3A2E]"
+                        }`}>
                             {competition.title}
                         </h1>
 
-                        <p className="mt-8 max-w-3xl text-lg leading-9 text-white/60">
+                        <p className={`mt-8 max-w-3xl text-lg leading-9 ${
+                            isDark ? "text-white/60" : "text-[#4A3328]/85 font-medium"
+                        }`}>
                             {competition.description}
                         </p>
 
                         {/* Basic event metadata */}
 
-                        <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-xs uppercase tracking-[0.2em] text-white/35">
+                        <div className={`mt-10 flex flex-wrap gap-x-8 gap-y-3 text-xs uppercase tracking-[0.2em] font-semibold ${
+                            isDark ? "text-white/35" : "text-[#4A3328]/70"
+                        }`}>
 
                             <span>
                                 {competition.domain}
@@ -606,18 +376,20 @@ export default function CompetitionDetails() {
                         <div className="mt-8 flex gap-2">
 
                             {stats.map((_, i) => (
-                                <div
-                                    key={i}
-                                    className={`h-1.5 rounded-full transition-all duration-300 ${order[0] === i
-                                        ? "w-6 bg-amber-300"
-                                        : "w-1.5 bg-white/25"
-                                        }`}
-                                />
+                                 <div
+                                     key={i}
+                                     className={`h-1.5 rounded-full transition-all duration-300 ${order[0] === i
+                                         ? "w-6 bg-amber-300"
+                                         : isDark ? "w-1.5 bg-white/25" : "w-1.5 bg-[#7A2E24]/25"
+                                         }`}
+                                 />
                             ))}
 
                         </div>
 
-                        <p className="mt-4 text-[10px] uppercase tracking-[0.3em] text-white/40">
+                        <p className={`mt-4 text-[10px] uppercase tracking-[0.3em] font-medium ${
+                            isDark ? "text-white/40" : "text-[#7A2E24]/60"
+                        }`}>
                             Tap the stack to flip through
                         </p>
 
@@ -633,11 +405,15 @@ export default function CompetitionDetails() {
 
             <section className="mx-auto max-w-7xl px-6">
 
-                <div className="rounded-3xl border border-amber-400/20 bg-amber-400/5 p-10 md:flex md:items-center md:justify-between">
+                <div className={`rounded-3xl border p-10 md:flex md:items-center md:justify-between transition-colors duration-300 ${
+                    isDark 
+                        ? "border-amber-400/20 bg-amber-400/5 text-white" 
+                        : "border-[#7A2E24]/20 bg-amber-500/10 text-[#2A1D17] shadow-xl shadow-amber-950/5"
+                }`}>
 
                     <div>
 
-                        <p className="uppercase tracking-[0.4em] text-xs text-amber-300">
+                        <p className="uppercase tracking-[0.4em] text-xs font-semibold text-amber-600 dark:text-amber-300">
                             Registration
                         </p>
 
@@ -645,14 +421,17 @@ export default function CompetitionDetails() {
                             Ready to participate?
                         </h2>
 
-                        <p className="mt-4 max-w-2xl leading-7 text-white/60">
-                            Register through the official Unstop listing
-                            for {competition.title}. All registration,
-                            eligibility and submission instructions are
-                            handled through the official event page.
+                        <p className={`mt-4 max-w-2xl leading-7 ${
+                            isDark ? "text-white/60" : "text-[#4A3328]/85 font-medium"
+                        }`}>
+                            {competition.buttonText === "Register on Unstop" || competition.registrationUrl?.includes("unstop.com")
+                                ? `Register through the official Unstop listing for ${competition.title}. All registration, eligibility and submission instructions are handled through the official event page.`
+                                : `Confirm your registration slot for ${competition.title}. Complete your submission through the official registration form.`}
                         </p>
 
-                        <div className="mt-5 flex flex-wrap gap-5 text-xs uppercase tracking-[0.2em] text-white/35">
+                        <div className={`mt-5 flex flex-wrap gap-5 text-xs uppercase tracking-[0.2em] font-semibold ${
+                            isDark ? "text-white/35" : "text-[#4A3328]/70"
+                        }`}>
 
                             <span>
                                 Venue — {competition.venue}
@@ -672,7 +451,7 @@ export default function CompetitionDetails() {
                         rel="noopener noreferrer"
                         className="mt-8 inline-flex shrink-0 items-center gap-3 self-center rounded-xl bg-amber-400 px-8 py-4 font-bold text-black transition hover:bg-amber-300 hover:shadow-[0_0_30px_rgba(251,191,36,.2)] md:mt-0"
                     >
-                        Register on Unstop
+                        {competition.buttonText || (competition.registrationUrl?.includes("unstop.com") ? "Register on Unstop" : "Confirm Your Slot")}
 
                         <ExternalLink size={17} />
                     </a>
@@ -690,11 +469,13 @@ export default function CompetitionDetails() {
 
                 {/* Heading */}
                 <div>
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-amber-300">
+                    <p className="text-[10px] uppercase tracking-[0.4em] font-semibold text-amber-600 dark:text-amber-300">
                         The Challenge
                     </p>
 
-                    <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+                    <h2 className={`mt-2 text-3xl font-black tracking-tight md:text-4xl ${
+                        isDark ? "text-white" : "text-[#2A1D17]"
+                    }`}>
                         Highlights
                     </h2>
                 </div>
@@ -718,7 +499,11 @@ export default function CompetitionDetails() {
                         duration: 0.6,
                         ease: "easeOut",
                     }}
-                    className="group relative mt-8 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] backdrop-blur-xl"
+                    className={`group relative mt-8 overflow-hidden rounded-3xl border backdrop-blur-xl transition-colors duration-300 ${
+                        isDark 
+                            ? "border-white/10 bg-white/[0.025]" 
+                            : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                    }`}
                 >
 
                     {/* Ambient Glow */}
@@ -730,20 +515,28 @@ export default function CompetitionDetails() {
 
 
                     {/* Header */}
-                    <div className="relative flex flex-col gap-3 border-b border-white/10 px-6 py-5 sm:px-8 md:flex-row md:items-center md:justify-between">
+                    <div className={`relative flex flex-col gap-3 border-b px-6 py-5 sm:px-8 md:flex-row md:items-center md:justify-between ${
+                        isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                    }`}>
 
                         <div>
-                            <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-300">
+                            <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600 dark:text-amber-300">
                                 Key Highlights
                             </p>
 
-                            <h3 className="mt-1.5 text-lg font-bold tracking-tight md:text-xl">
+                            <h3 className={`mt-1.5 text-lg font-bold tracking-tight md:text-xl ${
+                                isDark ? "text-white" : "text-[#2A1D17]"
+                            }`}>
                                 What Makes This Competition Different
                             </h3>
                         </div>
 
-                        <div className="w-fit rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5">
-                            <span className="font-mono text-[8px] uppercase tracking-[0.25em] text-white/30">
+                        <div className={`w-fit rounded-full border px-3 py-1.5 ${
+                            isDark ? "border-white/10 bg-white/[0.035]" : "border-[#7A2E24]/15 bg-amber-500/10"
+                        }`}>
+                            <span className={`font-mono text-[8px] uppercase tracking-[0.25em] font-semibold ${
+                                isDark ? "text-white/30" : "text-[#7A2E24]/80"
+                            }`}>
                                 {competition.highlights.length} Key Points
                             </span>
                         </div>
@@ -774,7 +567,9 @@ export default function CompetitionDetails() {
                                     delay: index * 0.06,
                                     ease: "easeOut",
                                 }}
-                                className="group/highlight relative border-b border-white/10 last:border-b-0"
+                                className={`group/highlight relative border-b last:border-b-0 ${
+                                    isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                                }`}
                             >
 
                                 <div className="flex items-center gap-4 px-6 py-4 sm:px-8 md:py-5">
@@ -782,23 +577,33 @@ export default function CompetitionDetails() {
                                     {/* Number */}
                                     <div className="flex shrink-0 items-center gap-3">
 
-                                        <span className="font-mono text-[10px] tracking-[0.2em] text-amber-300/80">
+                                        <span className={`font-mono text-[10px] tracking-[0.2em] font-bold ${
+                                            isDark ? "text-amber-300/80" : "text-[#7A2E24]"
+                                        }`}>
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
 
-                                        <div className="h-px w-6 bg-amber-400/20 transition-all duration-300 group-hover/highlight:w-10 group-hover/highlight:bg-amber-400/50" />
+                                        <div className={`h-px w-6 transition-all duration-300 group-hover/highlight:w-10 ${
+                                            isDark ? "bg-amber-400/20 group-hover/highlight:bg-amber-400/50" : "bg-[#7A2E24]/20 group-hover/highlight:bg-[#7A2E24]/60"
+                                        }`} />
 
                                     </div>
 
 
                                     {/* Highlight */}
-                                    <h3 className="flex-1 text-sm font-semibold leading-5 text-white/65 transition-colors duration-300 group-hover/highlight:text-white sm:text-base">
+                                    <h3 className={`flex-1 text-sm font-semibold leading-5 transition-colors duration-300 sm:text-base ${
+                                        isDark 
+                                            ? "text-white/65 group-hover/highlight:text-white" 
+                                            : "text-[#3A2A24] group-hover/highlight:text-[#7A2E24]"
+                                    }`}>
                                         {item}
                                     </h3>
 
 
                                     {/* Index */}
-                                    <span className="hidden text-[8px] uppercase tracking-[0.25em] text-white/20 sm:block">
+                                    <span className={`hidden text-[8px] uppercase tracking-[0.25em] font-semibold sm:block ${
+                                        isDark ? "text-white/20" : "text-[#7A2E24]/40"
+                                    }`}>
                                         Highlight
                                     </span>
 
@@ -806,7 +611,11 @@ export default function CompetitionDetails() {
 
 
                                 {/* Hover Line */}
-                                <div className="absolute bottom-0 left-0 h-px w-0 bg-linear-to-r from-amber-400/60 to-transparent transition-all duration-500 group-hover/highlight:w-full" />
+                                <div className={`absolute bottom-0 left-0 h-px w-0 transition-all duration-500 group-hover/highlight:w-full ${
+                                    isDark 
+                                        ? "bg-linear-to-r from-amber-400/60 to-transparent" 
+                                        : "bg-linear-to-r from-[#7A2E24]/60 to-transparent"
+                                }`} />
 
                             </motion.div>
 
@@ -816,13 +625,19 @@ export default function CompetitionDetails() {
 
 
                     {/* Footer */}
-                    <div className="relative flex items-center justify-between bg-black/20 px-6 py-3.5 sm:px-8">
+                    <div className={`relative flex items-center justify-between px-6 py-3.5 sm:px-8 ${
+                        isDark ? "bg-black/20" : "bg-[#7A2E24]/5"
+                    }`}>
 
-                        <span className="text-[8px] uppercase tracking-[0.25em] text-white/20">
+                        <span className={`text-[8px] uppercase tracking-[0.25em] font-semibold ${
+                            isDark ? "text-white/20" : "text-[#7A2E24]/60"
+                        }`}>
                             {competition.title}
                         </span>
 
-                        <span className="text-[8px] uppercase tracking-[0.25em] text-amber-300/40">
+                        <span className={`text-[8px] uppercase tracking-[0.25em] font-semibold ${
+                            isDark ? "text-amber-300/40" : "text-[#7A2E24]/80"
+                        }`}>
                             Key Features
                         </span>
 
@@ -842,14 +657,15 @@ export default function CompetitionDetails() {
 
                 <div className="text-center">
 
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-amber-300">
+                    <p className="text-[10px] uppercase tracking-[0.4em] font-semibold text-amber-600 dark:text-amber-300">
                         Experience
                     </p>
 
-                    <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+                    <h2 className={`mt-2 text-3xl font-black tracking-tight md:text-4xl ${
+                        isDark ? "text-white" : "text-[#2A1D17]"
+                    }`}>
                         What To Expect
                     </h2>
-
 
                 </div>
 
@@ -873,7 +689,11 @@ export default function CompetitionDetails() {
                         duration: 0.6,
                         ease: "easeOut",
                     }}
-                    className="group relative mt-12 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] backdrop-blur-xl"
+                    className={`group relative mt-12 overflow-hidden rounded-3xl border backdrop-blur-xl transition-colors duration-300 ${
+                        isDark 
+                            ? "border-white/10 bg-white/[0.025]" 
+                            : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                    }`}
                 >
 
                     {/* Ambient background */}
@@ -887,24 +707,32 @@ export default function CompetitionDetails() {
 
                     {/* Header */}
 
-                    <div className="relative flex flex-col gap-3 border-b border-white/10 px-6 py-5 sm:px-8 md:flex-row md:items-center md:justify-between">
+                    <div className={`relative flex flex-col gap-3 border-b px-6 py-5 sm:px-8 md:flex-row md:items-center md:justify-between ${
+                        isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                    }`}>
 
                         <div>
 
-                            <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-300">
+                            <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600 dark:text-amber-300">
                                 Competition Experience
                             </p>
 
-                            <h3 className="mt-1.5 text-xl font-bold tracking-tight md:text-2xl">
+                            <h3 className={`mt-1.5 text-xl font-bold tracking-tight md:text-2xl ${
+                                isDark ? "text-white" : "text-[#2A1D17]"
+                            }`}>
                                 Built To Challenge You
                             </h3>
 
                         </div>
 
 
-                        <div className="w-fit rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5">
+                        <div className={`w-fit rounded-full border px-3 py-1.5 ${
+                            isDark ? "border-white/10 bg-white/[0.035]" : "border-[#7A2E24]/15 bg-amber-500/10"
+                        }`}>
 
-                            <span className="font-mono text-[8px] uppercase tracking-[0.25em] text-white/30">
+                            <span className={`font-mono text-[8px] uppercase tracking-[0.25em] font-semibold ${
+                                isDark ? "text-white/30" : "text-[#7A2E24]/80"
+                            }`}>
                                 {competition.details.length} Experiences
                             </span>
 
@@ -937,7 +765,9 @@ export default function CompetitionDetails() {
                                     delay: index * 0.06,
                                     ease: "easeOut",
                                 }}
-                                className="group/item relative border-b border-white/10 last:border-b-0"
+                                className={`group/item relative border-b last:border-b-0 ${
+                                    isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                                }`}
                             >
 
                                 <div className="flex flex-col gap-3 px-6 py-5 sm:px-8 md:flex-row md:items-center md:py-6">
@@ -946,11 +776,15 @@ export default function CompetitionDetails() {
 
                                     <div className="flex shrink-0 items-center gap-3 md:w-28">
 
-                                        <span className="font-mono text-[10px] tracking-[0.25em] text-amber-300/70">
+                                        <span className={`font-mono text-[10px] tracking-[0.25em] font-bold ${
+                                            isDark ? "text-amber-300/70" : "text-[#7A2E24]"
+                                        }`}>
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
 
-                                        <div className="h-px w-8 bg-amber-400/20 transition-all duration-300 group-hover/item:w-12 group-hover/item:bg-amber-400/50" />
+                                        <div className={`h-px w-8 transition-all duration-300 group-hover/item:w-12 ${
+                                            isDark ? "bg-amber-400/20 group-hover/item:bg-amber-400/50" : "bg-[#7A2E24]/20 group-hover/item:bg-[#7A2E24]/60"
+                                        }`} />
 
                                     </div>
 
@@ -959,7 +793,11 @@ export default function CompetitionDetails() {
 
                                     <div className="flex-1">
 
-                                        <p className="text-sm font-semibold leading-6 text-white/70 transition-colors duration-300 group-hover/item:text-white md:text-base">
+                                        <p className={`text-sm font-semibold leading-6 transition-colors duration-300 md:text-base ${
+                                            isDark 
+                                                ? "text-white/70 group-hover/item:text-white" 
+                                                : "text-[#3A2A24] group-hover/item:text-[#7A2E24]"
+                                        }`}>
                                             {item}
                                         </p>
 
@@ -970,7 +808,11 @@ export default function CompetitionDetails() {
 
                                     <div className="hidden shrink-0 md:block">
 
-                                        <span className="rounded-full border border-white/10 bg-white/[0.025] px-3 py-1.5 text-[8px] uppercase tracking-[0.25em] text-white/25 transition-all duration-300 group-hover/item:border-amber-400/20 group-hover/item:bg-amber-400/5 group-hover/item:text-amber-300/70">
+                                        <span className={`rounded-full border px-3 py-1.5 text-[8px] uppercase tracking-[0.25em] font-semibold transition-all duration-300 ${
+                                            isDark 
+                                                ? "border-white/10 bg-white/[0.025] text-white/25 group-hover/item:border-amber-400/20 group-hover/item:bg-amber-400/5 group-hover/item:text-amber-300/70" 
+                                                : "border-[#7A2E24]/15 bg-amber-500/10 text-[#7A2E24]/80 group-hover/item:border-[#7A2E24]/30 group-hover/item:bg-[#7A2E24]/10 group-hover/item:text-[#7A2E24]"
+                                        }`}>
                                             Stage {index + 1}
                                         </span>
 
@@ -981,7 +823,11 @@ export default function CompetitionDetails() {
 
                                 {/* Hover line */}
 
-                                <div className="absolute bottom-0 left-0 h-px w-0 bg-linear-to-r from-amber-400/60 to-transparent transition-all duration-500 group-hover/item:w-full" />
+                                <div className={`absolute bottom-0 left-0 h-px w-0 transition-all duration-500 group-hover/item:w-full ${
+                                    isDark 
+                                        ? "bg-linear-to-r from-amber-400/60 to-transparent" 
+                                        : "bg-linear-to-r from-[#7A2E24]/60 to-transparent"
+                                }`} />
 
                             </motion.div>
 
@@ -992,13 +838,19 @@ export default function CompetitionDetails() {
 
                     {/* Footer */}
 
-                    <div className="relative flex flex-col gap-2 bg-black/20 px-6 py-4 sm:px-8 md:flex-row md:items-center md:justify-between">
+                    <div className={`relative flex flex-col gap-2 px-6 py-4 sm:px-8 md:flex-row md:items-center md:justify-between ${
+                        isDark ? "bg-black/20" : "bg-[#7A2E24]/5"
+                    }`}>
 
-                        <p className="text-[9px] uppercase tracking-[0.25em] text-white/20">
+                        <p className={`text-[9px] uppercase tracking-[0.25em] font-semibold ${
+                            isDark ? "text-white/20" : "text-[#7A2E24]/60"
+                        }`}>
                             {competition.title}
                         </p>
 
-                        <p className="text-[9px] uppercase tracking-[0.25em] text-amber-300/45">
+                        <p className={`text-[9px] uppercase tracking-[0.25em] font-semibold ${
+                            isDark ? "text-amber-300/45" : "text-[#7A2E24]/80"
+                        }`}>
                             Challenge · Build · Compete
                         </p>
 
@@ -1015,16 +867,24 @@ export default function CompetitionDetails() {
                 <section className="mx-auto mt-20 max-w-7xl px-6">
 
                     {/* UNIFIED EVALUATION CARD */}
-                    <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] backdrop-blur-xl">
+                    <div className={`overflow-hidden rounded-3xl border backdrop-blur-xl transition-colors duration-300 ${
+                        isDark 
+                            ? "border-white/10 bg-white/[0.025]" 
+                            : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                    }`}>
 
                         {/* HEADER */}
-                        <div className="border-b border-white/10 px-6 py-5 md:px-8">
+                        <div className={`border-b px-6 py-5 md:px-8 ${
+                            isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                        }`}>
 
-                            <p className="text-[9px] uppercase tracking-[0.4em] text-amber-300">
+                            <p className="text-[9px] uppercase tracking-[0.4em] font-semibold text-amber-600 dark:text-amber-300">
                                 Evaluation
                             </p>
 
-                            <h2 className="mt-1.5 text-2xl font-black tracking-tight md:text-3xl">
+                            <h2 className={`mt-1.5 text-2xl font-black tracking-tight md:text-3xl ${
+                                isDark ? "text-white" : "text-[#2A1D17]"
+                            }`}>
                                 How You Will Be Judged
                             </h2>
 
@@ -1032,7 +892,9 @@ export default function CompetitionDetails() {
 
 
                         {/* CRITERIA */}
-                        <div className="divide-y divide-white/[0.07]">
+                        <div className={`divide-y ${
+                            isDark ? "divide-white/[0.07]" : "divide-[#7A2E24]/10"
+                        }`}>
 
                             {competition.judgingCriteria.map((item, index) => (
                                 <motion.div
@@ -1054,29 +916,41 @@ export default function CompetitionDetails() {
                                         delay: index * 0.05,
                                         ease: "easeOut",
                                     }}
-                                    className="group grid gap-3 px-6 py-4 transition-colors hover:bg-white/[0.025] md:grid-cols-[55px_180px_100px_1fr] md:items-center md:px-8"
+                                    className={`group grid gap-3 px-6 py-4 transition-colors md:grid-cols-[55px_180px_100px_1fr] md:items-center md:px-8 ${
+                                        isDark ? "hover:bg-white/[0.025]" : "hover:bg-[#7A2E24]/5"
+                                    }`}
                                 >
 
                                     {/* NUMBER */}
-                                    <span className="font-mono text-[10px] font-semibold tracking-wider text-amber-300/80">
+                                    <span className={`font-mono text-[10px] font-semibold tracking-wider ${
+                                        isDark ? "text-amber-300/80" : "text-[#7A2E24]"
+                                    }`}>
                                         {String(index + 1).padStart(2, "0")}
                                     </span>
 
 
                                     {/* TITLE */}
-                                    <h3 className="text-sm font-bold text-white/85">
+                                    <h3 className={`text-sm font-bold ${
+                                        isDark ? "text-white/85" : "text-[#2A1D17]"
+                                    }`}>
                                         {item.title}
                                     </h3>
 
 
                                     {/* VALUE */}
-                                    <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/30">
+                                    <span className={`text-[10px] font-bold uppercase tracking-[0.15em] ${
+                                        isDark ? "text-white/30" : "text-[#7A2E24]/70"
+                                    }`}>
                                         {item.value}
                                     </span>
 
 
                                     {/* DESCRIPTION */}
-                                    <p className="text-xs leading-5 text-white/40 transition-colors group-hover:text-white/55">
+                                    <p className={`text-xs leading-5 transition-colors ${
+                                        isDark 
+                                            ? "text-white/40 group-hover:text-white/55" 
+                                            : "text-[#4A3328]/85 font-medium group-hover:text-[#2A1D17]"
+                                    }`}>
                                         {item.description}
                                     </p>
 
@@ -1087,7 +961,11 @@ export default function CompetitionDetails() {
 
 
                         {/* BOTTOM ACCENT */}
-                        <div className="h-px w-full bg-linear-to-r from-transparent via-amber-400/25 to-transparent" />
+                        <div className={`h-px w-full ${
+                            isDark 
+                                ? "bg-linear-to-r from-transparent via-amber-400/25 to-transparent" 
+                                : "bg-linear-to-r from-transparent via-[#7A2E24]/20 to-transparent"
+                        }`} />
 
                     </div>
 
@@ -1103,11 +981,13 @@ export default function CompetitionDetails() {
                 {/* Heading */}
                 <div className="text-center">
 
-                    <p className="text-xs uppercase tracking-[0.35em] text-amber-300 sm:tracking-[0.45em]">
+                    <p className="text-xs uppercase tracking-[0.35em] font-semibold text-amber-600 dark:text-amber-300 sm:tracking-[0.45em]">
                         Schedule
                     </p>
 
-                    <h2 className="mt-3 text-3xl font-black sm:text-4xl md:mt-4 md:text-5xl">
+                    <h2 className={`mt-3 text-3xl font-black sm:text-4xl md:mt-4 md:text-5xl ${
+                        isDark ? "text-white" : "text-[#2A1D17]"
+                    }`}>
                         Competition Timeline
                     </h2>
 
@@ -1117,10 +997,18 @@ export default function CompetitionDetails() {
                 <div className="relative mt-12 sm:mt-16 md:mt-24">
 
                     {/* Desktop horizontal line */}
-                    <div className="absolute left-0 right-0 top-2.5 hidden h-px bg-linear-to-r from-transparent via-white/20 to-transparent md:block" />
+                    <div className={`absolute left-0 right-0 top-2.5 hidden h-px md:block ${
+                        isDark 
+                            ? "bg-linear-to-r from-transparent via-white/20 to-transparent" 
+                            : "bg-linear-to-r from-transparent via-[#7A2E24]/20 to-transparent"
+                    }`} />
 
                     {/* Mobile vertical line */}
-                    <div className="absolute bottom-0 left-[9px] top-0 w-px bg-linear-to-b from-amber-400/40 via-white/15 to-transparent md:hidden" />
+                    <div className={`absolute bottom-0 left-[9px] top-0 w-px md:hidden ${
+                        isDark 
+                            ? "bg-linear-to-b from-amber-400/40 via-white/15 to-transparent" 
+                            : "bg-linear-to-b from-[#7A2E24]/50 via-[#7A2E24]/15 to-transparent"
+                    }`} />
 
                     <div className="grid gap-6 md:grid-cols-4 md:gap-14">
 
@@ -1171,13 +1059,19 @@ export default function CompetitionDetails() {
 
                                     <div className="min-w-0">
 
-                                        <h3 className="text-base font-bold leading-tight sm:text-lg md:text-xl">
+                                        <h3 className={`text-base font-bold leading-tight sm:text-lg md:text-xl ${
+                                            isDark ? "text-white" : "text-[#2A1D17]"
+                                        }`}>
                                             {item.title}
                                         </h3>
 
                                     </div>
 
-                                    <span className="shrink-0 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-amber-300 sm:px-4 sm:text-xs md:mt-4 md:inline-block md:px-5 md:py-2 md:tracking-[0.3em]">
+                                    <span className={`shrink-0 rounded-full border px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-semibold sm:px-4 sm:text-xs md:mt-4 md:inline-block md:px-5 md:py-2 md:tracking-[0.3em] ${
+                                        isDark 
+                                            ? "border-amber-400/30 bg-amber-400/10 text-amber-300" 
+                                            : "border-[#7A2E24]/30 bg-amber-500/15 text-[#7A2E24]"
+                                    }`}>
                                         {item.date}
                                     </span>
 
@@ -1198,42 +1092,59 @@ export default function CompetitionDetails() {
                 <section className="mx-auto mt-20 max-w-7xl px-6">
 
                     {/* UNIFIED REWARDS CARD */}
-                    <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] backdrop-blur-xl">
+                    <div className={`overflow-hidden rounded-3xl border backdrop-blur-xl transition-colors duration-300 ${
+                        isDark 
+                            ? "border-white/10 bg-white/[0.025]" 
+                            : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                    }`}>
 
                         <div className="grid md:grid-cols-[0.8fr_1.2fr]">
 
                             {/* LEFT — INTRO */}
-                            <div className="border-b border-white/10 px-6 py-6 md:border-b-0 md:border-r md:px-8">
+                            <div className={`border-b px-6 py-6 md:border-b-0 md:border-r md:px-8 ${
+                                isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                            }`}>
 
-                                <p className="text-[10px] uppercase tracking-[0.4em] text-amber-300">
+                                <p className="text-[10px] uppercase tracking-[0.4em] font-semibold text-amber-600 dark:text-amber-300">
                                     Rewards
                                 </p>
 
-                                <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+                                <h2 className={`mt-2 text-3xl font-black tracking-tight md:text-4xl ${
+                                    isDark ? "text-white" : "text-[#2A1D17]"
+                                }`}>
                                     What&apos;s At Stake
                                 </h2>
-
 
                             </div>
 
 
                             {/* RIGHT — PRIZE BREAKDOWN */}
-                            <div className="divide-y divide-white/[0.07]">
+                            <div className={`divide-y ${
+                                isDark ? "divide-white/[0.07]" : "divide-[#7A2E24]/10"
+                            }`}>
 
                                 {competition.prizeBreakdown.map((item, index) => (
                                     <div
                                         key={index}
-                                        className="group flex items-center gap-5 px-6 py-4 transition-colors hover:bg-white/[0.025] md:px-8"
+                                        className={`group flex items-center gap-5 px-6 py-4 transition-colors md:px-8 ${
+                                            isDark ? "hover:bg-white/[0.025]" : "hover:bg-[#7A2E24]/5"
+                                        }`}
                                     >
 
                                         {/* NUMBER */}
-                                        <span className="shrink-0 font-mono text-[10px] font-semibold tracking-wider text-amber-300/80">
+                                        <span className={`shrink-0 font-mono text-[10px] font-semibold tracking-wider ${
+                                            isDark ? "text-amber-300/80" : "text-[#7A2E24]"
+                                        }`}>
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
 
 
                                         {/* PRIZE */}
-                                        <span className="flex-1 text-right text-sm font-medium text-white/65 transition-colors group-hover:text-white/85">
+                                        <span className={`flex-1 text-right text-sm font-medium transition-colors ${
+                                            isDark 
+                                                ? "text-white/65 group-hover:text-white/85" 
+                                                : "text-[#2A1D17] font-semibold group-hover:text-[#7A2E24]"
+                                        }`}>
                                             {item}
                                         </span>
 
@@ -1246,7 +1157,11 @@ export default function CompetitionDetails() {
 
 
                         {/* BOTTOM ACCENT */}
-                        <div className="h-px w-full bg-linear-to-r from-transparent via-amber-400/30 to-transparent" />
+                        <div className={`h-px w-full ${
+                            isDark 
+                                ? "bg-linear-to-r from-transparent via-amber-400/30 to-transparent" 
+                                : "bg-linear-to-r from-transparent via-[#7A2E24]/20 to-transparent"
+                        }`} />
 
                     </div>
 
@@ -1259,25 +1174,35 @@ export default function CompetitionDetails() {
             <section className="mx-auto mt-24 max-w-7xl px-6 pb-20">
 
                 {/* UNIFIED RULES CARD */}
-                <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] backdrop-blur-xl">
+                <div className={`overflow-hidden rounded-3xl border backdrop-blur-xl transition-colors duration-300 ${
+                    isDark 
+                        ? "border-white/10 bg-white/[0.025]" 
+                        : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
+                    }`}>
 
                     {/* HEADER */}
-                    <div className="flex items-end justify-between gap-6 border-b border-white/10 px-6 py-6 md:px-8">
+                    <div className={`flex items-end justify-between gap-6 border-b px-6 py-6 md:px-8 ${
+                        isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                    }`}>
 
                         <div>
-                            <p className="text-[10px] uppercase tracking-[0.4em] text-amber-300">
+                            <p className="text-[10px] uppercase tracking-[0.4em] font-semibold text-amber-600 dark:text-amber-300">
                                 Guidelines
                             </p>
 
-                            <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+                            <h2 className={`mt-2 text-3xl font-black tracking-tight md:text-4xl ${
+                                isDark ? "text-white" : "text-[#2A1D17]"
+                            }`}>
                                 Rules & Regulations
                             </h2>
                         </div>
 
                         {/* Small decorative indicator */}
                         <div className="hidden items-center gap-2 md:flex">
-                            <span className="h-1.5 w-1.5 rounded-full bg-amber-300" />
-                            <span className="text-[9px] uppercase tracking-[0.3em] text-white/25">
+                            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                            <span className={`text-[9px] uppercase tracking-[0.3em] font-medium ${
+                                isDark ? "text-white/25" : "text-[#7A2E24]/60"
+                            }`}>
                                 Please Read Carefully
                             </span>
                         </div>
@@ -1286,21 +1211,31 @@ export default function CompetitionDetails() {
 
 
                     {/* RULES */}
-                    <div className="divide-y divide-white/[0.07]">
+                    <div className={`divide-y ${
+                        isDark ? "divide-white/[0.07]" : "divide-[#7A2E24]/10"
+                    }`}>
 
                         {competition.rules.map((rule, index) => (
                             <div
                                 key={index}
-                                className="group flex gap-5 px-6 py-4 transition-colors hover:bg-white/[0.025] md:px-8"
+                                className={`group flex gap-5 px-6 py-4 transition-colors md:px-8 ${
+                                    isDark ? "hover:bg-white/[0.025]" : "hover:bg-[#7A2E24]/5"
+                                }`}
                             >
 
                                 {/* NUMBER */}
-                                <span className="mt-0.5 shrink-0 font-mono text-[10px] font-semibold tracking-wider text-amber-300/80">
+                                <span className={`mt-0.5 shrink-0 font-mono text-[10px] font-semibold tracking-wider ${
+                                    isDark ? "text-amber-300/80" : "text-[#7A2E24]"
+                                }`}>
                                     {String(index + 1).padStart(2, "0")}
                                 </span>
 
                                 {/* RULE */}
-                                <p className="text-sm leading-6 text-white/55 transition-colors group-hover:text-white/75">
+                                <p className={`text-sm leading-6 transition-colors ${
+                                    isDark 
+                                        ? "text-white/55 group-hover:text-white/75" 
+                                        : "text-[#3A2A24] font-medium group-hover:text-[#2A1D17]"
+                                }`}>
                                     {rule}
                                 </p>
 
@@ -1311,11 +1246,17 @@ export default function CompetitionDetails() {
 
 
                     {/* ACTIONS */}
-                    <div className="flex flex-wrap gap-3 border-t border-white/10 px-6 py-5 md:px-8">
+                    <div className={`flex flex-wrap gap-3 border-t px-6 py-5 md:px-8 ${
+                        isDark ? "border-white/10" : "border-[#7A2E24]/10"
+                    }`}>
 
                         <Link
                             href="/Competitions"
-                            className="inline-flex items-center rounded-full border border-white/15 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white/70 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
+                            className={`inline-flex items-center rounded-full border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] transition ${
+                                isDark 
+                                    ? "border-white/15 text-white/70 hover:border-white/30 hover:bg-white/5 hover:text-white" 
+                                    : "border-[#7A2E24]/30 text-[#4A3328] hover:border-[#7A2E24] hover:bg-[#7A2E24]/5 hover:text-[#7A2E24]"
+                            }`}
                         >
                             Back To Competitions
                         </Link>
@@ -1326,7 +1267,7 @@ export default function CompetitionDetails() {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 rounded-full bg-amber-400 px-6 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-amber-300"
                         >
-                            Register on Unstop
+                            {competition.buttonText || (competition.registrationUrl?.includes("unstop.com") ? "Register on Unstop" : "Confirm Your Slot")}
                             <ExternalLink size={14} />
                         </a>
 

@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
     Home,
     Trophy,
+    Ticket,
     Users,
     Handshake,
     History,
@@ -32,6 +33,11 @@ export default function Navbar() {
             href: "/Competitions",
             label: "Competitions",
             icon: Trophy,
+        },
+        {
+            href: "/Register",
+            label: "Register",
+            icon: Ticket,
         },
         {
             href: "/AboutUs",

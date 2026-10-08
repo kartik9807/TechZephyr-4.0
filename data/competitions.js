@@ -25,9 +25,12 @@ export const competitions = [
         difficulty: "Advanced",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
-            "https://unstop.com/hackathons/ml-hackathon-indian-institute-of-technology-bhubaneswar-1742732",
+            "https://forms.gle/h7ddta7eJrbnVgzY7",
+        buttonText: "Confirm Your Slot",
 
         highlights: [
             "Online ML Screening Quiz",
@@ -134,9 +137,12 @@ export const competitions = [
         difficulty: "Advanced",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
-            "https://unstop.com/hackathons/cadathon-tech-zephyr-40-indian-institute-of-technology-bhubaneswar-1742714",
+            "https://forms.gle/6eUGSFkqxFM5CaKw7",
+        buttonText: "Confirm Your Slot",
 
         highlights: [
             "3D Model Recreation",
@@ -238,9 +244,12 @@ export const competitions = [
         difficulty: "Intermediate",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
-            "https://unstop.com/competitions/b-plan-competition-indian-institute-of-technology-iit-bhubaneswar-1742716",
+            "https://forms.gle/ynTfmaMsKXZ2Rvws8",
+        buttonText: "Confirm Your Slot",
 
         highlights: [
             "Startup Idea Development",
@@ -348,9 +357,12 @@ export const competitions = [
         difficulty: "Intermediate",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
-            "https://unstop.com/hackathons/web-hackathon-indian-institute-of-technology-bhubaneswar-1742721",
+            "https://forms.gle/tyyq8tYuX1PJtT2z8",
+        buttonText: "Confirm Your Slot",
 
         highlights: [
             "24-Hour Qualifying Round",
@@ -465,9 +477,12 @@ export const competitions = [
         difficulty: "Advanced",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
-            "https://unstop.com/hackathons/turtlebot-pursuit-evasion-challenge-tech-zephyr-40-indian-institute-of-technology-bhubaneswar-1742795",
+            "https://forms.gle/q8fkM7BiRkBqyiua9",
+        buttonText: "Confirm Your Slot",
 
         highlights: [
             "Autonomous Robotics",
@@ -569,9 +584,12 @@ export const competitions = [
         difficulty: "Intermediate",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
-            "https://unstop.com/hackathons/design-marathon-indian-institute-of-technology-bhubaneswar-1742740",
+            "https://forms.gle/tP8Dt9oopGfzwPEb7",
+        buttonText: "Confirm Your Slot",
 
         highlights: [
             "Creative Problem Solving",
@@ -610,7 +628,7 @@ export const competitions = [
         ],
 
         details: [
-            "Round 1 requires an original design submission through Unstop.",
+            "Round 1 requires an original design submission through the official portal.",
             "Participants should clearly communicate their idea, creative process and problem-solving approach.",
             "Shortlisted participants progress to an offline final round.",
             "The final round focuses on design presentation, creativity, practicality and design thinking.",
@@ -679,9 +697,12 @@ export const competitions = [
         difficulty: "Advanced",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
-            "https://unstop.com/hackathons/agentic-ai-hackathon-tech-zephyr-40-indian-institute-of-technology-bhubaneswar-1742838",
+            "https://forms.gle/4cLefmCHMxnmnuiR7",
+        buttonText: "Confirm Your Slot",
 
         highlights: [
             "Build Autonomous AI Agents",
@@ -792,9 +813,12 @@ export const competitions = [
         difficulty: "Advanced",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
             "https://unstop.com/hackathons/cp-contest-indian-institute-of-technology-bhubaneswar-1742751",
+        buttonText: "Register on Unstop",
 
         highlights: [
             "Individual Participation",
@@ -897,9 +921,12 @@ export const competitions = [
         difficulty: "Advanced",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
             "https://unstop.com/hackathons/math-o-stellar-tech-zephyr-40-indian-institute-of-technology-bhubaneswar-1742777",
+        buttonText: "Register on Unstop",
 
         highlights: [
             "20 Non-Routine Problems",
@@ -997,13 +1024,16 @@ export const competitions = [
         prize: "₹15,000",
         duration: "As per Competition Schedule",
         venue: "Online",
-        registrationDeadline: "As mentioned on Unstop",
+        registrationDeadline: "As per Competition Schedule",
         difficulty: "Intermediate",
 
         themeColor: "#fbbf24",
+        bgImage:
+            "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop",
 
         registrationUrl:
-            "https://unstop.com/competitions/case-study-competition-tech-zephyr-40-indian-institute-of-technology-iit-bhubaneswar-1742778",
+            "https://forms.gle/jqeqAprdn8gnsbfh9",
+        buttonText: "Confirm Your Slot",
 
         highlights: [
             "Real-World Case Analysis",
@@ -1015,7 +1045,7 @@ export const competitions = [
         timeline: [
             {
                 title: "Registration",
-                date: "As per Unstop",
+                date: "Online",
             },
             {
                 title: "Case Release",

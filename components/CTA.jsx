@@ -2,10 +2,16 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function CTA() {
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
+
     return (
-        <section className="relative overflow-hidden border-t border-white/10 bg-[#090706] py-20 sm:py-24 md:py-32">
+        <section className={`relative overflow-hidden py-20 sm:py-24 md:py-32 transition-colors duration-300 ${
+            isDark ? "bg-[#090706] border-t border-white/10" : "bg-transparent border-t border-[#7A2E24]/10"
+        }`}>
 
             {/* Background atmosphere */}
             <div className="pointer-events-none absolute inset-0">
@@ -33,18 +39,10 @@ export default function CTA() {
                 {/* Radial gradient */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,75,47,0.12),transparent_55%)]" />
 
-                {/* Technical grid */}
-                <div
-                    className="absolute inset-0 opacity-[0.035]"
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-                        backgroundSize: "50px 50px",
-                    }}
-                />
-
                 {/* Vignette */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#090706_90%)]" />
+                {isDark && (
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#090706_90%)]" />
+                )}
 
             </div>
 
@@ -59,7 +57,11 @@ export default function CTA() {
             >
 
                 {/* CTA Card */}
-                <div className="relative overflow-hidden rounded-[26px] border border-white/10 bg-[#15100D]/90 px-5 py-14 shadow-[0_30px_100px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:rounded-[32px] sm:px-8 sm:py-16 md:px-16 md:py-20">
+                <div className={`relative overflow-hidden rounded-[26px] border px-5 py-14 backdrop-blur-2xl sm:rounded-[32px] sm:px-8 sm:py-16 md:px-16 md:py-20 transition-colors duration-300 ${
+                    isDark 
+                        ? "border-white/10 bg-[#15100D]/90 shadow-[0_30px_100px_rgba(0,0,0,0.55)]" 
+                        : "border-[#7A2E24]/20 bg-white/80 shadow-[0_20px_60px_rgba(122,46,36,0.08)]"
+                }`}>
 
                     {/* Card glow */}
                     <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,75,47,0.10),transparent_55%)]" />
@@ -105,7 +107,11 @@ export default function CTA() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.7, delay: 0.1 }}
-                            className="mt-5 bg-gradient-to-b from-[#FFF8F2] via-[#E8D8CE] to-[#8E6557] bg-clip-text text-5xl font-black leading-[0.88] tracking-[-0.04em] text-transparent sm:text-6xl md:mt-6 md:text-7xl"
+                            className={`mt-5 bg-clip-text text-5xl font-black leading-[0.88] tracking-[-0.04em] text-transparent sm:text-6xl md:mt-6 md:text-7xl ${
+                                isDark 
+                                    ? "bg-gradient-to-b from-[#FFF8F2] via-[#E8D8CE] to-[#8E6557]" 
+                                    : "bg-gradient-to-b from-[#2A1D17] via-[#5C2B1D] to-[#C84B2F]"
+                            }`}
                         >
                             Build.
                             <br />
@@ -121,7 +127,9 @@ export default function CTA() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="mx-auto mt-7 max-w-3xl text-sm leading-7 text-white/50 sm:mt-8 sm:text-base sm:leading-8 md:text-lg md:leading-9"
+                            className={`mx-auto mt-7 max-w-3xl text-sm leading-7 sm:mt-8 sm:text-base sm:leading-8 md:text-lg md:leading-9 ${
+                                isDark ? "text-white/50" : "text-[#4A3328]/85 font-medium"
+                            }`}
                         >
                             Join hundreds of innovators, developers, designers,
                             entrepreneurs and researchers for the flagship
@@ -151,13 +159,17 @@ export default function CTA() {
                             </Link>
 
 
-                            {/* Sponsor button */}
-                            <Link
-                                href="/Sponsors"
-                                className="rounded-xl border border-white/15 bg-white/[0.025] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.2em] text-white/75 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#E06A4F]/60 hover:bg-[#C84B2F]/10 hover:text-[#E06A4F] sm:px-10 sm:py-4"
+                            {/* Sponsor button - Directly opens email */}
+                            <a
+                                href="mailto:gsecsnt.sg@iitbbs.ac.in?subject=TechZephyr%202026%20Sponsorship%20Inquiry"
+                                className={`rounded-xl border px-8 py-3.5 text-sm font-medium uppercase tracking-[0.2em] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 sm:px-10 sm:py-4 ${
+                                    isDark 
+                                        ? "border-white/15 bg-white/[0.025] text-white/75 hover:border-[#E06A4F]/60 hover:bg-[#C84B2F]/10 hover:text-[#E06A4F]" 
+                                        : "border-[#7A2E24]/30 bg-[#7A2E24]/5 text-[#4A3328] hover:border-[#7A2E24] hover:bg-[#7A2E24]/10 hover:text-[#7A2E24]"
+                                }`}
                             >
                                 Become a Sponsor
-                            </Link>
+                            </a>
 
                         </motion.div>
 
@@ -168,7 +180,9 @@ export default function CTA() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="mx-auto mt-12 grid max-w-2xl grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-8 sm:mt-14 sm:pt-10"
+                            className={`mx-auto mt-12 grid max-w-2xl grid-cols-3 divide-x border-t pt-8 sm:mt-14 sm:pt-10 ${
+                                isDark ? "divide-white/10 border-white/10" : "divide-[#7A2E24]/15 border-[#7A2E24]/15"
+                            }`}
                         >
 
                             {/* Participants */}
@@ -177,7 +191,9 @@ export default function CTA() {
                                     15000+
                                 </h3>
 
-                                <p className="mt-1.5 text-[9px] uppercase tracking-[0.15em] text-white/35 sm:mt-2 sm:text-xs sm:tracking-widest">
+                                <p className={`mt-1.5 text-[9px] uppercase tracking-[0.15em] font-medium sm:mt-2 sm:text-xs sm:tracking-widest ${
+                                    isDark ? "text-white/35" : "text-[#4A3328]/70"
+                                }`}>
                                     Participants
                                 </p>
                             </div>
@@ -189,7 +205,9 @@ export default function CTA() {
                                     10
                                 </h3>
 
-                                <p className="mt-1.5 text-[9px] uppercase tracking-[0.15em] text-white/35 sm:mt-2 sm:text-xs sm:tracking-widest">
+                                <p className={`mt-1.5 text-[9px] uppercase tracking-[0.15em] font-medium sm:mt-2 sm:text-xs sm:tracking-widest ${
+                                    isDark ? "text-white/35" : "text-[#4A3328]/70"
+                                }`}>
                                     Competitions
                                 </p>
                             </div>
@@ -201,7 +219,9 @@ export default function CTA() {
                                     ₹3.2L+
                                 </h3>
 
-                                <p className="mt-1.5 text-[9px] uppercase tracking-[0.15em] text-white/35 sm:mt-2 sm:text-xs sm:tracking-widest">
+                                <p className={`mt-1.5 text-[9px] uppercase tracking-[0.15em] font-medium sm:mt-2 sm:text-xs sm:tracking-widest ${
+                                    isDark ? "text-white/35" : "text-[#4A3328]/70"
+                                }`}>
                                     Prize Pool
                                 </p>
                             </div>
