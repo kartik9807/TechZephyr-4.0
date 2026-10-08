@@ -90,7 +90,7 @@ export default function SponsorsPage() {
             description:
                 "Fostering financial awareness, market intelligence, and practical investment strategies for future innovators.",
             highlights: ["FinTech Literacy", "Market Insights", "Wealth Strategy"],
-            logo: "/Fin Maverick.jpeg",
+            logo: "/Fin Maverick.png",
             website: "https://www.finmaverick.com/",
             theme: {
                 border: "group-hover:border-emerald-400/40",

@@ -410,9 +410,9 @@ export default function Home() {
                   : "border-[#6B3F2A]/15 bg-white/80 hover:border-[#8B3A2E]/40 hover:bg-white hover:shadow-[0_10px_30px_rgba(107,63,42,0.08)] shadow-xs"
               }`}
             >
-              <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-2.5 shadow-xs ring-1 ring-black/5 dark:bg-black/60 dark:ring-white/10">
+              <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-2 shadow-xs ring-1 ring-black/5 dark:bg-black/60 dark:ring-white/10">
                 <img
-                  src="/Fin Maverick.jpeg"
+                  src="/Fin Maverick.png"
                   alt="Fin Maverick Logo"
                   className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
