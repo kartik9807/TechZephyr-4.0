@@ -104,14 +104,14 @@ export default function RegisterPage() {
             <div className="fixed left-1/3 top-24 z-0 h-96 w-96 rounded-full bg-amber-400/5 blur-[150px]" />
 
             {/* Main Content */}
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 pt-24 pb-36">
+            <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 pt-10 sm:pt-14 pb-28">
                 {/* HERO SECTION */}
-                <section className="flex flex-col items-center justify-center text-center pt-8 pb-14">
+                <section className="flex flex-col items-center justify-center text-center pt-2 sm:pt-4 pb-6 sm:pb-8">
                     <motion.div
                         initial={{ opacity: 0, y: 18 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="mb-5 flex items-center justify-center gap-2 sm:gap-3 max-w-full"
+                        className="mb-4 sm:mb-5 flex items-center justify-center gap-2 sm:gap-3 max-w-full"
                     >
                         <span className="h-px w-6 sm:w-10 shrink-0 bg-linear-to-r from-transparent to-amber-400" />
                         <p className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] sm:tracking-[0.4em] text-amber-500 dark:text-amber-300">
@@ -137,7 +137,7 @@ export default function RegisterPage() {
                         initial={{ opacity: 0, y: 18 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.18 }}
-                        className="mt-6 max-w-2xl text-xs leading-6 sm:text-base sm:leading-8 text-muted-foreground px-2"
+                        className="mt-4 sm:mt-5 max-w-2xl text-xs leading-6 sm:text-base sm:leading-8 text-muted-foreground px-2"
                     >
                         Select your event and confirm your registration slot instantly. Direct registration forms and official listings are available below.
                     </motion.p>
@@ -147,7 +147,7 @@ export default function RegisterPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.28 }}
-                        className="mt-12 w-full max-w-4xl"
+                        className="mt-6 sm:mt-8 w-full max-w-4xl"
                     >
                         {/* Search Input */}
                         <div className="relative flex items-center">
@@ -172,7 +172,7 @@ export default function RegisterPage() {
                         </div>
 
                         {/* Category Filter Pills */}
-                        <div className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                        <div className="mt-4 sm:mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
                             {categories.map((cat) => {
                                 const active = selectedCategory === cat.id;
                                 return (
@@ -201,7 +201,7 @@ export default function RegisterPage() {
                 </section>
 
                 {/* COMPETITIONS REGISTRATION GRID */}
-                <section className="border-t border-border pt-16">
+                <section className="border-t border-border pt-10 sm:pt-12">
                     <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                             <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-amber-500 dark:text-amber-300">
@@ -249,21 +249,6 @@ export default function RegisterPage() {
                                         transition={{ duration: 0.45, delay: index * 0.05 }}
                                         className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-amber-900/10 bg-card/85 p-6 sm:p-7 backdrop-blur-md transition-all duration-300 hover:border-amber-500/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-500/10 dark:border-white/10 dark:bg-zinc-950/85 dark:hover:border-amber-400/35 dark:hover:shadow-[0_15px_35px_rgba(0,0,0,0.7)]"
                                     >
-                                        {/* Domain Background Image - Clearly Visible */}
-                                        {comp.bgImage && (
-                                            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                                                <img
-                                                    src={comp.bgImage}
-                                                    alt={`${comp.title} background`}
-                                                    className="h-full w-full object-cover object-center opacity-70 saturate-[1.15] contrast-[1.05] transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-85 dark:opacity-35 dark:group-hover:opacity-50"
-                                                />
-                                                {/* Theme-adaptive gradient scrim */}
-                                                <div className="absolute inset-0 bg-linear-to-t from-card via-card/85 via-50% to-card/15 dark:from-zinc-950 dark:via-zinc-950/80 dark:via-50% dark:to-zinc-950/20" />
-                                                {/* Top ambient warm sheen */}
-                                                <div className="absolute inset-0 bg-linear-to-b from-amber-500/5 via-transparent to-transparent pointer-events-none" />
-                                            </div>
-                                        )}
-
                                         {/* Ambient Card Glow */}
                                         <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-amber-400/5 blur-[70px] transition-all duration-500 group-hover:bg-amber-400/10" />
 

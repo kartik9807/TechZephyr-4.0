@@ -313,13 +313,15 @@ export default function Navbar() {
                                             duration: 0.3,
                                         }}
                                         className="
+                                            flex items-center gap-2.5
                                             text-xl
-                                            font-semibold
+                                            font-extrabold
                                             tracking-wider
                                             text-foreground
                                         "
                                     >
-                                        TechZephyr
+                                        <img src="/techzephyr-logo.png" alt="TechZephyr" className="h-8 w-8 object-contain" />
+                                        <span>TechZephyr</span>
                                     </motion.div>
 
 

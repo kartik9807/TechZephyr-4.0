@@ -124,7 +124,7 @@ export default function AboutUs() {
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1, duration: 0.45 }}
-                className="landing-heading bg-gradient-to-b from-amber-400 via-amber-600 to-black bg-clip-text text-5xl text-transparent drop-shadow-[0_0_40px_rgba(251,191,36,.15)] md:text-7xl lg:text-[7.5rem] dark:from-white dark:via-zinc-300 dark:to-zinc-700"
+                className="landing-heading whitespace-nowrap bg-gradient-to-b from-amber-500 via-amber-600 to-black bg-clip-text text-4xl sm:text-6xl md:text-7xl lg:text-[6.8rem] xl:text-[7.5rem] font-black text-transparent drop-shadow-[0_0_40px_rgba(251,191,36,.15)] dark:from-white dark:via-zinc-200 dark:to-zinc-600 leading-none tracking-tight"
               >
                 ABOUT US
               </motion.h1>
@@ -245,27 +245,19 @@ export default function AboutUs() {
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className={`relative z-20 flex h-38 w-38 flex-col items-center justify-center rounded-full border-2 backdrop-blur-2xl transition-all duration-300 ${
+                className={`relative z-20 flex h-40 w-40 items-center justify-center rounded-full border-2 backdrop-blur-2xl p-4 transition-all duration-300 ${
                   isDark
                     ? "border-amber-400/40 bg-zinc-950/90 shadow-[0_0_60px_rgba(251,191,36,.25)] ring-8 ring-amber-400/10"
                     : "border-amber-600/35 bg-white shadow-2xl shadow-amber-950/15 ring-8 ring-amber-500/15"
                 }`}
               >
-                <span className={`text-[10px] font-mono font-bold uppercase tracking-[0.35em] ${
-                  isDark ? "text-amber-400/80" : "text-amber-700/90"
-                }`}>
-                  Tech
-                </span>
-
-                <span className={`mt-0.5 text-2xl font-black tracking-tight ${
-                  isDark ? "text-white" : "text-stone-900"
-                }`}>
-                  Zephyr
-                </span>
-
-                <span className="mt-1 rounded-full border border-amber-500/30 bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-mono font-black uppercase tracking-[0.25em] text-amber-600 dark:text-amber-300 shadow-xs">
-                  4.0
-                </span>
+                <Image
+                  src="/techzephyr-logo.png"
+                  alt="TechZephyr 4"
+                  width={120}
+                  height={120}
+                  className="object-contain"
+                />
               </motion.div>
 
 
@@ -381,10 +373,10 @@ export default function AboutUs() {
                 <motion.div initial={{ scale: 1.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, type: "spring" }}
                   className="relative mx-auto flex h-56 w-56 items-center justify-center">
                   <div className="absolute inset-4 rounded-full bg-amber-400/10 blur-2xl" />
-                  <div className={`relative z-10 flex h-44 w-44 items-center justify-center rounded-full border shadow-[0_0_60px_rgba(245,158,11,.35)] ${
-                    isDark ? "border-white/10 bg-black/40" : "border-[#7A2E24]/20 bg-white/95"
+                  <div className={`relative z-10 flex h-48 w-48 items-center justify-center rounded-full border shadow-[0_0_60px_rgba(245,158,11,.35)] p-4 ${
+                    isDark ? "border-white/10 bg-black/60" : "border-[#7A2E24]/20 bg-white/95"
                   }`}>
-                    <Image src="/logo.jpeg" width={130} height={130} alt="TechZephyr Logo" className="rounded-full object-contain" />
+                    <Image src="/techzephyr-logo.png" width={140} height={140} alt="TechZephyr Logo" className="object-contain" />
                   </div>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .2, duration: .4 }} className="relative z-10">

@@ -13,19 +13,19 @@ function emitChange() {
 
 const themeStore = {
     getSnapshot() {
-        if (typeof window === "undefined") return "system";
+        if (typeof window === "undefined") return "light";
         try {
             const saved = localStorage.getItem("techzephyr-theme");
-            if (saved === "light" || saved === "dark" || saved === "system") {
+            if (saved === "light" || saved === "dark") {
                 return saved;
             }
         } catch (e) {
             console.error(e);
         }
-        return "system";
+        return "light";
     },
     getServerSnapshot() {
-        return "system";
+        return "light";
     },
     subscribe(listener) {
         listeners = [...listeners, listener];
@@ -71,15 +71,15 @@ function subscribeMedia(callback) {
 }
 
 function getSystemThemeSnapshot() {
-    if (typeof window === "undefined") return true;
+    if (typeof window === "undefined") return false;
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
 function getServerSystemThemeSnapshot() {
-    return true;
+    return false;
 }
 
-export function ThemeProvider({ children, defaultTheme = "dark" }) {
+export function ThemeProvider({ children, defaultTheme = "light" }) {
     const mounted = useSyncExternalStore(
         emptySubscribe,
         getClientMountedSnapshot,
@@ -102,7 +102,7 @@ export function ThemeProvider({ children, defaultTheme = "dark" }) {
         ? defaultTheme
         : theme === "system"
         ? (isSystemDark ? "dark" : "light")
-        : theme;
+        : (theme || "light");
 
     useEffect(() => {
         if (!mounted) return;
@@ -117,7 +117,7 @@ export function ThemeProvider({ children, defaultTheme = "dark" }) {
 
     const toggleTheme = useCallback(() => {
         const current = themeStore.getSnapshot();
-        const active = current === "system" ? (isSystemDark ? "dark" : "light") : current;
+        const active = current === "system" ? (isSystemDark ? "dark" : "light") : (current || "light");
         const next = active === "dark" ? "light" : "dark";
         themeStore.setTheme(next);
     }, [isSystemDark]);

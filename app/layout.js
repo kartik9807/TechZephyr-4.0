@@ -31,8 +31,7 @@ export default function RootLayout({ children }) {
                             (function() {
                                 try {
                                     var saved = localStorage.getItem('techzephyr-theme');
-                                    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                                    var isDark = saved === 'dark' || (saved !== 'light' && prefersDark);
+                                    var isDark = saved === 'dark';
                                     if (isDark) {
                                         document.documentElement.classList.add('dark');
                                         document.documentElement.classList.remove('light');
@@ -49,7 +48,7 @@ export default function RootLayout({ children }) {
                 />
             </head>
             <body className="min-h-full flex flex-col" suppressHydrationWarning>
-                <ThemeProvider>
+                <ThemeProvider defaultTheme="light">
                     {children}
 
                     <Navbar />
