@@ -104,27 +104,27 @@ export default function RegisterPage() {
             <div className="fixed left-1/3 top-24 z-0 h-96 w-96 rounded-full bg-amber-400/5 blur-[150px]" />
 
             {/* Main Content */}
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 pb-36">
+            <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 pt-24 pb-36">
                 {/* HERO SECTION */}
                 <section className="flex flex-col items-center justify-center text-center pt-8 pb-14">
                     <motion.div
                         initial={{ opacity: 0, y: 18 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="mb-5 flex items-center gap-3"
+                        className="mb-5 flex items-center justify-center gap-2 sm:gap-3 max-w-full"
                     >
-                        <span className="h-px w-10 bg-linear-to-r from-transparent to-amber-400" />
-                        <p className="text-[11px] font-medium uppercase tracking-[0.4em] text-amber-500 dark:text-amber-300">
+                        <span className="h-px w-6 sm:w-10 shrink-0 bg-linear-to-r from-transparent to-amber-400" />
+                        <p className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] sm:tracking-[0.4em] text-amber-500 dark:text-amber-300">
                             TechZephyr 2026 · Direct Access
                         </p>
-                        <span className="h-px w-10 bg-linear-to-l from-transparent to-amber-400" />
+                        <span className="h-px w-6 sm:w-10 shrink-0 bg-linear-to-l from-transparent to-amber-400" />
                     </motion.div>
 
                     <motion.h1
                         initial={{ opacity: 0, scale: 0.96 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, delay: 0.08 }}
-                        className="max-w-5xl text-5xl font-black tracking-tight sm:text-6xl md:text-8xl landing-heading bg-gradient-to-b from-amber-400 via-amber-600 to-black bg-clip-text text-transparent dark:from-white dark:via-zinc-300 dark:to-zinc-700"
+                        className="max-w-5xl text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight landing-heading bg-gradient-to-b from-amber-400 via-amber-600 to-black bg-clip-text text-transparent dark:from-white dark:via-zinc-300 dark:to-zinc-700 leading-tight"
                     >
                         EVENT
                         <span>
@@ -137,7 +137,7 @@ export default function RegisterPage() {
                         initial={{ opacity: 0, y: 18 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.18 }}
-                        className="mt-6 max-w-2xl text-sm leading-8 text-muted-foreground sm:text-base"
+                        className="mt-6 max-w-2xl text-xs leading-6 sm:text-base sm:leading-8 text-muted-foreground px-2"
                     >
                         Select your event and confirm your registration slot instantly. Direct registration forms and official listings are available below.
                     </motion.p>

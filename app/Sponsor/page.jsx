@@ -135,7 +135,7 @@ export default function SponsorsPage() {
             logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/WorldQuant_Text_Logo_2022.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
         },
         {
-            name: "Nakshatra",
+            name: "Naxxatra",
             logo: "https://www.naxxatra.com/_next/image?url=%2F_next%2Fstatic%2Fimage%2Fpublic%2Fimages%2Fcommon%2Fnaxxatra-header-negative.25d71fc1baa36bd1f0b9d15f9e7a09f1.png&w=3840&q=75",
         },
         {
