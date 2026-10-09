@@ -171,10 +171,9 @@ export default function Competitions() {
                 {/* Background */}
                 <div className="absolute inset-0">
                     <Silk
-                        speed={5}
-                        scale={1}
-                        color={isDark ? "#262626" : "#D6A84F"}
-                        noiseIntensity={isDark ? 1.2 : 0.7}
+                        speed={3}
+                        scale={1.1}
+                        noiseIntensity={0.2}
                         rotation={0}
                     />
                 </div>

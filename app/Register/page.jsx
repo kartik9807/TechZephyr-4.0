@@ -14,6 +14,7 @@ import {
     SlidersHorizontal,
     Globe,
     Building2,
+    X,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -92,10 +93,9 @@ export default function RegisterPage() {
             {/* Animated Silk Background */}
             <div className="fixed inset-0 z-0 pointer-events-none opacity-35">
                 <Silk
-                    speed={5}
-                    scale={1.5}
-                    color={isDark ? "#262626" : "#D6A84F"}
-                    noiseIntensity={isDark ? 1.2 : 0.7}
+                    speed={3}
+                    scale={1.2}
+                    noiseIntensity={0.2}
                     rotation={0}
                 />
             </div>
@@ -151,14 +151,24 @@ export default function RegisterPage() {
                     >
                         {/* Search Input */}
                         <div className="relative flex items-center">
-                            <Search className="absolute left-5 text-muted-foreground" size={18} />
+                            <Search className="pointer-events-none absolute left-4.5 z-10 text-amber-500/80 dark:text-amber-400/80" size={19} />
                             <input
                                 type="text"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search by competition name, domain, or society..."
-                                className="w-full rounded-2xl border border-border bg-card/70 py-4 pl-13 pr-5 text-sm text-foreground placeholder:text-muted-foreground backdrop-blur-xl transition-all duration-300 focus:border-amber-400/50 focus:bg-card focus:outline-none focus:ring-1 focus:ring-amber-400/30 shadow-xs"
+                                className="w-full rounded-2xl border border-border/80 bg-card/85 py-4 pl-12 pr-11 text-sm text-foreground placeholder:text-muted-foreground/75 backdrop-blur-xl transition-all duration-300 focus:border-amber-500/50 focus:bg-card focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-xs"
                             />
+                            {searchQuery && (
+                                <button
+                                    type="button"
+                                    onClick={() => setSearchQuery("")}
+                                    className="absolute right-4 z-10 rounded-full p-1 text-muted-foreground hover:bg-foreground/10 hover:text-foreground transition-colors"
+                                    title="Clear search"
+                                >
+                                    <X size={16} />
+                                </button>
+                            )}
                         </div>
 
                         {/* Category Filter Pills */}
@@ -237,7 +247,7 @@ export default function RegisterPage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, amount: 0.15 }}
                                         transition={{ duration: 0.45, delay: index * 0.05 }}
-                                        className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/90 p-6 sm:p-7 backdrop-blur-xl transition-all duration-300 hover:border-amber-400/45 hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-zinc-950/85 dark:hover:border-amber-400/35 dark:hover:shadow-[0_15px_35px_rgba(0,0,0,0.7)]"
+                                        className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-amber-900/10 bg-card/85 p-6 sm:p-7 backdrop-blur-md transition-all duration-300 hover:border-amber-500/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-500/10 dark:border-white/10 dark:bg-zinc-950/85 dark:hover:border-amber-400/35 dark:hover:shadow-[0_15px_35px_rgba(0,0,0,0.7)]"
                                     >
                                         {/* Domain Background Image - Clearly Visible */}
                                         {comp.bgImage && (
@@ -245,10 +255,12 @@ export default function RegisterPage() {
                                                 <img
                                                     src={comp.bgImage}
                                                     alt={`${comp.title} background`}
-                                                    className="h-full w-full object-cover object-center opacity-35 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-50 dark:opacity-40 dark:group-hover:opacity-55"
+                                                    className="h-full w-full object-cover object-center opacity-70 saturate-[1.15] contrast-[1.05] transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-85 dark:opacity-35 dark:group-hover:opacity-50"
                                                 />
                                                 {/* Theme-adaptive gradient scrim */}
-                                                <div className="absolute inset-0 bg-linear-to-t from-background via-background/75 to-background/30 dark:from-zinc-950 dark:via-zinc-950/70 dark:to-black/30" />
+                                                <div className="absolute inset-0 bg-linear-to-t from-card via-card/85 via-50% to-card/15 dark:from-zinc-950 dark:via-zinc-950/80 dark:via-50% dark:to-zinc-950/20" />
+                                                {/* Top ambient warm sheen */}
+                                                <div className="absolute inset-0 bg-linear-to-b from-amber-500/5 via-transparent to-transparent pointer-events-none" />
                                             </div>
                                         )}
 

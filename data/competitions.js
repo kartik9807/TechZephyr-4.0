@@ -12,7 +12,7 @@ export const competitions = [
             "Take on the ML challenge. Clear the online screening round, reach the offline finale, and turn your ideas into a real-world machine learning solution.",
 
         description:
-            " The Tech Zephyr ML Hackathon is a two-round challenge that puts participants’ machine learning knowledge, creativity, and problem-solving skills to the test. The first round is an online assessment covering **Machine Learning, Python, Data Science, and basic AI concepts**, with the top-performing teams advancing to the offline hackathon. In the final round, teams tackle a common problem statement and build a machine learning solution from scratch, turning their knowledge into a practical solution under the pressure of competition.",
+            "The Tech Zephyr ML Hackathon is a two-round challenge that puts participants’ machine learning knowledge, creativity, and problem-solving skills to the test. The first round is an online assessment covering **Machine Learning, Python, Data Science, and basic AI concepts**, with the top-performing teams advancing to the offline hackathon. In the final round, teams tackle a common problem statement and build a machine learning solution from scratch, turning their knowledge into a practical solution under the pressure of competition.",
 
         domain: "Machine Learning & Data Science",
         teamSize: "1–4 Members",

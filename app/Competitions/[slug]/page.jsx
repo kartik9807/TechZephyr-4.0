@@ -16,6 +16,27 @@ import Silk from "@/components/animated_bg/Silk";
 import { competitions } from "@/data/competitions";
 import { useTheme } from "@/components/ThemeProvider";
 
+function formatMarkdownText(text, isDark = false) {
+    if (!text || typeof text !== "string") return text;
+    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, i) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+            const content = part.slice(2, -2);
+            return (
+                <strong
+                    key={i}
+                    className={`font-bold transition-colors ${
+                        isDark ? "text-amber-300 font-semibold" : "text-amber-700 font-bold"
+                    }`}
+                >
+                    {content}
+                </strong>
+            );
+        }
+        return part;
+    });
+}
+
 export default function CompetitionDetails() {
     const { slug } = useParams();
     const { resolvedTheme } = useTheme();
@@ -78,10 +99,9 @@ export default function CompetitionDetails() {
 
                 <div className="absolute inset-0">
                     <Silk
-                        speed={5}
-                        scale={1}
-                        color={isDark ? "#262626" : "#D6A84F"}
-                        noiseIntensity={isDark ? 1.2 : 0.7}
+                        speed={3}
+                        scale={1.1}
+                        noiseIntensity={0.2}
                         rotation={0}
                     />
                 </div>
@@ -133,7 +153,7 @@ export default function CompetitionDetails() {
                         <p className={`mt-8 max-w-3xl text-lg leading-9 ${
                             isDark ? "text-white/60" : "text-[#4A3328]/85 font-medium"
                         }`}>
-                            {competition.description}
+                            {formatMarkdownText(competition.description, isDark)}
                         </p>
 
                         {/* Basic event metadata */}

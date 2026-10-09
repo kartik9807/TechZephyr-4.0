@@ -71,211 +71,63 @@ uniform float uNoiseIntensity;
 
 const float e = 2.71828182845904523536;
 
-
 /* =========================================================
-   NOISE
+   NOISE / DITHER
 ========================================================= */
 
 float noise(vec2 texCoord) {
-
     float G = e;
-
-    vec2 r =
-        G * sin(
-            G * texCoord
-        );
-
-    return fract(
-        r.x *
-        r.y *
-        (1.0 + texCoord.x)
-    );
+    vec2 r = G * sin(G * texCoord);
+    return fract(r.x * r.y * (1.0 + texCoord.x));
 }
-
 
 /* =========================================================
    UV ROTATION
 ========================================================= */
 
-vec2 rotateUvs(
-    vec2 uv,
-    float angle
-) {
-
+vec2 rotateUvs(vec2 uv, float angle) {
     float c = cos(angle);
     float s = sin(angle);
-
-    mat2 rot =
-        mat2(
-            c,
-            -s,
-            s,
-            c
-        );
-
+    mat2 rot = mat2(c, -s, s, c);
     return rot * uv;
 }
-
 
 /* =========================================================
    MAIN
 ========================================================= */
 
 void main() {
+    float rnd = noise(gl_FragCoord.xy);
 
-    /* -------------------------------------------------------
-       Noise
-    ------------------------------------------------------- */
+    vec2 uv = rotateUvs(vUv * uScale, uRotation);
+    vec2 tex = uv * uScale;
 
-    float rnd =
-        noise(gl_FragCoord.xy);
+    float tOffset = uSpeed * uTime;
 
+    // Harmonic wave flow
+    float wave1 = sin(tex.x * 3.2 + tex.y * 2.6 + tOffset * 0.4);
+    float wave2 = sin(tex.x * 5.2 - tex.y * 3.6 - tOffset * 0.3 + cos(tex.y * 3.8 + tOffset * 0.2));
+    float wave3 = sin(11.0 * (tex.x * 0.75 + tex.y * 0.75) + 0.08 * tOffset);
 
-    /* -------------------------------------------------------
-       UV
-    ------------------------------------------------------- */
+    float pattern = 0.5 + 0.32 * wave1 + 0.14 * wave2 + 0.04 * wave3;
+    pattern = clamp(pattern, 0.0, 1.0);
 
-    vec2 uv =
-        rotateUvs(
-            vUv * uScale,
-            uRotation
-        );
+    // Primary to secondary gradient
+    vec3 baseColor = mix(uColor, uColor2, smoothstep(0.1, 0.9, pattern));
 
+    // Specular lighting on wave peaks
+    float specular = pow(smoothstep(0.4, 0.95, pattern), 3.0);
 
-    vec2 tex =
-        uv * uScale;
+    // Dynamic glowing amber/gold energy filaments
+    float filament = pow(sin(pattern * 15.7079 + tOffset * 0.15) * 0.5 + 0.5, 6.0);
 
+    // Luminous accent blend
+    baseColor += uColor3 * (specular * 0.4 + filament * 0.22);
 
-    /* -------------------------------------------------------
-       Animation
-    ------------------------------------------------------- */
+    // Gentle dither to prevent color banding without dirty noise
+    baseColor += (rnd - 0.5) * 0.012 * uNoiseIntensity;
 
-    float tOffset =
-        uSpeed * uTime;
-
-
-    tex.y +=
-        0.03 *
-        sin(
-            8.0 *
-            tex.x -
-            tOffset
-        );
-
-
-    /* -------------------------------------------------------
-       Main Silk Pattern
-    ------------------------------------------------------- */
-
-    float pattern =
-        0.6 +
-        0.4 *
-        sin(
-            5.0 *
-            (
-                tex.x +
-                tex.y +
-
-                cos(
-                    3.0 *
-                    tex.x +
-                    5.0 *
-                    tex.y
-                ) +
-
-                0.02 *
-                tOffset
-            ) +
-
-            sin(
-                20.0 *
-                (
-                    tex.x +
-                    tex.y -
-                    0.1 *
-                    tOffset
-                )
-            )
-        );
-
-
-    /* -------------------------------------------------------
-       Normalize Pattern
-    ------------------------------------------------------- */
-
-    float blend =
-        pattern * 0.5 + 0.5;
-
-    blend =
-        clamp(
-            blend,
-            0.0,
-            1.0
-        );
-
-
-    /* -------------------------------------------------------
-       WHITE / GREY BASE
-       with subtle RED / BROWN
-    ------------------------------------------------------- */
-
-    vec3 baseColor =
-        mix(
-            uColor,
-            uColor2,
-            blend
-        );
-
-
-    /* -------------------------------------------------------
-       Subtle red / brown flowing variation
-    ------------------------------------------------------- */
-
-    float accentPattern =
-        0.5 +
-        0.5 *
-        sin(
-            tex.x * 3.5 +
-            tex.y * 4.0 +
-            tOffset * 0.35
-        );
-
-
-    accentPattern =
-        smoothstep(
-            0.55,
-            0.9,
-            accentPattern
-        );
-
-
-    baseColor =
-        mix(
-            baseColor,
-            uColor3,
-            accentPattern * 0.20
-        );
-
-
-    /* -------------------------------------------------------
-       Add subtle texture
-    ------------------------------------------------------- */
-
-    baseColor -=
-        rnd /
-        15.0 *
-        uNoiseIntensity;
-
-
-    /* -------------------------------------------------------
-       Final Color
-    ------------------------------------------------------- */
-
-    gl_FragColor =
-        vec4(
-            baseColor,
-            1.0
-        );
+    gl_FragColor = vec4(baseColor, 1.0);
 }
 `;
 
@@ -393,23 +245,23 @@ const Silk = ({
        THEME COLORS
 
        DARK:
-       Charcoal + Grey + Dark Brown/Red
+       Deep Obsidian + Cosmic Violet/Graphite + Glowing Amber Gold
 
        LIGHT:
-       White + Cool Grey + Muted Red/Brown
+       Warm Porcelain Ivory + Soft Champagne + Honey Amber
     ====================================================== */
 
     const themeColors =
         resolvedTheme === "dark"
             ? {
-                  primary: "#171514",
-                  secondary: "#403C3A",
-                  accent: "#3A211F",
+                  primary: "#07060A",
+                  secondary: "#16131C",
+                  accent: "#F59E0B",
               }
             : {
-                  primary: "#F7F7F6",
-                  secondary: "#C8C7C5",
-                  accent: "#754541",
+                  primary: "#FAF8F5",
+                  secondary: "#EFE6DB",
+                  accent: "#D97706",
               };
 
 
@@ -508,14 +360,14 @@ const Silk = ({
         const colors =
             resolvedTheme === "dark"
                 ? {
-                      primary: "#171514",
-                      secondary: "#403C3A",
-                      accent: "#3A211F",
+                      primary: "#07060A",
+                      secondary: "#16131C",
+                      accent: "#F59E0B",
                   }
                 : {
-                      primary: "#F7F7F6",
-                      secondary: "#C8C7C5",
-                      accent: "#754541",
+                      primary: "#FAF8F5",
+                      secondary: "#EFE6DB",
+                      accent: "#D97706",
                   };
 
 

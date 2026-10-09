@@ -7,6 +7,7 @@ import "./globals.css";
 import CountUp from "react-countup";
 import Silk from "@/components/animated_bg/Silk.jsx";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Home() {
   const { resolvedTheme } = useTheme();
@@ -27,13 +28,16 @@ export default function Home() {
         {/* SILK BACKGROUND */}
         <div className="absolute inset-0">
           <Silk
-            speed={5}
-            scale={1}
-            noiseIntensity={isDark ? 1.2 : 0.7}
+            speed={3}
+            scale={1.1}
+            noiseIntensity={0.2}
             rotation={0}
-            color={isDark ? "#7B7481" : "#D6A84F"}
           />
         </div>
+
+        {/* AMBIENT TECH ATMOSPHERE */}
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[550px] w-[850px] rounded-full bg-amber-500/10 dark:bg-amber-400/[0.08] blur-[140px]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_35%,#000_70%,transparent_100%)] opacity-75" />
 
         {/* SILK → BACKGROUND TRANSITION */}
         <div
@@ -48,61 +52,80 @@ export default function Home() {
 
         {/* HERO CONTENT */}
         <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 pb-32 pt-16 sm:px-8 sm:pt-20 lg:px-12">
-          {/* Small eyebrow */}
+          {/* Eyebrow Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className={`mb-5 flex items-center gap-3 text-[9px] uppercase tracking-[0.35em] sm:text-[10px] ${
-              isDark ? "text-zinc-400" : "text-[#7C665A]"
+            transition={{ delay: 0.15, duration: 0.6 }}
+            className={`mb-6 inline-flex items-center gap-2.5 rounded-full border px-4 py-1.5 text-[11px] font-mono font-bold tracking-[0.2em] uppercase backdrop-blur-md shadow-xs transition-colors ${
+              isDark
+                ? "border-amber-400/20 bg-amber-400/10 text-amber-300"
+                : "border-amber-600/20 bg-amber-500/10 text-amber-700"
             }`}
           >
-            <span className="h-px w-8 bg-current opacity-40" />
-
-            <span>IIT Bhubaneswar</span>
-
-            <span className="h-px w-8 bg-current opacity-40" />
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-500" />
+            </span>
+            <span>IIT Bhubaneswar · STC Flagship</span>
           </motion.div>
 
-          {/* MAIN TITLE */}
+          {/* MAIN TITLE - Stacked & Centered Iconic Lockup */}
           <motion.h1
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 1,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="landing-heading bg-gradient-to-b from-amber-400 via-amber-600 to-black bg-clip-text text-center text-5xl font-black tracking-[-0.06em] text-transparent sm:text-7xl md:text-8xl lg:text-[8.5rem] dark:from-zinc-200 dark:via-zinc-500 dark:to-black"
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="landing-heading text-center select-none flex flex-col items-center"
           >
-            TECHZEPHYR 4.0
+            {/* Top Brand Name: TECHZEPHYR */}
+            <span
+              className={`block text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.5rem] font-black tracking-[-0.02em] leading-[0.95] sm:leading-[0.9] pr-1 sm:pr-2 transition-all duration-300 ${
+                isDark
+                  ? "bg-gradient-to-b from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent drop-shadow-[0_4px_30px_rgba(255,255,255,0.18)]"
+                  : "bg-gradient-to-b from-[#1C130E] via-[#331C14] to-[#5C2B1D] bg-clip-text text-transparent drop-shadow-[0_2px_14px_rgba(92,43,29,0.12)]"
+              }`}
+            >
+              TECHZEPHYR
+            </span>
+
+            {/* Centered Edition Number: 4.0 with luminous ambient framing */}
+            <div className="relative mt-1 sm:mt-2 flex items-center justify-center gap-3 sm:gap-6">
+              <span className="hidden sm:block h-px w-12 md:w-20 lg:w-28 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+              
+              <span
+                className={`inline-block px-3 pr-4 sm:pr-5 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight transition-all duration-300 ${
+                  isDark
+                    ? "bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(245,158,11,0.65)]"
+                    : "bg-gradient-to-r from-[#C2410C] via-[#EA580C] to-[#D97706] bg-clip-text text-transparent drop-shadow-[0_2px_18px_rgba(234,88,12,0.3)]"
+                }`}
+              >
+                4.0
+              </span>
+
+              <span className="hidden sm:block h-px w-12 md:w-20 lg:w-28 bg-gradient-to-l from-transparent via-amber-500/50 to-transparent" />
+            </div>
           </motion.h1>
 
-          {/* EDITION */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className={`mt-4 text-center text-[10px] uppercase tracking-[0.25em] sm:mt-6 sm:text-xs md:text-sm sm:tracking-[0.35em] ${
-              isDark
-                ? "text-zinc-300/70"
-                : "text-[#6B3F2A]/80"
-            }`}
+          {/* EDITION BADGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.35, duration: 0.7 }}
+            className="mt-4 sm:mt-5 flex items-center gap-2 text-xs sm:text-sm font-mono font-semibold tracking-widest uppercase text-muted-foreground"
           >
-            2026 Edition
-          </motion.p>
+            <span className="h-px w-6 sm:w-10 bg-amber-500/40" />
+            <span className="text-amber-600 dark:text-amber-400 font-bold">2026 Edition</span>
+            <span className="text-foreground/40">·</span>
+            <span>Annual Technology Festival</span>
+            <span className="h-px w-6 sm:w-10 bg-amber-500/40" />
+          </motion.div>
 
           {/* SUBTITLE */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.65, duration: 0.8 }}
-            className="mt-5 max-w-3xl text-center text-base font-medium leading-relaxed text-foreground sm:text-xl md:text-2xl lg:text-3xl"
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="mt-6 max-w-3xl text-center text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-snug"
           >
             One platform for every hackathon, contest,
             <br className="hidden sm:block" /> and competition on campus.
@@ -112,49 +135,43 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className={`mt-5 max-w-2xl text-center text-xs leading-7 sm:text-sm md:text-base ${
-              isDark
-                ? "text-zinc-300/75"
-                : "text-[#4A4038]/80"
+            transition={{ delay: 0.65, duration: 0.7 }}
+            className={`mt-4 max-w-2xl text-center text-xs sm:text-sm md:text-base leading-relaxed ${
+              isDark ? "text-zinc-300/80" : "text-[#4A4038]/85 font-medium"
             }`}
           >
-            TechZephyr brings together every society-run hackathon,
-            coding contest, and competition into a single place —
-            discover events, register in one click, and track
-            results as they happen.
+            TechZephyr brings together every society-run hackathon, coding contest,
+            and technical challenge into a single place — discover tracks,
+            register in one click, and compete with top talent.
           </motion.p>
 
           {/* BUTTONS */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="mt-8 flex w-full flex-col items-center gap-3 px-6 sm:w-auto sm:flex-row sm:gap-4 sm:px-0"
+            transition={{ delay: 0.8, duration: 0.7 }}
+            className="mt-8 flex w-full flex-col items-center justify-center gap-3.5 px-6 sm:w-auto sm:flex-row sm:gap-4 sm:px-0"
           >
             <Link
               href="/Competitions"
-              className={`group w-full rounded-xl px-8 py-3.5 text-center text-xs font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-1 sm:w-auto sm:text-sm ${
-                isDark
-                  ? "bg-white text-black hover:bg-[#7A2E24] hover:text-white hover:shadow-[0_0_35px_rgba(122,46,36,0.35)]"
-                  : "bg-[#3A2A24] text-white hover:bg-[#8B3A2E] hover:shadow-[0_0_35px_rgba(139,58,46,0.25)]"
-              }`}
+              className="group relative inline-flex w-full items-center justify-center gap-2 rounded-xl bg-amber-400 hover:bg-amber-300 px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-black shadow-lg shadow-amber-500/20 transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] sm:w-auto"
             >
-              Explore Events
-              <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
+              <span>Explore Events</span>
+              <ArrowUpRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </Link>
 
             <Link
               href="/AboutUs"
-              className={`w-full rounded-xl border px-8 py-3.5 text-center text-xs uppercase tracking-wide transition-all duration-300 hover:-translate-y-1 sm:w-auto sm:text-sm ${
+              className={`inline-flex w-full items-center justify-center gap-2 rounded-xl border px-8 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 sm:w-auto ${
                 isDark
-                  ? "border-zinc-400/40 text-zinc-100 hover:border-[#D65A45] hover:text-[#F08A72]"
-                  : "border-[#6B3F2A]/35 text-[#4A3328] hover:border-[#A44232] hover:text-[#A44232]"
+                  ? "border-zinc-400/30 bg-zinc-900/50 text-zinc-100 hover:border-amber-400/50 hover:text-amber-300"
+                  : "border-[#6B3F2A]/25 bg-white/60 text-[#4A3328] hover:border-amber-600/40 hover:text-amber-700 backdrop-blur-md"
               }`}
             >
-              Learn More
+              <span>About Us</span>
             </Link>
           </motion.div>
 
@@ -251,11 +268,12 @@ export default function Home() {
               >
                 <CountUp
                   end={3.2}
+                  decimals={1}
                   duration={2.5}
                   autoAnimate
                   autoAnimateOnce
                   prefix="₹"
-                  suffix="L"
+                  suffix="L+"
                 />
               </div>
 

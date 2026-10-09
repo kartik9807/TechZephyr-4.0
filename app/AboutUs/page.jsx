@@ -12,17 +12,34 @@ import { useTheme } from "@/components/ThemeProvider";
 
 
 function EcosystemNode({ title, subtitle }) {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
   return (
-    <div className="group flex w-28 flex-col items-center">
-      <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-border bg-card/70 backdrop-blur-xl transition-all duration-300 group-hover:border-amber-400/50 group-hover:shadow-[0_0_30px_rgba(251,191,36,.15)]">
-        <div className="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,.8)]" />
+    <div className="group flex w-28 flex-col items-center select-none cursor-default">
+      <div className={`relative flex h-16 w-16 items-center justify-center rounded-full border-2 transition-all duration-500 backdrop-blur-xl group-hover:scale-110 ${
+        isDark
+          ? "border-amber-400/40 bg-zinc-950/90 shadow-[0_0_25px_rgba(251,191,36,.2)] ring-4 ring-amber-400/10 group-hover:border-amber-300 group-hover:shadow-[0_0_35px_rgba(251,191,36,.4)]"
+          : "border-amber-600/35 bg-white shadow-lg shadow-amber-950/10 ring-4 ring-amber-500/15 group-hover:border-amber-600 group-hover:shadow-xl group-hover:shadow-amber-500/20"
+      }`}>
+        <div className={`h-3.5 w-3.5 rounded-full transition-all duration-300 group-hover:scale-125 ${
+          isDark
+            ? "bg-gradient-to-tr from-amber-400 to-amber-200 shadow-[0_0_12px_rgba(251,191,36,.9)]"
+            : "bg-gradient-to-tr from-amber-600 to-amber-400 shadow-[0_0_10px_rgba(217,119,6,.7)]"
+        }`} />
       </div>
 
-      <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-foreground">
+      <p className={`mt-3 text-center text-xs font-black uppercase tracking-[0.18em] transition-colors duration-300 ${
+        isDark
+          ? "text-white group-hover:text-amber-300"
+          : "text-stone-900 group-hover:text-amber-700"
+      }`}>
         {title}
       </p>
 
-      <p className="mt-1 text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
+      <p className={`mt-0.5 text-[10px] font-mono font-bold uppercase tracking-[0.25em] ${
+        isDark ? "text-amber-400/80" : "text-amber-700/85"
+      }`}>
         {subtitle}
       </p>
     </div>
@@ -70,10 +87,9 @@ export default function AboutUs() {
         {/* Background */}
         <div className="absolute inset-0">
           <Silk
-            speed={5}
-            scale={1}
-            color={isDark ? "#262626" : "#D6A84F"}
-            noiseIntensity={isDark ? 1.2 : 0.7}
+            speed={3}
+            scale={1.1}
+            noiseIntensity={0.2}
             rotation={0}
           />
         </div>
@@ -164,63 +180,90 @@ export default function AboutUs() {
           RIGHT — TECHZEPHYR ECOSYSTEM
           ========================================================= */}
 
-            <div className="relative hidden h-[520px] items-center justify-center lg:flex">
+            <div className="relative hidden h-[520px] items-center justify-center lg:flex select-none">
 
               {/* Ambient glow */}
-              <div className="absolute h-72 w-72 rounded-full bg-amber-400/10 blur-[100px]" />
+              <div className="absolute h-80 w-80 rounded-full bg-amber-500/15 dark:bg-amber-400/10 blur-[110px]" />
 
-              {/* Outer ring */}
+              {/* Outer Orbit Ring (430px) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className={`absolute h-[430px] w-[430px] rounded-full border ${isDark ? "border-white/5" : "border-[#7A2E24]/10"}`}
+                className={`absolute h-[430px] w-[430px] rounded-full border ${
+                  isDark
+                    ? "border-amber-400/20 shadow-[0_0_40px_rgba(251,191,36,0.05)]"
+                    : "border-amber-700/25 shadow-lg shadow-amber-950/5"
+                }`}
               />
 
-              {/* Inner ring */}
+              {/* Middle Dashed Orbit Ring (330px) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.25 }}
-                className="absolute h-[310px] w-[310px] rounded-full border border-amber-400/10"
+                className={`absolute h-[330px] w-[330px] rounded-full border border-dashed ${
+                  isDark ? "border-amber-400/30" : "border-amber-700/35"
+                }`}
+              />
+
+              {/* Inner Orbit Ring (230px) */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className={`absolute h-[230px] w-[230px] rounded-full border ${
+                  isDark ? "border-amber-400/15" : "border-amber-700/20"
+                }`}
               />
 
               {/* =====================================================
             CONNECTION LINES
             ===================================================== */}
 
-              <div className="absolute h-px w-[330px] rotate-0 bg-linear-to-r from-transparent via-amber-400/30 to-transparent" />
+              <div className={`absolute h-px w-[360px] rotate-0 bg-linear-to-r ${
+                isDark ? "from-transparent via-amber-400/40 to-transparent" : "from-transparent via-amber-700/40 to-transparent"
+              }`} />
 
-              <div className="absolute h-px w-[330px] rotate-45 bg-linear-to-r from-transparent via-amber-400/20 to-transparent" />
+              <div className={`absolute h-px w-[360px] rotate-45 bg-linear-to-r ${
+                isDark ? "from-transparent via-amber-400/25 to-transparent" : "from-transparent via-amber-700/25 to-transparent"
+              }`} />
 
-              <div className="absolute h-px w-[330px] -rotate-45 bg-linear-to-r from-transparent via-amber-400/20 to-transparent" />
+              <div className={`absolute h-px w-[360px] -rotate-45 bg-linear-to-r ${
+                isDark ? "from-transparent via-amber-400/25 to-transparent" : "from-transparent via-amber-700/25 to-transparent"
+              }`} />
 
-              <div className="absolute h-[330px] w-px bg-linear-to-b from-transparent via-amber-400/20 to-transparent" />
-
+              <div className={`absolute h-[360px] w-px bg-linear-to-b ${
+                isDark ? "from-transparent via-amber-400/40 to-transparent" : "from-transparent via-amber-700/40 to-transparent"
+              }`} />
 
               {/* =====================================================
-            CENTER
+            CENTER CORE
             ===================================================== */}
 
               <motion.div
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className={`relative z-20 flex h-36 w-36 flex-col items-center justify-center rounded-full border backdrop-blur-xl transition-all ${
+                className={`relative z-20 flex h-38 w-38 flex-col items-center justify-center rounded-full border-2 backdrop-blur-2xl transition-all duration-300 ${
                   isDark
-                    ? "border-amber-400/30 bg-black/70 shadow-[0_0_70px_rgba(251,191,36,.18)]"
-                    : "border-[#7A2E24]/25 bg-white/85 shadow-[0_0_70px_rgba(122,46,36,.12)]"
+                    ? "border-amber-400/40 bg-zinc-950/90 shadow-[0_0_60px_rgba(251,191,36,.25)] ring-8 ring-amber-400/10"
+                    : "border-amber-600/35 bg-white shadow-2xl shadow-amber-950/15 ring-8 ring-amber-500/15"
                 }`}
               >
-                <span className={`text-xs uppercase tracking-[0.35em] ${isDark ? "text-white/40" : "text-[#4A3328]/70 font-medium"}`}>
+                <span className={`text-[10px] font-mono font-bold uppercase tracking-[0.35em] ${
+                  isDark ? "text-amber-400/80" : "text-amber-700/90"
+                }`}>
                   Tech
                 </span>
 
-                <span className={`mt-1 text-2xl font-bold tracking-tight ${isDark ? "text-white" : "text-[#2A1D17]"}`}>
+                <span className={`mt-0.5 text-2xl font-black tracking-tight ${
+                  isDark ? "text-white" : "text-stone-900"
+                }`}>
                   Zephyr
                 </span>
 
-                <span className="mt-1 text-[10px] uppercase tracking-[0.3em] text-amber-500 dark:text-amber-300 font-bold">
+                <span className="mt-1 rounded-full border border-amber-500/30 bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-mono font-black uppercase tracking-[0.25em] text-amber-600 dark:text-amber-300 shadow-xs">
                   4.0
                 </span>
               </motion.div>

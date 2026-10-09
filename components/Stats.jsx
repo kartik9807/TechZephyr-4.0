@@ -5,28 +5,29 @@ import CountUp from "react-countup";
 
 const stats = [
     {
-        value: 1000,
-        suffix: "+",
-        title: "Participants",
-        description: "Expected participants",
-    },
-    {
-        value: 100,
-        suffix: "+",
-        title: "Colleges",
-        description: "Institutes participating",
-    },
-    {
-        value: 100000,
-        suffix: "+",
-        separator: ",",
-        title: "People Reached",
-        description: "Digital outreach",
+        value: 10,
+        title: "Events",
+        description: "Flagship competitions",
     },
     {
         value: 5,
         title: "STC Societies",
         description: "Technical communities",
+    },
+    {
+        value: 10000,
+        suffix: "+",
+        separator: ",",
+        title: "Participants",
+        description: "Expected participants",
+    },
+    {
+        value: 3.2,
+        decimals: 1,
+        prefix: "₹",
+        suffix: "L+",
+        title: "Prize Pool",
+        description: "Cash prizes & awards",
     },
 ];
 
@@ -89,6 +90,8 @@ export default function Stats() {
                                 <div className="text-3xl font-bold tracking-tight text-[#2B211C] dark:text-[#F5F0E8] sm:text-4xl md:text-5xl">
                                     <CountUp
                                         end={item.value}
+                                        decimals={item.decimals || 0}
+                                        prefix={item.prefix || ""}
                                         duration={1.5}
                                         separator={item.separator}
                                         suffix={item.suffix}

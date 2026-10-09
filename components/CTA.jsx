@@ -180,15 +180,43 @@ export default function CTA() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className={`mx-auto mt-12 grid max-w-2xl grid-cols-3 divide-x border-t pt-8 sm:mt-14 sm:pt-10 ${
+                            className={`mx-auto mt-12 grid max-w-3xl grid-cols-2 divide-y sm:grid-cols-4 sm:divide-y-0 sm:divide-x border-t pt-8 sm:mt-14 sm:pt-10 ${
                                 isDark ? "divide-white/10 border-white/10" : "divide-[#7A2E24]/15 border-[#7A2E24]/15"
                             }`}
                         >
 
-                            {/* Participants */}
-                            <div className="px-2">
+                            {/* Events */}
+                            <div className="px-2 py-3 sm:py-0">
                                 <h3 className="text-2xl font-black tracking-tight text-[#E06A4F] sm:text-3xl">
-                                    15000+
+                                    10
+                                </h3>
+
+                                <p className={`mt-1.5 text-[9px] uppercase tracking-[0.15em] font-medium sm:mt-2 sm:text-xs sm:tracking-widest ${
+                                    isDark ? "text-white/35" : "text-[#4A3328]/70"
+                                }`}>
+                                    Events
+                                </p>
+                            </div>
+
+
+                            {/* Societies */}
+                            <div className="px-2 py-3 sm:py-0">
+                                <h3 className="text-2xl font-black tracking-tight text-[#E06A4F] sm:text-3xl">
+                                    5
+                                </h3>
+
+                                <p className={`mt-1.5 text-[9px] uppercase tracking-[0.15em] font-medium sm:mt-2 sm:text-xs sm:tracking-widest ${
+                                    isDark ? "text-white/35" : "text-[#4A3328]/70"
+                                }`}>
+                                    Societies
+                                </p>
+                            </div>
+
+
+                            {/* Participants */}
+                            <div className="px-2 py-3 sm:py-0">
+                                <h3 className="text-2xl font-black tracking-tight text-[#E06A4F] sm:text-3xl">
+                                    10,000+
                                 </h3>
 
                                 <p className={`mt-1.5 text-[9px] uppercase tracking-[0.15em] font-medium sm:mt-2 sm:text-xs sm:tracking-widest ${
@@ -199,22 +227,8 @@ export default function CTA() {
                             </div>
 
 
-                            {/* Competitions */}
-                            <div className="px-2">
-                                <h3 className="text-2xl font-black tracking-tight text-[#E06A4F] sm:text-3xl">
-                                    10
-                                </h3>
-
-                                <p className={`mt-1.5 text-[9px] uppercase tracking-[0.15em] font-medium sm:mt-2 sm:text-xs sm:tracking-widest ${
-                                    isDark ? "text-white/35" : "text-[#4A3328]/70"
-                                }`}>
-                                    Competitions
-                                </p>
-                            </div>
-
-
                             {/* Prize Pool */}
-                            <div className="px-2">
+                            <div className="px-2 py-3 sm:py-0">
                                 <h3 className="text-2xl font-black tracking-tight text-[#E06A4F] sm:text-3xl">
                                     ₹3.2L+
                                 </h3>

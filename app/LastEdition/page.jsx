@@ -91,10 +91,9 @@ export default function LastEditionPage() {
       {/* Background Silk Layer */}
       <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
         <Silk
-          speed={5}
-          scale={1.5}
-          color={isDark ? "#262626" : "#D6A84F"}
-          noiseIntensity={isDark ? 1.2 : 0.7}
+          speed={3}
+          scale={1.2}
+          noiseIntensity={0.2}
           rotation={0}
         />
       </div>

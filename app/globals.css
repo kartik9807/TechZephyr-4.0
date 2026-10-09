@@ -213,18 +213,17 @@ body {
 
 .landing-heading {
   font-family: var(--font-sans);
-  font-style: italic;
-  line-height: 1;
-
-  font-weight: 1000;
-  letter-spacing: 0.05rem;
+  font-style: normal;
+  line-height: 1.05;
+  font-weight: 900;
   text-transform: uppercase;
+  overflow: visible;
 }
 
 .dark .landing-heading,
 [data-theme="dark"] .landing-heading {
-  -webkit-text-stroke: 1px
-    color-mix(in srgb, var(--foreground) 15%, transparent);
+  -webkit-text-stroke: 0.5px
+    color-mix(in srgb, var(--foreground) 10%, transparent);
 }
 
 /* =========================================================

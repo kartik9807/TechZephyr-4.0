@@ -529,75 +529,58 @@ export default function Navbar() {
                     dark:shadow-[0_0_40px_rgba(251,191,36,.12)]
                 ">
 
-                    {links.map(
-                        (item) => {
+                    {links.map((item) => {
+                        const Icon = item.icon;
+                        const active = pathname === item.href;
 
-                            const Icon =
-                                item.icon;
-
-                            const active =
-                                pathname ===
-                                item.href;
-
-
-                            return (
-
+                        return (
+                            <motion.div
+                                key={item.href}
+                                whileHover={{ scale: 1.04 }}
+                                whileTap={{ scale: 0.96 }}
+                                className="relative"
+                            >
                                 <Link
-                                    key={
-                                        item.href
-                                    }
-                                    href={
-                                        item.href
-                                    }
+                                    href={item.href}
                                     className={`
                                         relative
-
+                                        z-10
                                         flex
                                         items-center
                                         gap-2
-
                                         rounded-full
-
                                         px-5
                                         py-3
-
-                                        transition-all
-                                        duration-300
-
+                                        text-sm
+                                        font-medium
+                                        transition-colors
+                                        duration-200
                                         ${
                                             active
-                                                ? `
-                                                    bg-amber-400
-                                                    text-black
-                                                    shadow-[0_5px_20px_rgba(245,158,11,.12)]
-                                                `
-                                                : `
-                                                    text-foreground
-                                                    hover:bg-foreground/5
-                                                `
+                                                ? "text-black font-semibold"
+                                                : "text-foreground/80 hover:text-foreground"
                                         }
                                     `}
                                 >
-
-                                    <Icon
-                                        size={18}
-                                    />
-
-                                    <span className="text-sm">
-                                        {
-                                            item.label
-                                        }
-                                    </span>
-
+                                    <Icon size={18} className={`transition-transform duration-200 ${active ? "scale-105" : "group-hover:scale-110"}`} />
+                                    <span>{item.label}</span>
                                 </Link>
 
-                            );
-
-                        }
-                    )}
-
+                                {active && (
+                                    <motion.div
+                                        layoutId="desktop-navbar-pill"
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 380,
+                                            damping: 30,
+                                        }}
+                                        className="absolute inset-0 rounded-full bg-amber-400 shadow-[0_0_20px_rgba(245,158,11,.35)] z-0"
+                                    />
+                                )}
+                            </motion.div>
+                        );
+                    })}
                 </div>
-
             </div>
 
         </>
