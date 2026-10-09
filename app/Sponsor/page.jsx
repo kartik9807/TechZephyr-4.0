@@ -210,7 +210,7 @@ export default function SponsorsPage() {
           MAIN CONTENT
       ========================================================= */}
 
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 pb-32">
+            <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 pt-24 pb-32">
 
                 {/* =======================================================
             HERO
@@ -222,22 +222,22 @@ export default function SponsorsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="mb-6 flex items-center gap-3"
+                        className="mb-6 flex items-center justify-center gap-2 sm:gap-3 max-w-full"
                     >
-                        <span className="h-px w-10 bg-linear-to-r from-transparent to-amber-400" />
+                        <span className="h-px w-6 sm:w-10 shrink-0 bg-linear-to-r from-transparent to-amber-400" />
 
-                        <p className="text-[11px] font-medium uppercase tracking-[0.4em] text-amber-500 dark:text-amber-300">
+                        <p className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.2em] sm:tracking-[0.4em] text-amber-500 dark:text-amber-300">
                             TechZephyr 2026 · Partnerships
                         </p>
 
-                        <span className="h-px w-10 bg-linear-to-l from-transparent to-amber-400" />
+                        <span className="h-px w-6 sm:w-10 shrink-0 bg-linear-to-l from-transparent to-amber-400" />
                     </motion.div>
 
                     <motion.h1
                         initial={{ opacity: 0, scale: 0.96 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, delay: 0.08 }}
-                        className="max-w-5xl text-5xl font-black tracking-tight sm:text-6xl md:text-8xl landing-heading bg-gradient-to-b from-amber-400 via-amber-600 to-black bg-clip-text text-transparent dark:from-white dark:via-zinc-300 dark:to-zinc-700"
+                        className="max-w-5xl text-4xl sm:text-6xl md:text-8xl font-black tracking-tight landing-heading bg-gradient-to-b from-amber-400 via-amber-600 to-black bg-clip-text text-transparent dark:from-white dark:via-zinc-300 dark:to-zinc-700"
                     >
                         OUR
                         <span>
@@ -868,35 +868,29 @@ export default function SponsorsPage() {
 
                             {/* DIRECT CONTACT & SPONSORSHIP DESK CARDS */}
                             <div className="mt-10">
-                                <p className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-amber-600 dark:text-amber-400 mb-5 flex items-center gap-2">
-                                    <Sparkles size={13} />
+                                <p className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-amber-600 dark:text-amber-400 mb-5">
                                     Direct Sponsorship Contacts & Inquiries
                                 </p>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
                                     {/* EMAIL CARD */}
-                                    <div className={`relative overflow-hidden rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 ${
+                                    <div className={`relative overflow-hidden rounded-2xl border p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 ${
                                         isDark
                                             ? "border-white/10 bg-white/[0.03] hover:border-amber-400/40 hover:bg-white/[0.05]"
                                             : "border-[#7A2E24]/15 bg-white/85 shadow-lg shadow-amber-950/5 hover:border-[#7A2E24]/35 hover:bg-white"
                                     }`}>
-                                        <div className="flex items-start justify-between gap-4">
-                                            <div className="flex items-center gap-3.5">
-                                                <div className={`flex h-11 w-11 items-center justify-center rounded-xl border ${
+                                        <div className="flex items-center justify-between gap-3">
+                                            <div className="flex items-center gap-3 min-w-0">
+                                                <div className={`flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl border ${
                                                     isDark
                                                         ? "border-amber-400/30 bg-amber-400/10 text-amber-300"
                                                         : "border-[#7A2E24]/20 bg-[#7A2E24]/5 text-[#7A2E24]"
                                                 }`}>
-                                                    <Mail size={20} />
+                                                    <Mail size={18} />
                                                 </div>
-                                                <div>
-                                                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground font-semibold">
+                                                <div className="min-w-0">
+                                                    <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground font-semibold">
                                                         Official Email
-                                                    </p>
-                                                    <p className={`text-sm sm:text-base font-bold font-mono tracking-tight select-all ${
-                                                        isDark ? "text-white" : "text-[#2A1D17]"
-                                                    }`}>
-                                                        gsecsnt.sg@iitbbs.ac.in
                                                     </p>
                                                 </div>
                                             </div>
@@ -904,7 +898,7 @@ export default function SponsorsPage() {
                                             <button
                                                 onClick={() => handleCopy("gsecsnt.sg@iitbbs.ac.in", "email")}
                                                 title="Copy email address"
-                                                className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-mono font-medium transition-all ${
+                                                className={`shrink-0 flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-mono font-medium transition-all ${
                                                     copiedField === "email"
                                                         ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-400"
                                                         : isDark
@@ -926,7 +920,13 @@ export default function SponsorsPage() {
                                             </button>
                                         </div>
 
-                                        <p className={`mt-4 text-xs leading-relaxed ${isDark ? "text-white/50" : "text-[#4A3328]/75 font-medium"}`}>
+                                        <p className={`mt-3 text-sm sm:text-base font-bold font-mono tracking-tight select-all break-all ${
+                                            isDark ? "text-white" : "text-[#2A1D17]"
+                                        }`}>
+                                            gsecsnt.sg@iitbbs.ac.in
+                                        </p>
+
+                                        <p className={`mt-3 text-xs leading-relaxed ${isDark ? "text-white/50" : "text-[#4A3328]/75 font-medium"}`}>
                                             Direct channel to the General Secretary, Science & Technology Council, IIT Bhubaneswar for formal sponsorship proposals, deliverable decks, and partnerships.
                                         </p>
 
@@ -943,28 +943,23 @@ export default function SponsorsPage() {
                                     </div>
 
                                     {/* PHONE / WHATSAPP CARD */}
-                                    <div className={`relative overflow-hidden rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 ${
+                                    <div className={`relative overflow-hidden rounded-2xl border p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 ${
                                         isDark
                                             ? "border-white/10 bg-white/[0.03] hover:border-amber-400/40 hover:bg-white/[0.05]"
                                             : "border-[#7A2E24]/15 bg-white/85 shadow-lg shadow-amber-950/5 hover:border-[#7A2E24]/35 hover:bg-white"
                                     }`}>
-                                        <div className="flex items-start justify-between gap-4">
-                                            <div className="flex items-center gap-3.5">
-                                                <div className={`flex h-11 w-11 items-center justify-center rounded-xl border ${
+                                        <div className="flex items-center justify-between gap-3">
+                                            <div className="flex items-center gap-3 min-w-0">
+                                                <div className={`flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl border ${
                                                     isDark
                                                         ? "border-amber-400/30 bg-amber-400/10 text-amber-300"
                                                         : "border-[#7A2E24]/20 bg-[#7A2E24]/5 text-[#7A2E24]"
                                                 }`}>
-                                                    <Phone size={20} />
+                                                    <Phone size={18} />
                                                 </div>
-                                                <div>
-                                                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground font-semibold">
+                                                <div className="min-w-0">
+                                                    <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground font-semibold">
                                                         Sponsorship Hotline
-                                                    </p>
-                                                    <p className={`text-sm sm:text-base font-bold font-mono tracking-tight select-all ${
-                                                        isDark ? "text-white" : "text-[#2A1D17]"
-                                                    }`}>
-                                                        +91 98018 88417
                                                     </p>
                                                 </div>
                                             </div>
@@ -972,7 +967,7 @@ export default function SponsorsPage() {
                                             <button
                                                 onClick={() => handleCopy("9801888417", "phone")}
                                                 title="Copy phone number"
-                                                className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-mono font-medium transition-all ${
+                                                className={`shrink-0 flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-mono font-medium transition-all ${
                                                     copiedField === "phone"
                                                         ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-400"
                                                         : isDark
@@ -994,7 +989,13 @@ export default function SponsorsPage() {
                                             </button>
                                         </div>
 
-                                        <p className={`mt-4 text-xs leading-relaxed ${isDark ? "text-white/50" : "text-[#4A3328]/75 font-medium"}`}>
+                                        <p className={`mt-3 text-sm sm:text-base font-bold font-mono tracking-tight select-all ${
+                                            isDark ? "text-white" : "text-[#2A1D17]"
+                                        }`}>
+                                            +91 98018 88417
+                                        </p>
+
+                                        <p className={`mt-3 text-xs leading-relaxed ${isDark ? "text-white/50" : "text-[#4A3328]/75 font-medium"}`}>
                                             For immediate discussions, customized deliverable packages, stall spaces, and quick queries regarding TechZephyr 2026 sponsorship.
                                         </p>
 
@@ -1028,9 +1029,9 @@ export default function SponsorsPage() {
                             }`} />
 
                             {/* Footer metadata */}
-                            <div className="relative mt-5 flex flex-wrap items-center gap-x-8 gap-y-3">
+                            <div className="relative mt-5 flex flex-wrap items-center gap-x-4 sm:gap-x-8 gap-y-2">
 
-                                <p className={`text-[9px] uppercase tracking-[0.35em] font-semibold ${
+                                <p className={`text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.35em] font-semibold ${
                                     isDark ? "text-white/35" : "text-[#7A2E24]/70"
                                 }`}>
                                     IIT Bhubaneswar
@@ -1038,7 +1039,7 @@ export default function SponsorsPage() {
 
                                 <span className={`h-1 w-1 rounded-full ${isDark ? "bg-amber-400/40" : "bg-[#7A2E24]/40"}`} />
 
-                                <p className={`text-[9px] uppercase tracking-[0.35em] font-semibold ${
+                                <p className={`text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.35em] font-semibold ${
                                     isDark ? "text-white/35" : "text-[#7A2E24]/70"
                                 }`}>
                                     Science & Technology Council
@@ -1046,7 +1047,7 @@ export default function SponsorsPage() {
 
                                 <span className={`h-1 w-1 rounded-full ${isDark ? "bg-amber-400/40" : "bg-[#7A2E24]/40"}`} />
 
-                                <p className={`text-[9px] uppercase tracking-[0.35em] font-semibold ${
+                                <p className={`text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.35em] font-semibold ${
                                     isDark ? "text-white/35" : "text-[#7A2E24]/70"
                                 }`}>
                                     TechZephyr 2026

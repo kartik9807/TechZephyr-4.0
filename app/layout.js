@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
     return (
         <html
             lang="en"
+            data-scroll-behavior="smooth"
             className={`${lexend.variable} h-full antialiased`}
             suppressHydrationWarning
         >
