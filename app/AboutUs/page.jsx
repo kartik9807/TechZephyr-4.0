@@ -247,17 +247,20 @@ export default function AboutUs() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className={`relative z-20 flex h-40 w-40 items-center justify-center rounded-full border-2 backdrop-blur-2xl p-4 transition-all duration-300 ${
                   isDark
-                    ? "border-amber-400/40 bg-zinc-950/90 shadow-[0_0_60px_rgba(251,191,36,.25)] ring-8 ring-amber-400/10"
-                    : "border-amber-600/35 bg-white shadow-2xl shadow-amber-950/15 ring-8 ring-amber-500/15"
+                    ? "border-amber-400/40 bg-zinc-950/95 shadow-[0_0_60px_rgba(251,191,36,.25)] ring-8 ring-amber-400/10"
+                    : "border-amber-600/40 bg-[#1A120C] shadow-[0_12px_45px_rgba(217,119,6,0.25)] ring-8 ring-amber-500/20"
                 }`}
               >
-                <Image
-                  src="/techzephyr-logo.png"
-                  alt="TechZephyr 4"
-                  width={120}
-                  height={120}
-                  className="object-contain"
-                />
+                <div className="relative flex h-full w-full items-center justify-center">
+                  <Image
+                    src="/techzephyr-logo.png"
+                    alt="TechZephyr 4"
+                    width={130}
+                    height={130}
+                    className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                    priority
+                  />
+                </div>
               </motion.div>
 
 
@@ -373,10 +376,18 @@ export default function AboutUs() {
                 <motion.div initial={{ scale: 1.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, type: "spring" }}
                   className="relative mx-auto flex h-56 w-56 items-center justify-center">
                   <div className="absolute inset-4 rounded-full bg-amber-400/10 blur-2xl" />
-                  <div className={`relative z-10 flex h-48 w-48 items-center justify-center rounded-full border shadow-[0_0_60px_rgba(245,158,11,.35)] p-4 ${
-                    isDark ? "border-white/10 bg-black/60" : "border-[#7A2E24]/20 bg-white/95"
+                  <div className={`relative z-10 flex h-48 w-48 items-center justify-center rounded-full border shadow-[0_0_60px_rgba(245,158,11,.35)] p-5 transition-all duration-300 ${
+                    isDark
+                      ? "border-white/10 bg-black/60"
+                      : "border-amber-600/40 bg-[#1A120C] shadow-[0_12px_45px_rgba(217,119,6,0.25)] ring-8 ring-amber-500/15"
                   }`}>
-                    <Image src="/techzephyr-logo.png" width={140} height={140} alt="TechZephyr Logo" className="object-contain" />
+                    <Image
+                      src="/techzephyr-logo.png"
+                      width={140}
+                      height={140}
+                      alt="TechZephyr Logo"
+                      className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                    />
                   </div>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .2, duration: .4 }} className="relative z-10">
