@@ -15,7 +15,7 @@ const stats = [
         description: "Technical communities",
     },
     {
-        value: 10000,
+        value: 20000,
         suffix: "+",
         separator: ",",
         title: "Participants",

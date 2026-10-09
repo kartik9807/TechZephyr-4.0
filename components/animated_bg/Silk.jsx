@@ -115,17 +115,17 @@ void main() {
     // Primary to secondary gradient
     vec3 baseColor = mix(uColor, uColor2, smoothstep(0.1, 0.9, pattern));
 
-    // Specular lighting on wave peaks
-    float specular = pow(smoothstep(0.4, 0.95, pattern), 3.0);
+    // Specular lighting on wave peaks - soft and elegant
+    float specular = pow(smoothstep(0.48, 0.98, pattern), 3.5);
 
-    // Dynamic glowing amber/gold energy filaments
-    float filament = pow(sin(pattern * 15.7079 + tOffset * 0.15) * 0.5 + 0.5, 6.0);
+    // Subtle glowing energy filaments
+    float filament = pow(sin(pattern * 15.7079 + tOffset * 0.15) * 0.5 + 0.5, 7.0);
 
-    // Luminous accent blend
-    baseColor += uColor3 * (specular * 0.4 + filament * 0.22);
+    // Luminous accent blend - balanced for deep dark elegance
+    baseColor += uColor3 * (specular * 0.18 + filament * 0.08);
 
     // Gentle dither to prevent color banding without dirty noise
-    baseColor += (rnd - 0.5) * 0.012 * uNoiseIntensity;
+    baseColor += (rnd - 0.5) * 0.01 * uNoiseIntensity;
 
     gl_FragColor = vec4(baseColor, 1.0);
 }
@@ -254,9 +254,9 @@ const Silk = ({
     const themeColors =
         resolvedTheme === "dark"
             ? {
-                  primary: "#07060A",
-                  secondary: "#16131C",
-                  accent: "#F59E0B",
+                  primary: "#060508",
+                  secondary: "#100d14",
+                  accent: "#b45309",
               }
             : {
                   primary: "#FAF8F5",
@@ -360,9 +360,9 @@ const Silk = ({
         const colors =
             resolvedTheme === "dark"
                 ? {
-                      primary: "#07060A",
-                      secondary: "#16131C",
-                      accent: "#F59E0B",
+                      primary: "#060508",
+                      secondary: "#100d14",
+                      accent: "#b45309",
                   }
                 : {
                       primary: "#FAF8F5",

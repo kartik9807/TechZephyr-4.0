@@ -333,6 +333,17 @@ export default function RegisterPage() {
 
                                         {/* Actions: Direct Registration + Details Link */}
                                         <div className="relative z-10 mt-6 pt-4 border-t border-border flex flex-col gap-2.5">
+                                            {!isUnstop && (
+                                                <div className={`flex items-center justify-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-[10px] sm:text-[10.5px] font-mono font-semibold text-center ${
+                                                    isDark 
+                                                        ? "border-amber-400/30 bg-amber-400/10 text-amber-300" 
+                                                        : "border-amber-600/25 bg-amber-500/10 text-amber-900"
+                                                }`}>
+                                                    <span className="shrink-0 text-xs">⚠️</span>
+                                                    <span>Only for participants shortlisted after Round 1</span>
+                                                </div>
+                                            )}
+
                                             <a
                                                 href={comp.registrationUrl}
                                                 target="_blank"

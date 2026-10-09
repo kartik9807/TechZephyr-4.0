@@ -465,16 +465,25 @@ export default function CompetitionDetails() {
 
                     </div>
 
-                    <a
-                        href={competition.registrationUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-8 inline-flex shrink-0 items-center gap-3 self-center rounded-xl bg-amber-400 px-8 py-4 font-bold text-black transition hover:bg-amber-300 hover:shadow-[0_0_30px_rgba(251,191,36,.2)] md:mt-0"
-                    >
-                        {competition.buttonText || (competition.registrationUrl?.includes("unstop.com") ? "Register on Unstop" : "Confirm Your Slot")}
+                    <div className="mt-8 flex flex-col items-center md:items-end gap-2.5 self-center md:mt-0">
+                        <a
+                            href={competition.registrationUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex shrink-0 items-center gap-3 rounded-xl bg-amber-400 px-8 py-4 font-bold text-black transition hover:bg-amber-300 hover:shadow-[0_0_30px_rgba(251,191,36,.2)]"
+                        >
+                            {competition.buttonText || (competition.registrationUrl?.includes("unstop.com") ? "Register on Unstop" : "Confirm Your Slot")}
 
-                        <ExternalLink size={17} />
-                    </a>
+                            <ExternalLink size={17} />
+                        </a>
+
+                        {competition.buttonText === "Confirm Your Slot" && (
+                            <p className="text-[11px] font-mono font-semibold text-amber-600 dark:text-amber-300 flex items-center gap-1.5 text-center md:text-right">
+                                <span>⚠️</span>
+                                <span>Only for participants shortlisted after Round 1</span>
+                            </p>
+                        )}
+                    </div>
 
                 </div>
 
@@ -1281,15 +1290,24 @@ export default function CompetitionDetails() {
                             Back To Competitions
                         </Link>
 
-                        <a
-                            href={competition.registrationUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full bg-amber-400 px-6 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-amber-300"
-                        >
-                            {competition.buttonText || (competition.registrationUrl?.includes("unstop.com") ? "Register on Unstop" : "Confirm Your Slot")}
-                            <ExternalLink size={14} />
-                        </a>
+                        <div className="flex flex-col items-center sm:items-end gap-1.5">
+                            <a
+                                href={competition.registrationUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 rounded-full bg-amber-400 px-6 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-amber-300"
+                            >
+                                {competition.buttonText || (competition.registrationUrl?.includes("unstop.com") ? "Register on Unstop" : "Confirm Your Slot")}
+                                <ExternalLink size={14} />
+                            </a>
+
+                            {competition.buttonText === "Confirm Your Slot" && (
+                                <p className="text-[10px] font-mono font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                                    <span>⚠️</span>
+                                    <span>Only for participants shortlisted after Round 1</span>
+                                </p>
+                            )}
+                        </div>
 
                     </div>
 

@@ -36,7 +36,7 @@ export default function Home() {
         </div>
 
         {/* AMBIENT TECH ATMOSPHERE */}
-        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[550px] w-[850px] rounded-full bg-amber-500/10 dark:bg-amber-400/[0.08] blur-[140px]" />
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[550px] w-[850px] rounded-full bg-amber-500/10 dark:bg-amber-500/[0.03] blur-[140px]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_35%,#000_70%,transparent_100%)] opacity-75" />
 
         {/* SILK → BACKGROUND TRANSITION */}
@@ -95,7 +95,7 @@ export default function Home() {
               <span
                 className={`inline-block px-3 pr-4 sm:pr-5 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight transition-all duration-300 ${
                   isDark
-                    ? "bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(245,158,11,0.65)]"
+                    ? "bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(245,158,11,0.35)]"
                     : "bg-gradient-to-r from-[#C2410C] via-[#EA580C] to-[#D97706] bg-clip-text text-transparent drop-shadow-[0_2px_18px_rgba(234,88,12,0.3)]"
                 }`}
               >
@@ -241,7 +241,7 @@ export default function Home() {
                 }`}
               >
                 <CountUp
-                  end={10000}
+                  end={20000}
                   duration={2.5}
                   autoAnimate
                   autoAnimateOnce
@@ -490,7 +490,7 @@ export default function Home() {
       <section
         className={`relative overflow-hidden border-t px-4 py-20 sm:px-8 lg:px-16 lg:py-28 ${
           isDark
-            ? "border-white/10 bg-[#100d0b]"
+            ? "border-white/10 bg-[#0d0b0a]"
             : "border-[#6B3F2A]/10 bg-[#faf8f4]"
         }`}
       >
@@ -505,15 +505,15 @@ export default function Home() {
 
         <div className="relative mx-auto max-w-7xl">
           {/* Section Heading */}
-          <div className="mx-auto mb-16 max-w-3xl text-center">
+          <div className="mx-auto mb-14 max-w-3xl text-center">
             <p
-              className={`text-[10px] uppercase tracking-[0.4em] sm:text-xs ${
+              className={`text-[10px] uppercase tracking-[0.4em] font-mono font-bold sm:text-xs ${
                 isDark
-                  ? "text-[#D65A45]"
+                  ? "text-[#E06A4F]"
                   : "text-[#8B3A2E]"
               }`}
             >
-              TechZephyr 2026
+              TechZephyr 4.0 · Official Fest Drop
             </p>
 
             <h2 className="mt-4 text-4xl font-bold tracking-[-0.03em] text-foreground sm:text-5xl md:text-6xl">
@@ -521,303 +521,248 @@ export default function Home() {
             </h2>
 
             <p
-              className={`mx-auto mt-5 max-w-2xl text-xs leading-7 sm:text-sm ${
+              className={`mx-auto mt-4 max-w-2xl text-xs leading-7 sm:text-sm ${
                 isDark
                   ? "text-zinc-400"
                   : "text-[#62554D]"
               }`}
             >
-              A collection built around the identity of TechZephyr 4.0.
-              Explore every detail through interactive previews.
+              Exclusive Spider-Man edition festival tees featuring the iconic crimson drip insignia on the front and customizable name printing on the back.
             </p>
 
-            {/* Interaction Hint */}
-            <div
-              className={`mx-auto mt-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[8px] uppercase tracking-[0.25em] ${
-                isDark
-                  ? "border-white/10 bg-white/[0.025] text-zinc-500"
-                  : "border-[#6B3F2A]/10 bg-white/50 text-[#806A5E]"
-              }`}
-            >
-              Click / Tap to explore
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="https://forms.gle/3gYeqSoEdmYBPmFh7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-amber-400 hover:bg-amber-300 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-black shadow-lg shadow-amber-500/25 transition-all duration-300 hover:scale-105 active:scale-95"
+              >
+                <span>Order Official Merch</span>
+                <ArrowUpRight size={15} />
+              </a>
             </div>
           </div>
 
           {/* =====================================================
-              FEATURED MERCH
+              FEATURED MERCH: FRONT & BACK CARDS
           ====================================================== */}
 
-          <div className="grid gap-6 lg:grid-cols-2">
-            {/* FRONT */}
+          <div className="grid gap-7 lg:grid-cols-2 max-w-5xl mx-auto">
+            {/* FRONT CARD */}
             <motion.div
               whileHover={{ y: -6 }}
               transition={{
                 duration: 0.35,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className={`group relative overflow-hidden rounded-[2rem] border ${
+              className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border transition-all duration-300 ${
                 isDark
-                  ? "border-white/10 bg-white/[0.025]"
-                  : "border-[#6B3F2A]/10 bg-white/60"
+                  ? "border-white/10 bg-white/[0.025] hover:border-amber-400/30 hover:bg-white/[0.04] hover:shadow-[0_0_40px_rgba(251,191,36,0.06)]"
+                  : "border-[#6B3F2A]/10 bg-white/70 shadow-lg shadow-amber-950/5 hover:border-[#8B3A2E]/30 hover:bg-white"
               }`}
             >
               <div
-                className={`relative aspect-[4/3] overflow-hidden flex items-center justify-center p-8 ${
+                className={`relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden flex items-center justify-center p-6 ${
                   isDark
-                    ? "bg-linear-to-br from-zinc-900 via-black to-zinc-950"
-                    : "bg-linear-to-br from-amber-100/60 via-orange-50 to-amber-200/40"
+                    ? "bg-gradient-to-br from-zinc-950 via-black to-zinc-900"
+                    : "bg-gradient-to-br from-neutral-100 via-white to-amber-50"
                 }`}
               >
-                {/* Background ambient glow */}
-                <div className="absolute h-36 w-36 rounded-full bg-amber-500/20 blur-2xl pointer-events-none" />
+                <img
+                  src="/merch/merch-front.png"
+                  alt="TechZephyr 4.0 Official T-Shirt - Front View"
+                  className="h-full w-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:scale-105"
+                />
 
-                {/* Branded Apparel Preview Graphic */}
-                <div className="relative z-10 flex flex-col items-center justify-center text-center">
-                  <div className={`relative flex h-24 w-24 items-center justify-center rounded-2xl border backdrop-blur-md shadow-xl transition-transform duration-500 group-hover:scale-110 ${
-                    isDark ? "border-amber-400/30 bg-black/60 shadow-amber-500/10" : "border-[#7A2E24]/20 bg-white/90 shadow-[#7A2E24]/10"
-                  }`}>
-                    <img
-                      src="/logo.jpeg"
-                      alt="TechZephyr front insignia"
-                      className="h-16 w-16 rounded-xl object-contain drop-shadow"
-                    />
-                  </div>
-                  <p className="mt-3 font-mono text-[10px] font-bold uppercase tracking-[0.35em] text-amber-500 dark:text-amber-400">
-                    TECHZEPHYR &middot; 4.0
-                  </p>
-                  <p className={`text-[9px] font-mono uppercase tracking-widest mt-0.5 ${isDark ? "text-white/40" : "text-[#7A2E24]/60"}`}>
-                    Flagship Front Crest
-                  </p>
+                {/* Badge Label */}
+                <div className="absolute top-4 left-4 rounded-full border border-white/20 bg-black/60 px-3.5 py-1.5 backdrop-blur-xl">
+                  <span className="text-[9px] uppercase tracking-[0.25em] text-amber-300 font-mono font-bold">
+                    Front View
+                  </span>
                 </div>
 
-                {/* Gradient */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/30 to-transparent" />
-
-                {/* Label */}
-                <div className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 backdrop-blur-xl">
-                  <span className="text-[8px] uppercase tracking-[0.25em] text-white font-mono font-bold">
-                    Design 01
+                <div className="absolute top-4 right-4 rounded-full border border-red-500/30 bg-red-950/40 px-3 py-1 backdrop-blur-xl">
+                  <span className="text-[9px] uppercase tracking-wider text-red-400 font-mono font-semibold">
+                    Crimson Drip
                   </span>
                 </div>
               </div>
 
-              <div className="p-7 sm:p-8">
-                <p
-                  className={`text-[9px] uppercase tracking-[0.3em] font-mono font-bold ${
-                    isDark
-                      ? "text-[#D65A45]"
-                      : "text-[#A44232]"
-                  }`}
-                >
-                  Front Print
-                </p>
+              <div className="p-7 sm:p-8 flex flex-col justify-between flex-1">
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <p
+                      className={`text-[10px] uppercase tracking-[0.3em] font-mono font-bold ${
+                        isDark
+                          ? "text-[#E06A4F]"
+                          : "text-[#A44232]"
+                      }`}
+                    >
+                      Front Artwork
+                    </p>
+                    <span className="text-[10px] font-mono text-muted-foreground uppercase">
+                      STC &amp; Fest Crest
+                    </span>
+                  </div>
 
-                <h3 className="mt-2 text-2xl font-semibold text-foreground">
-                  TechZephyr 2026
-                </h3>
+                  <h3 className="mt-2 text-2xl font-bold text-foreground">
+                    Signature Spider Insignia
+                  </h3>
 
-                <p
-                  className={`mt-3 text-xs leading-6 ${
-                    isDark
-                      ? "text-zinc-400"
-                      : "text-[#62554D]"
-                  }`}
-                >
-                  The primary TechZephyr identity brought to life through
-                  an interactive merchandise preview.
-                </p>
+                  <p
+                    className={`mt-3 text-xs leading-relaxed ${
+                      isDark
+                        ? "text-zinc-400"
+                        : "text-[#62554D]"
+                    }`}
+                  >
+                    Featuring the striking red dripping spider emblem centered on premium heavyweight black fabric, paired with dual chest insignias for IIT BBS STC and TechZephyr 4.0.
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-5 border-t border-border/60 flex items-center justify-between gap-3">
+                  <span className={`text-[11px] font-mono font-semibold ${isDark ? "text-amber-400" : "text-amber-700"}`}>
+                    ★ Official Edition
+                  </span>
+                  <a
+                    href="https://forms.gle/3gYeqSoEdmYBPmFh7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-amber-500 hover:text-amber-400 dark:text-amber-300 dark:hover:text-amber-200 transition-colors"
+                  >
+                    <span>Order Now</span>
+                    <ArrowUpRight size={14} />
+                  </a>
+                </div>
               </div>
             </motion.div>
 
-            {/* BACK */}
+            {/* BACK CARD */}
             <motion.div
               whileHover={{ y: -6 }}
               transition={{
                 duration: 0.35,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className={`group relative overflow-hidden rounded-[2rem] border ${
+              className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border transition-all duration-300 ${
                 isDark
-                  ? "border-white/10 bg-white/[0.025]"
-                  : "border-[#6B3F2A]/10 bg-white/60"
+                  ? "border-white/10 bg-white/[0.025] hover:border-amber-400/30 hover:bg-white/[0.04] hover:shadow-[0_0_40px_rgba(251,191,36,0.06)]"
+                  : "border-[#6B3F2A]/10 bg-white/70 shadow-lg shadow-amber-950/5 hover:border-[#8B3A2E]/30 hover:bg-white"
               }`}
             >
               <div
-                className={`relative aspect-[4/3] overflow-hidden flex items-center justify-center p-8 ${
+                className={`relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden flex items-center justify-center p-6 ${
                   isDark
-                    ? "bg-linear-to-br from-black via-zinc-950 to-zinc-900"
-                    : "bg-linear-to-br from-amber-50 via-orange-100/50 to-amber-100"
+                    ? "bg-gradient-to-br from-zinc-950 via-black to-zinc-900"
+                    : "bg-gradient-to-br from-neutral-100 via-white to-amber-50"
                 }`}
               >
-                {/* Background ambient glow */}
-                <div className="absolute h-36 w-36 rounded-full bg-orange-500/15 blur-2xl pointer-events-none" />
+                <img
+                  src="/merch/merch-back.png"
+                  alt="TechZephyr 4.0 Official T-Shirt - Back View with Custom Name"
+                  className="h-full w-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:scale-105"
+                />
 
-                {/* Branded Back Print Graphic */}
-                <div className="relative z-10 flex flex-col items-center justify-center text-center">
-                  <div className={`p-4 rounded-2xl border backdrop-blur-md transition-transform duration-500 group-hover:scale-105 ${
-                    isDark ? "border-white/10 bg-white/[0.03]" : "border-[#7A2E24]/15 bg-white/80 shadow-lg shadow-amber-950/5"
-                  }`}>
-                    <div className="flex items-center justify-center gap-2 mb-1.5 font-mono text-[9px] uppercase tracking-[0.3em] text-amber-500">
-                      <span>STC</span> &bull; <span>IIT BBS</span> &bull; <span>2026</span>
-                    </div>
-                    <div className="font-mono text-xl sm:text-2xl font-black tracking-tighter landing-heading bg-gradient-to-b from-amber-400 to-amber-600 bg-clip-text text-transparent">
-                      TECHZEPHYR
-                    </div>
-                    <p className={`mt-1 font-mono text-[8px] uppercase tracking-[0.4em] ${isDark ? "text-white/50" : "text-[#4A3328]/70"}`}>
-                      5 SOCIETIES &middot; 1 SUMMIT
-                    </p>
-                  </div>
+                {/* Badge Label */}
+                <div className="absolute top-4 left-4 rounded-full border border-white/20 bg-black/60 px-3.5 py-1.5 backdrop-blur-xl">
+                  <span className="text-[9px] uppercase tracking-[0.25em] text-amber-300 font-mono font-bold">
+                    Back View
+                  </span>
                 </div>
 
-                {/* Gradient */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/30 to-transparent" />
-
-                {/* Label */}
-                <div className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 backdrop-blur-xl">
-                  <span className="text-[8px] uppercase tracking-[0.25em] text-white font-mono font-bold">
-                    Design 02
+                <div className="absolute top-4 right-4 rounded-full border border-amber-500/30 bg-amber-950/40 px-3 py-1 backdrop-blur-xl">
+                  <span className="text-[9px] uppercase tracking-wider text-amber-300 font-mono font-semibold">
+                    Custom Name Included
                   </span>
                 </div>
               </div>
 
-              <div className="p-7 sm:p-8">
-                <p
-                  className={`text-[9px] uppercase tracking-[0.3em] font-mono font-bold ${
-                    isDark
-                      ? "text-[#D65A45]"
-                      : "text-[#A44232]"
-                  }`}
-                >
-                  Back Print
-                </p>
+              <div className="p-7 sm:p-8 flex flex-col justify-between flex-1">
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <p
+                      className={`text-[10px] uppercase tracking-[0.3em] font-mono font-bold ${
+                        isDark
+                          ? "text-[#E06A4F]"
+                          : "text-[#A44232]"
+                      }`}
+                    >
+                      Back Artwork
+                    </p>
+                    <span className="text-[10px] font-mono text-muted-foreground uppercase">
+                      Personalized
+                    </span>
+                  </div>
 
-                <h3 className="mt-2 text-2xl font-semibold text-foreground">
-                  The Signature
-                </h3>
+                  <h3 className="mt-2 text-2xl font-bold text-foreground">
+                    City Spider-Web &amp; Custom Name
+                  </h3>
 
-                <p
-                  className={`mt-3 text-xs leading-6 ${
-                    isDark
-                      ? "text-zinc-400"
-                      : "text-[#62554D]"
-                  }`}
-                >
-                  The signature back artwork representing the 2026
-                  TechZephyr edition.
-                </p>
+                  <p
+                    className={`mt-3 text-xs leading-relaxed ${
+                      isDark
+                        ? "text-zinc-400"
+                        : "text-[#62554D]"
+                    }`}
+                  >
+                    High-definition cityscape with Spider-Man under the web frame, customized with your name printed in clean athletic typography across the lower back.
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-5 border-t border-border/60 flex items-center justify-between gap-3">
+                  <span className={`text-[11px] font-mono font-semibold ${isDark ? "text-amber-400" : "text-amber-700"}`}>
+                    ★ Name Customization
+                  </span>
+                  <a
+                    href="https://forms.gle/3gYeqSoEdmYBPmFh7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-amber-500 hover:text-amber-400 dark:text-amber-300 dark:hover:text-amber-200 transition-colors"
+                  >
+                    <span>Get Custom Tee</span>
+                    <ArrowUpRight size={14} />
+                  </a>
+                </div>
               </div>
             </motion.div>
           </div>
 
-          {/* =====================================================
-              THIRD DESIGN
-          ====================================================== */}
-
+          {/* ORDER CTA BANNER */}
           <motion.div
-            whileHover={{ y: -4 }}
-            transition={{ duration: 0.3 }}
-            className={`group relative mt-6 overflow-hidden rounded-[2rem] border ${
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className={`mt-12 rounded-3xl border p-6 sm:p-8 text-center backdrop-blur-xl max-w-4xl mx-auto transition-colors ${
               isDark
-                ? "border-white/10 bg-white/[0.025]"
-                : "border-[#6B3F2A]/10 bg-white/60"
+                ? "border-amber-400/20 bg-linear-to-r from-amber-400/[0.06] via-white/[0.02] to-amber-500/[0.06]"
+                : "border-[#6B3F2A]/15 bg-linear-to-r from-amber-500/10 via-white/90 to-orange-500/10 shadow-xl shadow-amber-950/5"
             }`}
           >
-            <div className="grid items-center lg:grid-cols-[1.15fr_0.85fr]">
-              {/* Graphic Mockup */}
-              <div
-                className={`relative aspect-[16/10] overflow-hidden flex items-center justify-center p-8 lg:aspect-auto lg:h-full ${
-                  isDark
-                    ? "bg-linear-to-br from-zinc-950 via-black to-zinc-900"
-                    : "bg-linear-to-br from-amber-100/50 via-white to-amber-100/70"
-                }`}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+              <div>
+                <p className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-amber-600 dark:text-amber-400">
+                  Limited Festival Stock
+                </p>
+                <h4 className="mt-1 text-xl sm:text-2xl font-black tracking-tight text-foreground">
+                  Get Your TechZephyr 4.0 T-Shirt Today
+                </h4>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Fill out the quick Google Form to select your size and submit your personalized name for the back print.
+                </p>
+              </div>
+
+              <a
+                href="https://forms.gle/3gYeqSoEdmYBPmFh7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 hover:bg-amber-300 px-6 py-3 text-xs font-bold uppercase tracking-wider text-black shadow-md transition-all duration-300 hover:shadow-amber-500/30 hover:scale-105 active:scale-95"
               >
-                <div className="absolute h-48 w-48 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
-
-                <div className="relative z-10 flex flex-col items-center text-center p-6">
-                  <div className={`flex items-center gap-3 p-3 rounded-xl border backdrop-blur-md ${
-                    isDark ? "border-amber-400/20 bg-amber-400/5" : "border-[#7A2E24]/15 bg-white/80"
-                  }`}>
-                    <img src="/logo.jpeg" alt="Logo" className="w-10 h-10 rounded-lg object-contain" />
-                    <div className="text-left">
-                      <p className="text-xs font-black font-mono tracking-wider text-amber-500">LIMITED EDITION</p>
-                      <p className={`text-[9px] font-mono tracking-widest ${isDark ? "text-white/60" : "text-[#4A3328]/70"}`}>OFFICIAL FEST APPAREL</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 flex flex-wrap justify-center gap-2">
-                    {["Premium Heavyweight", "Embroidered Monogram", "Custom Badge"].map((tag) => (
-                      <span key={tag} className={`text-[9px] font-mono uppercase px-2.5 py-1 rounded-md border ${
-                        isDark ? "border-white/10 bg-white/5 text-white/70" : "border-[#7A2E24]/10 bg-[#7A2E24]/5 text-[#7A2E24]"
-                      }`}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-black/20" />
-              </div>
-
-              {/* Content */}
-              <div className="p-8 sm:p-10 lg:p-14">
-                <p
-                  className={`text-[9px] uppercase tracking-[0.3em] font-mono font-bold ${
-                    isDark
-                      ? "text-[#D65A45]"
-                      : "text-[#A44232]"
-                  }`}
-                >
-                  Design 03
-                </p>
-
-                <h3 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                  Built for the
-                  <br />
-                  <span
-                    className={
-                      isDark
-                        ? "text-[#D65A45]"
-                        : "text-[#A44232]"
-                    }
-                  >
-                    TechZephyr generation.
-                  </span>
-                </h3>
-
-                <p
-                  className={`mt-5 text-xs leading-7 sm:text-sm ${
-                    isDark
-                      ? "text-zinc-400"
-                      : "text-[#62554D]"
-                  }`}
-                >
-                  An additional piece from the official TechZephyr
-                  merchandise collection. Use the interactive preview
-                  to explore the artwork.
-                </p>
-
-                <div
-                  className={`mt-7 h-px w-16 ${
-                    isDark
-                      ? "bg-[#D65A45]/40"
-                      : "bg-[#A44232]/40"
-                  }`}
-                />
-              </div>
+                <span>Fill Booking Form</span>
+                <ArrowUpRight size={15} />
+              </a>
             </div>
           </motion.div>
-
-          {/* Status */}
-          <div className="mt-12 text-center">
-            <p
-              className={`text-[9px] uppercase tracking-[0.3em] ${
-                isDark
-                  ? "text-zinc-600"
-                  : "text-[#806A5E]"
-              }`}
-            >
-              Merchandise availability will be announced soon
-            </p>
-          </div>
         </div>
       </section>
     </>

@@ -216,7 +216,7 @@ export default function CTA() {
                             {/* Participants */}
                             <div className="px-2 py-3 sm:py-0">
                                 <h3 className="text-2xl font-black tracking-tight text-[#E06A4F] sm:text-3xl">
-                                    10,000+
+                                    20,000+
                                 </h3>
 
                                 <p className={`mt-1.5 text-[9px] uppercase tracking-[0.15em] font-medium sm:mt-2 sm:text-xs sm:tracking-widest ${
