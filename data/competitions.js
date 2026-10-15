@@ -1021,7 +1021,7 @@ export const competitions = [
         teamSize: "1–3 Members",
         mode: "Online",
         status: "Upcoming",
-        prize: "₹15,000",
+        prize: "₹30,000",
         duration: "As per Competition Schedule",
         venue: "Online",
         registrationDeadline: "As per Competition Schedule",

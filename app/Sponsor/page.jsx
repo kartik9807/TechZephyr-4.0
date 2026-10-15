@@ -181,10 +181,6 @@ export default function SponsorsPage() {
             value: "02",
             label: "Event Sponsors",
         },
-        {
-            value: "10k+",
-            label: "Our Ecosystem",
-        },
     ];
 
     return (
@@ -284,7 +280,7 @@ export default function SponsorsPage() {
                         initial={{ opacity: 0, y: 25 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.38 }}
-                        className={`mt-20 grid w-full max-w-3xl grid-cols-2 border backdrop-blur-xl md:grid-cols-4 rounded-2xl overflow-hidden transition-colors duration-300 ${
+                        className={`mt-20 grid w-full max-w-2xl grid-cols-1 sm:grid-cols-3 border backdrop-blur-xl rounded-2xl overflow-hidden transition-colors duration-300 ${
                             isDark 
                                 ? "border-white/10 bg-white/[0.025]" 
                                 : "border-[#7A2E24]/15 bg-white/70 shadow-xl shadow-amber-950/5"
@@ -294,7 +290,7 @@ export default function SponsorsPage() {
                             <div
                                 key={stat.label}
                                 className={`p-6 ${index !== sponsorStats.length - 1
-                                    ? isDark ? "border-b border-white/10 md:border-b-0 md:border-r" : "border-b border-[#7A2E24]/10 md:border-b-0 md:border-r"
+                                    ? isDark ? "border-b border-white/10 sm:border-b-0 sm:border-r" : "border-b border-[#7A2E24]/10 sm:border-b-0 sm:border-r"
                                     : ""
                                     }`}
                             >

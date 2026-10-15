@@ -142,7 +142,7 @@ export default function Competitions() {
             date: "TBD",
             duration: "As per Competition Schedule",
             venue: "Online",
-            prize: "₹15,000",
+            prize: "₹30,000",
             difficulty: "Intermediate",
             number: "10",
         },
